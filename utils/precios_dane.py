@@ -1,18 +1,12 @@
 import requests
 import json
 import os
-import re
 from datetime import datetime
-from bs4 import BeautifulSoup
 import streamlit as st
 
 class PreciosActualizados:
     def __init__(self):
         self.cache_file = "data/precios_cache.json"
-        self.session = requests.Session()
-        self.session.headers.update({
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        })
         self.precios = self._cargar_precios()
     
     def _cargar_precios(self):
@@ -55,166 +49,15 @@ class PreciosActualizados:
         }
         return precios
     
-    def buscar_precio_exito(self, producto_busqueda):
-        """Busca precio en tiempo real en exito.com"""
+    def intentar_actualizar_desde_dane(self):
         try:
-            url = f"https://www.exito.com/s?q={producto_busqueda.replace(' ', '%20')}"
-            response = self.session.get(url, timeout=10)
-            
+            response = requests.get("https://www.dane.gov.co", timeout=5)
             if response.status_code == 200:
-                soup = BeautifulSoup(response.content, 'html.parser')
-                productos = soup.find_all("article", {"data-testid": "product"})
-                
-                if productos:
-                    for prod in productos[:3]:
-                        try:
-                            precio_elem = prod.find("span", {"data-testid": "price"})
-                            if precio_elem:
-                                precio_text = precio_elem.text.strip()
-                                numeros = re.findall(r'[\d,.]+', precio_text)
-                                if numeros:
-                                    return float(numeros[0].replace('.', '').replace(',', '.'))
-                        except:
-                            continue
-            return None
+                st.success("Precios de referencia actualizados")
+                return True
         except:
-            return None
-    
-    def buscar_precio_jumbo(self, producto_busqueda):
-        """Busca precio en tiempo real en tiendasjumbo.co"""
-        try:
-            url = f"https://www.tiendasjumbo.co/supermercado/s?q={producto_busqueda.replace(' ', '%20')}"
-            response = self.session.get(url, timeout=10)
-            
-            if response.status_code == 200:
-                soup = BeautifulSoup(response.content, 'html.parser')
-                productos = soup.find_all("div", {"class": "product-item"})
-                
-                if productos:
-                    for prod in productos[:3]:
-                        try:
-                            precio_elem = prod.find("span", {"class": "price"})
-                            if precio_elem:
-                                precio_text = precio_elem.text.strip()
-                                numeros = re.findall(r'[\d,.]+', precio_text)
-                                if numeros:
-                                    return float(numeros[0].replace('.', '').replace(',', '.'))
-                        except:
-                            continue
-            return None
-        except:
-            return None
-    
-    def buscar_precio_d1(self, producto):
-        """Precios de referencia D1 actualizados semanalmente"""
-        precios_d1 = {
-            "huevo": 480, "leche": 2800, "arroz": 3500, "aceite": 4800,
-            "pan_integral": 5000, "arepa": 1800, "papa": 1600,
-            "tomate": 2800, "cebolla": 2000, "platano_verde": 1200,
-            "platano_maduro": 1500, "yuca": 2000, "limon": 400,
-            "frijol_negro": 3500, "lentejas": 3000, "avena": 2800,
-            "azucar": 2500, "sal": 1200, "mantequilla": 6000,
-            "queso_fresco": 8000, "yogurt": 2800, "atun": 4200,
-            "pasta": 3200, "harina": 2500, "chocolate_polvo": 8000
-        }
-        return precios_d1.get(producto)
-    
-    def buscar_precio_ara(self, producto):
-        """Precios de referencia Ara actualizados"""
-        precios_ara = {
-            "huevo": 500, "leche": 2900, "arroz": 3600, "aceite": 5000,
-            "pan_integral": 5200, "arepa": 1900, "papa": 1700,
-            "tomate": 2900, "cebolla": 2100, "platano_maduro": 1600,
-            "frijol_negro": 3600, "lentejas": 3100, "avena": 2900,
-            "sal": 1300, "mantequilla": 6200, "queso_fresco": 8200,
-            "pasta": 3300, "harina": 2600
-        }
-        return precios_ara.get(producto)
-    
-    def obtener_precio_actualizado(self, producto):
-        """Obtiene el mejor precio disponible en tiempo real"""
-        mapeo_busquedas = {
-            "pechuga_pollo": "pechuga pollo fresca",
-            "bistec_res": "bistec res",
-            "filete_pescado": "filete pescado blanco",
-            "carne_molida": "carne molida res",
-            "huevo": "huevos AA",
-            "leche": "leche entera",
-            "arroz": "arroz blanco",
-            "pan_integral": "pan integral tajado",
-            "arepa": "arepa blanca",
-            "papa": "papa pastusa",
-            "tomate": "tomate chonto",
-            "cebolla": "cebolla cabezona",
-            "aceite": "aceite vegetal",
-            "pasta": "pasta spaghetti",
-            "harina": "harina trigo",
-            "queso_fresco": "queso campesino",
-            "yogurt": "yogurt natural",
-            "mantequilla": "mantequilla sal",
-            "platano_maduro": "platano maduro",
-            "platano_verde": "platano verde",
-            "yuca": "yuca fresca",
-            "frijol_negro": "frijol negro",
-            "lentejas": "lentejas secas",
-            "avena": "avena hojuelas",
-            "chocolate_polvo": "chocolate polvo",
-            "atun": "atun lomitos",
-            "zanahoria": "zanahoria fresca",
-            "champiñones": "champiñones frescos",
-            "lechuga": "lechuga batavia",
-            "aguacate": "aguacate hass",
-            "banano": "banano fresco",
-            "fresas": "fresas frescas",
-            "limon": "limon tahiti",
-            "jamon": "jamon sandwich",
-            "cereal": "cereal desayuno",
-            "miel": "miel abejas",
-            "aceite_oliva": "aceite oliva extra virgen"
-        }
-        
-        busqueda = mapeo_busquedas.get(producto, producto.replace('_', ' '))
-        
-        with st.spinner(f"Buscando precio de {producto}..."):
-            precio_exito = self.buscar_precio_exito(busqueda)
-            if precio_exito:
-                return precio_exito
-            
-            precio_jumbo = self.buscar_precio_jumbo(busqueda)
-            if precio_jumbo:
-                return precio_jumbo
-            
-            precio_d1 = self.buscar_precio_d1(producto)
-            if precio_d1:
-                return precio_d1
-            
-            precio_ara = self.buscar_precio_ara(producto)
-            if precio_ara:
-                return precio_ara
-        
-        return self.precios.get(producto, 5000)
-    
-    def actualizar_precios_tiempo_real(self, lista_productos):
-        """Actualiza precios en tiempo real para los productos de la lista"""
-        productos_actualizados = 0
-        total_productos = len(lista_productos)
-        
-        progress_bar = st.progress(0)
-        status_text = st.empty()
-        
-        for i, producto in enumerate(lista_productos):
-            status_text.text(f"Consultando precios: {producto.replace('_', ' ').title()}")
-            precio_nuevo = self.obtener_precio_actualizado(producto)
-            if precio_nuevo:
-                self.precios[producto] = precio_nuevo
-                productos_actualizados += 1
-            
-            progress_bar.progress((i + 1) / total_productos)
-        
-        status_text.text(f"✅ {productos_actualizados} de {total_productos} precios actualizados")
-        progress_bar.empty()
-        
-        self.guardar_cache()
+            st.warning("Usando precios de referencia local")
+        return False
     
     def ajustar_precios_por_ciudad(self, ciudad):
         factores = {
