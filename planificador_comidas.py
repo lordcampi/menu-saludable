@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import random
 from datetime import datetime, timedelta
 import plotly.express as px
 
@@ -41,8 +42,13 @@ st.title("🥗 Planificador de Comidas Saludable")
 st.markdown(f"### Bienvenidos {PERSONA1} y {PERSONA2}!")
 st.markdown("---")
 
+# Fecha de inicio del plan (cuando se genera por primera vez)
+FECHA_INICIO = datetime(2026, 6, 2)  # Cambia esta fecha cuando quieras reiniciar el plan
+
 if 'menu_generator' not in st.session_state:
     st.session_state.menu_generator = MenuGenerator(dias=DIAS_PLAN, personas=2)
+    # Usar semilla fija basada en la fecha de inicio para que siempre genere el mismo menu
+    random.seed(FECHA_INICIO.strftime("%Y%m%d"))
     st.session_state.menu = st.session_state.menu_generator.generar_menu()
     st.session_state.inventory_manager = InventoryManager(st.session_state.menu)
 
