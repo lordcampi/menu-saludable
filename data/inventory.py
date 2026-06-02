@@ -6,20 +6,24 @@ class InventoryManager:
         self.inventario_necesario = self._calcular_inventario_total()
         self.inventario_actual = {}
         self.categorias_productos = {
-            "Proteinas": ["gallina", "pechuga_pollo", "carne_mechar", "bistec_res", 
-                         "filete_pescado", "atun", "huevo"],
-            "Lacteos": ["queso_fresco", "queso_parmesano", "mantequilla", "yogurt", "leche"],
-            "Vegetales": ["tomate", "cebolla", "cebolla_larga", "lechuga", "zanahoria",
-                         "brocoli", "espinaca", "champiñones", "aji", "cilantro", "ajo",
-                         "pimenton", "pepino", "zapallo"],
-            "Frutas": ["aguacate", "banano", "fresas", "limon"],
-            "Granos y Cereales": ["arroz", "lentejas", "frijol_negro", "avena",
-                                 "pan_integral", "arepa", "tortilla_harina", "arvejas"],
-            "Tuberculos": ["papa", "yuca", "platano_verde", "platano_maduro", "mazorca"],
-            "Frutos secos": ["nueces", "semillas_chia"],
-            "Condimentos": ["sal", "azucar", "comino", "canela", "oregano", "miel"],
-            "Aceites": ["aceite", "aceite_oliva"]
-        }
+    "Proteinas": ["gallina", "pechuga_pollo", "carne_mechar", "bistec_res", 
+                 "filete_pescado", "atun", "huevo", "jamon", "carne_molida",
+                 "chicharron", "salchichas"],
+    "Lacteos": ["queso_fresco", "queso_parmesano", "mantequilla", "yogurt", 
+               "leche", "crema_leche"],
+    "Vegetales": ["tomate", "cebolla", "cebolla_larga", "lechuga", "zanahoria",
+                 "brocoli", "espinaca", "champiñones", "aji", "cilantro", "ajo",
+                 "pimenton", "pepino", "zapallo"],
+    "Frutas": ["aguacate", "banano", "fresas", "limon"],
+    "Granos y Cereales": ["arroz", "lentejas", "frijol_negro", "avena",
+                         "pan_integral", "arepa", "tortilla_harina", "arvejas",
+                         "cereal", "harina", "pasta", "pan_hamburguesa"],
+    "Tuberculos": ["papa", "yuca", "platano_verde", "platano_maduro", "mazorca"],
+    "Frutos secos": ["nueces", "semillas_chia"],
+    "Condimentos": ["sal", "azucar", "comino", "canela", "oregano", "miel", 
+                   "chocolate_polvo"],
+    "Aceites": ["aceite", "aceite_oliva"]
+}
     
     def _calcular_inventario_total(self):
         inventario = defaultdict(lambda: {"cantidad": 0, "unidad": "", "tipo": ""})
