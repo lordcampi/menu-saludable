@@ -1,8 +1,6 @@
-import requests
 import json
 import os
 from datetime import datetime
-import streamlit as st
 
 class PreciosActualizados:
     def __init__(self):
@@ -19,9 +17,9 @@ class PreciosActualizados:
                         return data.get('precios', {})
             except:
                 pass
-        return self._obtener_precios_base()
+        return self._obtener_precios_semanales()
     
-    def _obtener_precios_base(self):
+    def _obtener_precios_semanales(self):
         precios = {
             "gallina": 12000, "pechuga_pollo": 18500, "carne_mechar": 22000,
             "bistec_res": 24000, "filete_pescado": 26000, "atun": 5000,
@@ -48,16 +46,6 @@ class PreciosActualizados:
             "chocolate_polvo": 12000, "aceite": 5500, "aceite_oliva": 18000
         }
         return precios
-    
-    def intentar_actualizar_desde_dane(self):
-        try:
-            response = requests.get("https://www.dane.gov.co", timeout=5)
-            if response.status_code == 200:
-                st.success("Precios de referencia actualizados")
-                return True
-        except:
-            st.warning("Usando precios de referencia local")
-        return False
     
     def ajustar_precios_por_ciudad(self, ciudad):
         factores = {

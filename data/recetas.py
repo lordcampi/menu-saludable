@@ -213,14 +213,14 @@ RECETAS = {
             "ingredientes": {
                 "leche": {"cantidad": 400, "unidad": "ml", "tipo": "volumen"},
                 "chocolate_polvo": {"cantidad": 30, "unidad": "gr", "tipo": "peso"},
-                "pan_integral": {"cantidad": 4, "unidad": "rebanadas", "tipo": "unidad"},
+                "pan_integral": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "mantequilla": {"cantidad": 10, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Licuar leche con chocolate en polvo",
                 "Servir frio en vaso",
                 "Tostar pan y untar con mantequilla",
-                "Acompañar el chocolate con el pan"
+                "Acompanar el chocolate con el pan"
             ],
             "informacion_nutricional": {
                 "calorias": 350, "proteinas": 12, "carbohidratos": 48, "grasas": 12, "fibra": 4
@@ -648,7 +648,7 @@ RECETAS = {
             "tiempo_preparacion": "10 min",
             "dificultad": "facil",
             "ingredientes": {
-                "pan_integral": {"cantidad": 4, "unidad": "rebanadas", "tipo": "unidad"},
+                "pan_integral": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "jamon": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "queso_fresco": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
