@@ -1,0 +1,71 @@
+{
+  "total_optimizado": 26354200.0,
+  "desglose": {
+    "huevo": {
+      "mejor_precio": 450,
+      "supermercado": "D1",
+      "cantidad": 28.0,
+      "costo_total": 12600.0
+    },
+    "tomate": {
+      "mejor_precio": 2500,
+      "supermercado": "D1",
+      "cantidad": 1680.0,
+      "costo_total": 4200000.0
+    },
+    "aceite": {
+      "mejor_precio": 4500,
+      "supermercado": "D1",
+      "cantidad": 310.0,
+      "costo_total": 1395000.0
+    },
+    "arroz": {
+      "mejor_precio": 3200,
+      "supermercado": "D1",
+      "cantidad": 1500.0,
+      "costo_total": 4800000.0
+    },
+    "cebolla": {
+      "mejor_precio": 1800,
+      "supermercado": "D1",
+      "cantidad": 1400.0,
+      "costo_total": 2520000.0
+    },
+    "lentejas": {
+      "mejor_precio": 2500,
+      "supermercado": "D1",
+      "cantidad": 1350.0,
+      "costo_total": 3375000.0
+    },
+    "papa": {
+      "mejor_precio": 1500,
+      "supermercado": "D1",
+      "cantidad": 2100.0,
+      "costo_total": 3150000.0
+    },
+    "leche": {
+      "mejor_precio": 2800,
+      "supermercado": "Ara",
+      "cantidad": 1600.0,
+      "costo_total": 4480000.0
+    },
+    "frijol_negro": {
+      "mejor_precio": 3200,
+      "supermercado": "D1",
+      "cantidad": 750.0,
+      "costo_total": 2400000.0
+    },
+    "arepa": {
+      "mejor_precio": 1800,
+      "supermercado": "D1",
+      "cantidad": 12.0,
+      "costo_total": 21600.0
+    }
+  },
+  "por_supermercado": {
+    "D1": 21874200.0,
+    "Ara": 4480000.0
+  },
+  "ahorro_total": 1730,
+  "timestamp": "2026-06-02T08:41:58.642882"
+}
