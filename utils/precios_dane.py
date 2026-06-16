@@ -21,29 +21,34 @@ class PreciosActualizados:
     
     def _obtener_precios_semanales(self):
         precios = {
-            "gallina": 12000, "pechuga_pollo": 18500, "carne_mechar": 22000,
-            "bistec_res": 24000, "filete_pescado": 26000, "atun": 5000,
-            "huevo": 550, "jamon": 15000, "carne_molida": 16000,
-            "chicharron": 18000, "salchichas": 12000,
+            "espinazo_cerdo": 9000, "pechuga_pollo": 18500, "muslo_pollo": 14000,
+            "alitas_pollo": 12000, "menudencias_pollo": 6000,
+            "carne_mechar": 22000, "bistec_res": 24000, "filete_pescado": 26000,
+            "atun": 5000, "huevo": 550, "jamon": 15000, "carne_molida": 16000,
+            "chicharron": 18000, "salchichas": 12000, "salchicha": 8000,
+            "higado_res": 8000, "pezuña_res": 10000, "chuleta_cerdo": 18000,
+            "chorizo": 14000, "tocineta": 16000,
             "queso_fresco": 10000, "queso_parmesano": 15000,
             "mantequilla": 16000, "yogurt": 3500, "leche": 3200,
-            "crema_leche": 8000,
+            "crema_leche": 8000, "cuajada": 7000,
             "tomate": 3500, "cebolla": 2800, "cebolla_larga": 2000,
             "lechuga": 2500, "zanahoria": 2200, "brocoli": 3500,
             "espinaca": 2500, "champiñones": 8000, "aji": 3000,
             "cilantro": 1000, "ajo": 12000, "pimenton": 3500,
-            "pepino": 2000, "zapallo": 2500,
+            "pepino": 2000, "zapallo": 2500, "arvejas": 3000,
             "aguacate": 5000, "banano": 2500, "fresas": 7000, "limon": 500,
             "arroz": 4000, "lentejas": 3500, "frijol_negro": 4500,
             "avena": 3500, "pan_integral": 6000, "arepa": 2000,
-            "tortilla_harina": 4500, "arvejas": 3000,
-            "cereal": 8000, "harina": 3000, "pasta": 4000,
-            "pan_hamburguesa": 3000, "papa": 2200,
-            "yuca": 2500, "platano_verde": 1500, "platano_maduro": 1800,
-            "mazorca": 1500, "nueces": 12000, "semillas_chia": 8000,
+            "tortilla_harina": 4500, "cereal": 8000, "harina": 3000,
+            "pasta": 4000, "pan_hamburguesa": 3000, "granola": 9000,
+            "mermelada": 6000,
+            "papa": 2200, "yuca": 2500, "platano_verde": 1500,
+            "platano_maduro": 1800, "mazorca": 1500,
+            "semillas_chia": 8000,
             "sal": 1500, "azucar": 3000, "comino": 2000,
             "canela": 2500, "oregano": 1500, "miel": 10000,
-            "chocolate_polvo": 12000, "aceite": 5500, "aceite_oliva": 18000
+            "chocolate_polvo": 12000, "salsa_bbq": 8000,
+            "aceite": 5500, "aceite_oliva": 18000
         }
         return precios
     

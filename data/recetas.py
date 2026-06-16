@@ -109,24 +109,24 @@ RECETAS = {
         },
         {
             "id": "des_05",
-            "nombre": "Cereal con frutas y yogurt",
+            "nombre": "Cereal con frutas y leche",
             "categoria": "desayuno",
             "tiempo_preparacion": "5 min",
             "dificultad": "facil",
             "ingredientes": {
                 "cereal": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
-                "yogurt": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
+                "leche": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
                 "fresas": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"}
             },
             "preparacion": [
                 "Servir el cereal en un tazon",
-                "Agregar yogurt frio",
+                "Agregar leche fria",
                 "Cortar frutas y agregar encima",
                 "Mezclar y disfrutar"
             ],
             "informacion_nutricional": {
-                "calorias": 350, "proteinas": 12, "carbohidratos": 50, "grasas": 10, "fibra": 5
+                "calorias": 340, "proteinas": 11, "carbohidratos": 52, "grasas": 9, "fibra": 5
             },
             "tags": ["rapido", "sin_coccion"]
         },
@@ -190,17 +190,17 @@ RECETAS = {
                 "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "yogurt": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
                 "miel": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
-                "nueces": {"cantidad": 20, "unidad": "gr", "tipo": "peso"}
+                "granola": {"cantidad": 20, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar y cortar fresas en mitades",
                 "Pelar y cortar banano en rodajas",
                 "Servir yogurt en tazon",
                 "Agregar frutas encima",
-                "Decorar con nueces y miel"
+                "Decorar con granola y miel"
             ],
             "informacion_nutricional": {
-                "calorias": 300, "proteinas": 10, "carbohidratos": 45, "grasas": 10, "fibra": 5
+                "calorias": 310, "proteinas": 12, "carbohidratos": 48, "grasas": 8, "fibra": 5
             },
             "tags": ["saludable", "rapido", "sin_coccion"]
         },
@@ -226,6 +226,158 @@ RECETAS = {
                 "calorias": 350, "proteinas": 12, "carbohidratos": 48, "grasas": 12, "fibra": 4
             },
             "tags": ["rapido", "colombiano"]
+        },
+        {
+            "id": "des_10",
+            "nombre": "Tostada aguacate y jamon",
+            "categoria": "desayuno",
+            "tiempo_preparacion": "10 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "pan_integral": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "aguacate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "jamon": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Tostar el pan integral hasta que este dorado",
+                "Machacar el aguacate con limon y sal",
+                "Untar el aguacate sobre las tostadas",
+                "Colocar jamon encima",
+                "Servir inmediatamente"
+            ],
+            "informacion_nutricional": {
+                "calorias": 360, "proteinas": 16, "carbohidratos": 32, "grasas": 18, "fibra": 6
+            },
+            "tags": ["rapido", "saludable"]
+        },
+        {
+            "id": "des_11",
+            "nombre": "Tostadas de arroz con mermelada queso y cuajada",
+            "categoria": "desayuno",
+            "tiempo_preparacion": "10 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "pan_integral": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "mermelada": {"cantidad": 40, "unidad": "gr", "tipo": "peso"},
+                "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "cuajada": {"cantidad": 80, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Tostar ligeramente el pan integral",
+                "Untar mermelada en una tostada",
+                "Colocar queso fresco y cuajada encima",
+                "Repetir con la segunda tostada",
+                "Servir al momento"
+            ],
+            "informacion_nutricional": {
+                "calorias": 390, "proteinas": 14, "carbohidratos": 48, "grasas": 14, "fibra": 4
+            },
+            "tags": ["rapido", "dulce"]
+        },
+        {
+            "id": "des_12",
+            "nombre": "Empanadas de carne desayuno",
+            "categoria": "desayuno",
+            "tiempo_preparacion": "40 min",
+            "dificultad": "media",
+            "ingredientes": {
+                "harina": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "carne_molida": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "papa": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 40, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"},
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"}
+            },
+            "preparacion": [
+                "Cocinar carne molida con cebolla y papa picada",
+                "Preparar masa con harina, agua y sal",
+                "Rellenar y formar 6 empanadas",
+                "Freir en aceite caliente hasta dorar",
+                "Servir con limon al gusto"
+            ],
+            "informacion_nutricional": {
+                "calorias": 420, "proteinas": 18, "carbohidratos": 45, "grasas": 20, "fibra": 3
+            },
+            "tags": ["colombiano", "tradicional"]
+        },
+        {
+            "id": "des_13",
+            "nombre": "Carimañola de carne",
+            "categoria": "desayuno",
+            "tiempo_preparacion": "45 min",
+            "dificultad": "media",
+            "ingredientes": {
+                "yuca": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "carne_molida": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
+                "huevo": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "aceite": {"cantidad": 40, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Cocinar yuca hasta que este blanda y hacer pure",
+                "Sofreir carne molida con cebolla y sal",
+                "Formar 4 carimañolas con yuca y relleno de carne",
+                "Freir en aceite caliente hasta dorar",
+                "Servir caliente"
+            ],
+            "informacion_nutricional": {
+                "calorias": 450, "proteinas": 16, "carbohidratos": 48, "grasas": 22, "fibra": 3
+            },
+            "tags": ["colombiano", "tradicional"]
+        },
+        {
+            "id": "des_14",
+            "nombre": "Arepa reina pepiada",
+            "categoria": "desayuno",
+            "tiempo_preparacion": "25 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "pechuga_pollo": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "aguacate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Cocinar pechuga de pollo y desmechar finamente",
+                "Asar las arepas hasta que esten doradas",
+                "Machacar aguacate con limon y sal",
+                "Abrir arepas y rellenar con pollo y aguacate",
+                "Servir inmediatamente"
+            ],
+            "informacion_nutricional": {
+                "calorias": 400, "proteinas": 28, "carbohidratos": 38, "grasas": 14, "fibra": 5
+            },
+            "tags": ["venezolano", "proteina"]
+        },
+        {
+            "id": "des_15",
+            "nombre": "Arepas con huevo sin aguacate",
+            "categoria": "desayuno",
+            "tiempo_preparacion": "20 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "huevo": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "tomate": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "cilantro": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Asar las arepas hasta que esten doradas",
+                "Freir los huevos con un poco de aceite",
+                "Picar tomate y cilantro finamente",
+                "Servir la arepa con huevo y la mezcla de tomate y cilantro",
+                "Sazonar con sal al gusto"
+            ],
+            "informacion_nutricional": {
+                "calorias": 320, "proteinas": 16, "carbohidratos": 40, "grasas": 10, "fibra": 4
+            },
+            "tags": ["colombiano", "rapido"]
         }
     ],
     "almuerzos": [
@@ -236,7 +388,7 @@ RECETAS = {
             "tiempo_preparacion": "35 min",
             "dificultad": "facil",
             "ingredientes": {
-                "bistec_res": {"cantidad": 350, "unidad": "gr", "tipo": "peso"},
+                "bistec_res": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "lechuga": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
@@ -252,7 +404,7 @@ RECETAS = {
                 "Servir bistec con arroz y ensalada"
             ],
             "informacion_nutricional": {
-                "calorias": 580, "proteinas": 42, "carbohidratos": 55, "grasas": 20, "fibra": 5
+                "calorias": 560, "proteinas": 40, "carbohidratos": 55, "grasas": 18, "fibra": 5
             },
             "tags": ["proteina", "completo"]
         },
@@ -263,7 +415,7 @@ RECETAS = {
             "tiempo_preparacion": "40 min",
             "dificultad": "facil",
             "ingredientes": {
-                "pechuga_pollo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "muslo_pollo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "zanahoria": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "brocoli": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
@@ -273,16 +425,16 @@ RECETAS = {
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cortar pechuga en cubos",
+                "Cortar muslo de pollo en presas",
                 "Picar cebolla y tomate",
                 "Sofreir cebolla y tomate en aceite",
-                "Agregar pollo y cocinar 15 min",
+                "Agregar pollo y cocinar 20 min",
                 "Agregar zanahoria y brocoli",
                 "Cocinar hasta que este tierno",
                 "Servir con arroz blanco"
             ],
             "informacion_nutricional": {
-                "calorias": 550, "proteinas": 40, "carbohidratos": 58, "grasas": 16, "fibra": 6
+                "calorias": 560, "proteinas": 38, "carbohidratos": 58, "grasas": 18, "fibra": 6
             },
             "tags": ["saludable", "balanceado", "proteina"]
         },
@@ -320,7 +472,7 @@ RECETAS = {
             "tiempo_preparacion": "45 min",
             "dificultad": "media",
             "ingredientes": {
-                "carne_molida": {"cantidad": 350, "unidad": "gr", "tipo": "peso"},
+                "carne_molida": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "papa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
@@ -338,7 +490,7 @@ RECETAS = {
                 "Servir albondigas sobre pure"
             ],
             "informacion_nutricional": {
-                "calorias": 620, "proteinas": 35, "carbohidratos": 48, "grasas": 30, "fibra": 6
+                "calorias": 600, "proteinas": 32, "carbohidratos": 48, "grasas": 28, "fibra": 6
             },
             "tags": ["familiar", "reconfortante"]
         },
@@ -397,12 +549,12 @@ RECETAS = {
         },
         {
             "id": "alm_07",
-            "nombre": "Sancocho colombiano de gallina",
+            "nombre": "Sancocho de espinazo",
             "categoria": "almuerzo",
             "tiempo_preparacion": "1 hora 30 min",
             "dificultad": "media",
             "ingredientes": {
-                "gallina": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "espinazo_cerdo": {"cantidad": 500, "unidad": "gr", "tipo": "peso"},
                 "papa": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
                 "yuca": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
                 "platano_verde": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
@@ -413,15 +565,15 @@ RECETAS = {
                 "sal": {"cantidad": 5, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Lavar y cortar la gallina en presas",
-                "Hervir en agua con sal y cebolla por 45 min",
+                "Lavar el espinazo y cortar en trozos",
+                "Hervir en agua con sal, ajo y cebolla por 50 min",
                 "Pelar y cortar papa, yuca y platano",
                 "Agregar verduras y mazorca al caldo",
-                "Cocinar hasta que todo este tierno",
+                "Cocinar hasta que la carne se desprenda del hueso",
                 "Servir caliente con cilantro picado"
             ],
             "informacion_nutricional": {
-                "calorias": 550, "proteinas": 35, "carbohidratos": 52, "grasas": 18, "fibra": 8
+                "calorias": 560, "proteinas": 32, "carbohidratos": 52, "grasas": 22, "fibra": 8
             },
             "tags": ["colombiano", "tradicional", "familiar"]
         },
@@ -455,12 +607,12 @@ RECETAS = {
         },
         {
             "id": "alm_09",
-            "nombre": "Hamburguesas caseras con papas fritas",
+            "nombre": "Hamburguesas caseras",
             "categoria": "almuerzo",
             "tiempo_preparacion": "35 min",
             "dificultad": "facil",
             "ingredientes": {
-                "carne_molida": {"cantidad": 350, "unidad": "gr", "tipo": "peso"},
+                "carne_molida": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "pan_hamburguesa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "papa": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
@@ -478,36 +630,165 @@ RECETAS = {
                 "Servir con papas fritas"
             ],
             "informacion_nutricional": {
-                "calorias": 700, "proteinas": 40, "carbohidratos": 55, "grasas": 35, "fibra": 5
+                "calorias": 680, "proteinas": 38, "carbohidratos": 55, "grasas": 32, "fibra": 5
             },
             "tags": ["rapido", "familiar", "ocasional"]
         },
         {
             "id": "alm_10",
-            "nombre": "Empanadas de carne con arroz",
+            "nombre": "Higado encebollado",
+            "categoria": "almuerzo",
+            "tiempo_preparacion": "30 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "higado_res": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "aceite": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Cortar higado en laminas finas",
+                "Cocinar arroz normalmente",
+                "Saltear cebolla en aceite hasta que este transparente",
+                "Agregar higado y cocinar 5 min por lado",
+                "Servir con arroz y limon"
+            ],
+            "informacion_nutricional": {
+                "calorias": 520, "proteinas": 42, "carbohidratos": 52, "grasas": 14, "fibra": 3
+            },
+            "tags": ["colombiano", "proteina", "hierro"]
+        },
+        {
+            "id": "alm_11",
+            "nombre": "Alitas BBQ",
             "categoria": "almuerzo",
             "tiempo_preparacion": "45 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "alitas_pollo": {"cantidad": 800, "unidad": "gr", "tipo": "peso"},
+                "salsa_bbq": {"cantidad": 80, "unidad": "ml", "tipo": "volumen"},
+                "papa": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Sazonar alitas con sal",
+                "Hornear o freir alitas hasta que esten doradas",
+                "Cubrir con salsa BBQ y cocinar 5 min mas",
+                "Pelar y cortar papas en bastones",
+                "Freir papas y servir con las alitas"
+            ],
+            "informacion_nutricional": {
+                "calorias": 720, "proteinas": 48, "carbohidratos": 42, "grasas": 38, "fibra": 4
+            },
+            "tags": ["familiar", "ocasional"]
+        },
+        {
+            "id": "alm_12",
+            "nombre": "Frijol con pezuña",
+            "categoria": "almuerzo",
+            "tiempo_preparacion": "2 horas",
             "dificultad": "media",
             "ingredientes": {
-                "carne_molida": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
-                "harina": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "papa": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
+                "frijol_negro": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
+                "pezuña_res": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
+                "platano_verde": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Remojar frijoles y pezuña la noche anterior",
+                "Cocinar pezuña con frijoles en olla a presion 1 hora",
+                "Sofreir cebolla, tomate y ajo",
+                "Agregar sofrito al guiso y cocinar 20 min mas",
+                "Servir con platano verde cocido o frito"
+            ],
+            "informacion_nutricional": {
+                "calorias": 580, "proteinas": 38, "carbohidratos": 62, "grasas": 16, "fibra": 12
+            },
+            "tags": ["colombiano", "tradicional", "reconfortante"]
+        },
+        {
+            "id": "alm_13",
+            "nombre": "Chuleta de cerdo con papas a la francesa",
+            "categoria": "almuerzo",
+            "tiempo_preparacion": "40 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "chuleta_cerdo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "papa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 40, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cocinar carne molida con cebolla y papa picada",
-                "Preparar masa con harina, agua y sal",
-                "Rellenar y formar empanadas",
-                "Freir en aceite caliente hasta dorar",
-                "Servir con arroz blanco"
+                "Sazonar chuletas con sal",
+                "Pelar y cortar papas en bastones finos",
+                "Freir papas en aceite caliente hasta dorar",
+                "Cocinar chuletas a la plancha 5 min por lado",
+                "Servir chuletas con papas a la francesa"
             ],
             "informacion_nutricional": {
-                "calorias": 650, "proteinas": 28, "carbohidratos": 62, "grasas": 32, "fibra": 4
+                "calorias": 680, "proteinas": 36, "carbohidratos": 48, "grasas": 38, "fibra": 5
             },
-            "tags": ["colombiano", "especial"]
+            "tags": ["proteina", "familiar"]
+        },
+        {
+            "id": "alm_14",
+            "nombre": "Salchipapa con pollo",
+            "categoria": "almuerzo",
+            "tiempo_preparacion": "35 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "pechuga_pollo": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
+                "salchicha": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "tocineta": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "papa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Pelar y cortar papas en bastones",
+                "Freir papas hasta que esten doradas",
+                "Cocinar pechuga a la plancha y cortar en tiras",
+                "Freir salchichas y tocineta",
+                "Mezclar todo y servir con queso fresco rallado"
+            ],
+            "informacion_nutricional": {
+                "calorias": 750, "proteinas": 42, "carbohidratos": 52, "grasas": 42, "fibra": 5
+            },
+            "tags": ["colombiano", "rapido", "ocasional"]
+        },
+        {
+            "id": "alm_15",
+            "nombre": "Arroz con pollo",
+            "categoria": "almuerzo",
+            "tiempo_preparacion": "45 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "muslo_pollo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "arroz": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
+                "pimenton": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "arvejas": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "zanahoria": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Cortar muslo de pollo en presas",
+                "Sofreir cebolla, ajo y pimenton en aceite",
+                "Agregar pollo y dorar por todos lados",
+                "Incorporar arroz, verduras y sal",
+                "Agregar agua y cocinar hasta que el arroz este listo",
+                "Dejar reposar 5 min y servir"
+            ],
+            "informacion_nutricional": {
+                "calorias": 590, "proteinas": 36, "carbohidratos": 68, "grasas": 16, "fibra": 6
+            },
+            "tags": ["colombiano", "tradicional", "completo"]
         }
     ],
     "cenas": [
@@ -769,6 +1050,144 @@ RECETAS = {
                 "calorias": 350, "proteinas": 14, "carbohidratos": 50, "grasas": 10, "fibra": 2
             },
             "tags": ["ligero", "rapido", "economico"]
+        },
+        {
+            "id": "cen_11",
+            "nombre": "Arepa con chorizo",
+            "categoria": "cena",
+            "tiempo_preparacion": "15 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "chorizo": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"}
+            },
+            "preparacion": [
+                "Asar las arepas hasta que esten doradas",
+                "Cocinar chorizo a la plancha o parrilla",
+                "Picar cebolla finamente",
+                "Abrir arepas y rellenar con chorizo y cebolla",
+                "Servir con limon al gusto"
+            ],
+            "informacion_nutricional": {
+                "calorias": 420, "proteinas": 18, "carbohidratos": 38, "grasas": 22, "fibra": 3
+            },
+            "tags": ["colombiano", "rapido"]
+        },
+        {
+            "id": "cen_12",
+            "nombre": "Crema de pescado",
+            "categoria": "cena",
+            "tiempo_preparacion": "35 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "filete_pescado": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
+                "papa": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "crema_leche": {"cantidad": 100, "unidad": "ml", "tipo": "volumen"},
+                "cilantro": {"cantidad": 10, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Cocinar pescado en agua con cebolla",
+                "Agregar papas picadas y cocinar hasta tiernas",
+                "Desmenuzar el pescado en el caldo",
+                "Licuar con crema de leche",
+                "Servir caliente con cilantro picado"
+            ],
+            "informacion_nutricional": {
+                "calorias": 340, "proteinas": 28, "carbohidratos": 28, "grasas": 14, "fibra": 3
+            },
+            "tags": ["ligero", "reconfortante", "omega3"]
+        },
+        {
+            "id": "cen_13",
+            "nombre": "Guisado de menudencias de pollo",
+            "categoria": "cena",
+            "tiempo_preparacion": "40 min",
+            "dificultad": "media",
+            "ingredientes": {
+                "menudencias_pollo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "papa": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "zanahoria": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Lavar y picar menudencias de pollo",
+                "Sofreir cebolla, ajo y tomate",
+                "Agregar menudencias y cocinar 15 min",
+                "Incorporar papa y zanahoria picadas",
+                "Cocinar hasta que verduras esten tiernas y servir"
+            ],
+            "informacion_nutricional": {
+                "calorias": 320, "proteinas": 30, "carbohidratos": 28, "grasas": 10, "fibra": 4
+            },
+            "tags": ["colombiano", "economico", "proteina"]
+        },
+        {
+            "id": "cen_14",
+            "nombre": "Sopa de arroz con pollo",
+            "categoria": "cena",
+            "tiempo_preparacion": "40 min",
+            "dificultad": "facil",
+            "ingredientes": {
+                "muslo_pollo": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
+                "arroz": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "papa": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "zanahoria": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "cilantro": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Cortar muslo de pollo en presas",
+                "Hervir pollo en agua con sal por 20 min",
+                "Agregar arroz, papa y zanahoria picadas",
+                "Cocinar hasta que arroz y verduras esten listos",
+                "Servir caliente con cilantro picado"
+            ],
+            "informacion_nutricional": {
+                "calorias": 360, "proteinas": 28, "carbohidratos": 38, "grasas": 10, "fibra": 4
+            },
+            "tags": ["ligero", "reconfortante", "colombiano"]
+        },
+        {
+            "id": "cen_15",
+            "nombre": "Patacon con carne mechada",
+            "categoria": "cena",
+            "tiempo_preparacion": "35 min",
+            "dificultad": "media",
+            "ingredientes": {
+                "platano_verde": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "carne_mechar": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 30, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
+            },
+            "preparacion": [
+                "Pelar y cortar platano verde en rodajas gruesas",
+                "Freir platano, aplastar y freir de nuevo",
+                "Calentar carne mechada con un poco de aceite",
+                "Colocar carne sobre cada patacon",
+                "Agregar queso fresco y servir caliente"
+            ],
+            "informacion_nutricional": {
+                "calorias": 450, "proteinas": 22, "carbohidratos": 42, "grasas": 22, "fibra": 4
+            },
+            "tags": ["venezolano", "colombiano", "especial"]
         }
     ]
 }
+
+
+def get_receta_por_id(receta_id):
+    for categoria in RECETAS.values():
+        for r in categoria:
+            if r["id"] == receta_id:
+                return r
+    return None
+
+
+def get_todas_recetas():
+    return [r for cat in RECETAS.values() for r in cat]

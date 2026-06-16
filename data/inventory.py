@@ -1,30 +1,43 @@
 from collections import defaultdict
 
+
 class InventoryManager:
     def __init__(self, menu):
         self.menu = menu
         self.inventario_necesario = self._calcular_inventario_total()
         self.inventario_actual = {}
         self.categorias_productos = {
-    "Proteinas": ["gallina", "pechuga_pollo", "carne_mechar", "bistec_res", 
-                 "filete_pescado", "atun", "huevo", "jamon", "carne_molida",
-                 "chicharron", "salchichas"],
-    "Lacteos": ["queso_fresco", "queso_parmesano", "mantequilla", "yogurt", 
-               "leche", "crema_leche"],
-    "Vegetales": ["tomate", "cebolla", "cebolla_larga", "lechuga", "zanahoria",
-                 "brocoli", "espinaca", "champiñones", "aji", "cilantro", "ajo",
-                 "pimenton", "pepino", "zapallo"],
-    "Frutas": ["aguacate", "banano", "fresas", "limon"],
-    "Granos y Cereales": ["arroz", "lentejas", "frijol_negro", "avena",
-                         "pan_integral", "arepa", "tortilla_harina", "arvejas",
-                         "cereal", "harina", "pasta", "pan_hamburguesa"],
-    "Tuberculos": ["papa", "yuca", "platano_verde", "platano_maduro", "mazorca"],
-    "Frutos secos": ["nueces", "semillas_chia"],
-    "Condimentos": ["sal", "azucar", "comino", "canela", "oregano", "miel", 
-                   "chocolate_polvo"],
-    "Aceites": ["aceite", "aceite_oliva"]
-}
-    
+            "Proteinas": [
+                "espinazo_cerdo", "pechuga_pollo", "muslo_pollo", "alitas_pollo",
+                "menudencias_pollo", "carne_mechar", "bistec_res", "filete_pescado",
+                "atun", "huevo", "jamon", "carne_molida", "chicharron",
+                "salchichas", "salchicha", "higado_res", "pezuña_res",
+                "chuleta_cerdo", "chorizo", "tocineta",
+            ],
+            "Lacteos": [
+                "queso_fresco", "queso_parmesano", "mantequilla", "yogurt",
+                "leche", "crema_leche", "cuajada",
+            ],
+            "Vegetales": [
+                "tomate", "cebolla", "cebolla_larga", "lechuga", "zanahoria",
+                "brocoli", "espinaca", "champiñones", "aji", "cilantro", "ajo",
+                "pimenton", "pepino", "zapallo", "arvejas",
+            ],
+            "Frutas": ["aguacate", "banano", "fresas", "limon"],
+            "Granos y Cereales": [
+                "arroz", "lentejas", "frijol_negro", "avena", "pan_integral",
+                "arepa", "tortilla_harina", "cereal", "harina", "pasta",
+                "pan_hamburguesa", "granola", "mermelada",
+            ],
+            "Tuberculos": ["papa", "yuca", "platano_verde", "platano_maduro", "mazorca"],
+            "Frutos secos": ["semillas_chia"],
+            "Condimentos": [
+                "sal", "azucar", "comino", "canela", "oregano", "miel",
+                "chocolate_polvo", "salsa_bbq",
+            ],
+            "Aceites": ["aceite", "aceite_oliva"],
+        }
+
     def _calcular_inventario_total(self):
         inventario = defaultdict(lambda: {"cantidad": 0, "unidad": "", "tipo": ""})
         for dia in self.menu:
@@ -34,10 +47,10 @@ class InventoryManager:
                     inventario[ingrediente]["unidad"] = datos["unidad"]
                     inventario[ingrediente]["tipo"] = datos["tipo"]
         return dict(inventario)
-    
+
     def actualizar_inventario_actual(self, inventario_dict):
         self.inventario_actual = inventario_dict
-    
+
     def generar_lista_compras(self):
         lista_compras = {}
         for ingrediente, datos_necesarios in self.inventario_necesario.items():
@@ -48,21 +61,26 @@ class InventoryManager:
                 lista_compras[ingrediente] = {
                     "cantidad": round(faltante, 1),
                     "unidad": datos_necesarios["unidad"],
-                    "tipo": datos_necesarios["tipo"]
+                    "tipo": datos_necesarios["tipo"],
                 }
         return lista_compras
-    
+
     def organizar_por_categorias(self, lista_compras):
         compras_organizadas = {}
+        categorizados = set()
         for categoria, productos in self.categorias_productos.items():
             productos_en_categoria = {}
             for producto in productos:
                 if producto in lista_compras:
                     productos_en_categoria[producto] = lista_compras[producto]
+                    categorizados.add(producto)
             if productos_en_categoria:
                 compras_organizadas[categoria] = productos_en_categoria
+        otros = {p: d for p, d in lista_compras.items() if p not in categorizados}
+        if otros:
+            compras_organizadas["Otros"] = otros
         return compras_organizadas
-    
+
     def get_resumen_inventario(self):
         total_productos = len(self.inventario_necesario)
         productos_completos = sum(
@@ -72,5 +90,5 @@ class InventoryManager:
         return {
             "total_productos": total_productos,
             "productos_completos": productos_completos,
-            "porcentaje_completado": (productos_completos / total_productos * 100) if total_productos > 0 else 0
+            "porcentaje_completado": (productos_completos / total_productos * 100) if total_productos > 0 else 0,
         }
