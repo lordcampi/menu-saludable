@@ -155,26 +155,21 @@ with tab2:
         with st.form("inventario_form"):
             st.write("Ingresa lo que tienes en casa:")
             inventario_actual = {}
-            for categoria, productos in st.session_state.inventory_manager.categorias_productos.items():
-                productos_necesarios = [
-                    p for p in productos
-                    if p in st.session_state.inventory_manager.inventario_necesario
-                ]
-                if productos_necesarios:
-                    st.write(f"**{categoria}**")
-                    for producto in productos_necesarios:
-                        datos = st.session_state.inventory_manager.inventario_necesario[producto]
-                        col_a, col_b = st.columns([3, 1])
-                        with col_a:
-                            st.caption(
-                                f"{producto.replace('_', ' ').title()} "
-                                f"(Necesario: {datos['cantidad']} {datos['unidad']})"
-                            )
-                        with col_b:
-                            inventario_actual[producto] = st.number_input(
-                                "Tengo", min_value=0.0, value=0.0, step=0.1,
-                                key=f"inv_{producto}", label_visibility="collapsed"
-                            )
+            for categoria, productos in st.session_state.inventory_manager.get_productos_para_formulario().items():
+                st.write(f"**{categoria}**")
+                for producto in productos:
+                    datos = st.session_state.inventory_manager.inventario_necesario[producto]
+                    col_a, col_b = st.columns([3, 1])
+                    with col_a:
+                        st.caption(
+                            f"{producto.replace('_', ' ').title()} "
+                            f"(Necesario: {datos['cantidad']} {datos['unidad']})"
+                        )
+                    with col_b:
+                        inventario_actual[producto] = st.number_input(
+                            "Tengo", min_value=0.0, value=0.0, step=0.1,
+                            key=f"inv_{producto}", label_visibility="collapsed"
+                        )
             if st.form_submit_button("💾 Guardar Inventario", use_container_width=True):
                 st.session_state.inventory_manager.actualizar_inventario_actual(inventario_actual)
                 st.success("Inventario guardado!")

@@ -13,15 +13,16 @@ class InventoryManager:
                 "atun", "huevo", "jamon", "carne_molida", "chicharron",
                 "salchichas", "salchicha", "higado_res", "pezuña_res",
                 "chuleta_cerdo", "chorizo", "tocineta",
+                "empanadas_carne", "carimañolas",
             ],
             "Lacteos": [
-                "queso_fresco", "queso_parmesano", "mantequilla", "yogurt",
-                "leche", "crema_leche", "cuajada",
+                "queso_fresco", "queso_parmesano", "mantequilla",
+                "leche", "crema_leche", "yogurt_griego", "yogurt_natural",
             ],
             "Vegetales": [
                 "tomate", "cebolla", "cebolla_larga", "lechuga", "zanahoria",
-                "brocoli", "espinaca", "champiñones", "aji", "cilantro", "ajo",
-                "pimenton", "pepino", "zapallo", "arvejas",
+                "espinaca", "champiñones", "aji", "cilantro", "ajo",
+                "pepino", "zapallo", "arvejas",
             ],
             "Frutas": ["aguacate", "banano", "fresas", "limon"],
             "Granos y Cereales": [
@@ -29,8 +30,10 @@ class InventoryManager:
                 "arepa", "tortilla_harina", "cereal", "harina", "pasta",
                 "pan_hamburguesa", "granola", "mermelada",
             ],
-            "Tuberculos": ["papa", "yuca", "platano_verde", "platano_maduro", "mazorca"],
-            "Frutos secos": ["semillas_chia"],
+            "Tuberculos": [
+                "papa", "papa_francesa", "yuca", "platano_verde",
+                "platano_maduro", "mazorca",
+            ],
             "Condimentos": [
                 "sal", "azucar", "comino", "canela", "oregano", "miel",
                 "chocolate_polvo", "salsa_bbq",
@@ -47,6 +50,20 @@ class InventoryManager:
                     inventario[ingrediente]["unidad"] = datos["unidad"]
                     inventario[ingrediente]["tipo"] = datos["tipo"]
         return dict(inventario)
+
+    def get_productos_para_formulario(self):
+        """Solo ingredientes que aparecen en el menu de 15 dias."""
+        categorizados = set()
+        por_categoria = {}
+        for categoria, productos in self.categorias_productos.items():
+            en_menu = [p for p in productos if p in self.inventario_necesario]
+            if en_menu:
+                por_categoria[categoria] = en_menu
+                categorizados.update(en_menu)
+        otros = sorted(p for p in self.inventario_necesario if p not in categorizados)
+        if otros:
+            por_categoria["Otros"] = otros
+        return por_categoria
 
     def actualizar_inventario_actual(self, inventario_dict):
         self.inventario_actual = inventario_dict
@@ -69,13 +86,12 @@ class InventoryManager:
         compras_organizadas = {}
         categorizados = set()
         for categoria, productos in self.categorias_productos.items():
-            productos_en_categoria = {}
-            for producto in productos:
-                if producto in lista_compras:
-                    productos_en_categoria[producto] = lista_compras[producto]
-                    categorizados.add(producto)
+            productos_en_categoria = {
+                p: lista_compras[p] for p in productos if p in lista_compras
+            }
             if productos_en_categoria:
                 compras_organizadas[categoria] = productos_en_categoria
+                categorizados.update(productos_en_categoria)
         otros = {p: d for p, d in lista_compras.items() if p not in categorizados}
         if otros:
             compras_organizadas["Otros"] = otros

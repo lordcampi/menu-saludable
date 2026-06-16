@@ -188,14 +188,14 @@ RECETAS = {
             "ingredientes": {
                 "fresas": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "yogurt": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
+                "yogurt_griego": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
                 "miel": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
                 "granola": {"cantidad": 20, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar y cortar fresas en mitades",
                 "Pelar y cortar banano en rodajas",
-                "Servir yogurt en tazon",
+                "Servir yogurt griego en tazon",
                 "Agregar frutas encima",
                 "Decorar con granola y miel"
             ],
@@ -254,20 +254,19 @@ RECETAS = {
         },
         {
             "id": "des_11",
-            "nombre": "Tostadas de arroz con mermelada queso y cuajada",
+            "nombre": "Tostadas de arroz con mermelada y queso fresco",
             "categoria": "desayuno",
             "tiempo_preparacion": "10 min",
             "dificultad": "facil",
             "ingredientes": {
                 "pan_integral": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "mermelada": {"cantidad": 40, "unidad": "gr", "tipo": "peso"},
-                "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "cuajada": {"cantidad": 80, "unidad": "gr", "tipo": "peso"}
+                "queso_fresco": {"cantidad": 120, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Tostar ligeramente el pan integral",
                 "Untar mermelada en una tostada",
-                "Colocar queso fresco y cuajada encima",
+                "Colocar queso fresco encima (cuajada/queso fresco es lo mismo)",
                 "Repetir con la segunda tostada",
                 "Servir al momento"
             ],
@@ -280,22 +279,17 @@ RECETAS = {
             "id": "des_12",
             "nombre": "Empanadas de carne desayuno",
             "categoria": "desayuno",
-            "tiempo_preparacion": "40 min",
-            "dificultad": "media",
+            "tiempo_preparacion": "15 min",
+            "dificultad": "facil",
             "ingredientes": {
-                "harina": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "carne_molida": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "papa": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 40, "unidad": "ml", "tipo": "volumen"},
-                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"},
+                "empanadas_carne": {"cantidad": 6, "unidad": "unidades", "tipo": "unidad"},
+                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"}
             },
             "preparacion": [
-                "Cocinar carne molida con cebolla y papa picada",
-                "Preparar masa con harina, agua y sal",
-                "Rellenar y formar 6 empanadas",
-                "Freir en aceite caliente hasta dorar",
+                "Comprar empanadas de carne ya hechas",
+                "Pincelar muy poco aceite (opcional)",
+                "Calentar en Air Fryer 8 min a 180 C hasta dorar",
                 "Servir con limon al gusto"
             ],
             "informacion_nutricional": {
@@ -307,21 +301,16 @@ RECETAS = {
             "id": "des_13",
             "nombre": "Carimañola de carne",
             "categoria": "desayuno",
-            "tiempo_preparacion": "45 min",
-            "dificultad": "media",
+            "tiempo_preparacion": "15 min",
+            "dificultad": "facil",
             "ingredientes": {
-                "yuca": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
-                "carne_molida": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
-                "huevo": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "aceite": {"cantidad": 40, "unidad": "ml", "tipo": "volumen"},
-                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+                "carimañolas": {"cantidad": 4, "unidad": "unidades", "tipo": "unidad"},
+                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"}
             },
             "preparacion": [
-                "Cocinar yuca hasta que este blanda y hacer pure",
-                "Sofreir carne molida con cebolla y sal",
-                "Formar 4 carimañolas con yuca y relleno de carne",
-                "Freir en aceite caliente hasta dorar",
+                "Comprar carimañolas de carne ya hechas",
+                "Pincelar muy poco aceite (opcional)",
+                "Calentar en Air Fryer 10 min a 190 C hasta dorar",
                 "Servir caliente"
             ],
             "informacion_nutricional": {
@@ -417,11 +406,10 @@ RECETAS = {
             "ingredientes": {
                 "muslo_pollo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "zanahoria": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "brocoli": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "zanahoria": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
@@ -429,7 +417,7 @@ RECETAS = {
                 "Picar cebolla y tomate",
                 "Sofreir cebolla y tomate en aceite",
                 "Agregar pollo y cocinar 20 min",
-                "Agregar zanahoria y brocoli",
+                "Agregar zanahoria en rodajas",
                 "Cocinar hasta que este tierno",
                 "Servir con arroz blanco"
             ],
@@ -614,18 +602,17 @@ RECETAS = {
             "ingredientes": {
                 "carne_molida": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "pan_hamburguesa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
-                "papa": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
+                "papa_francesa": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "lechuga": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 30, "unidad": "ml", "tipo": "volumen"},
+                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Formar hamburguesas con la carne molida",
-                "Cocinar en sarten 4-5 min por lado",
-                "Pelar y cortar papas en bastones",
-                "Freir papas hasta dorar",
+                "Cocinar hamburguesas en sarten o Air Fryer 12 min a 190 C",
+                "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
                 "Armar hamburguesa con tomate, lechuga y queso",
                 "Servir con papas fritas"
             ],
@@ -669,16 +656,16 @@ RECETAS = {
             "ingredientes": {
                 "alitas_pollo": {"cantidad": 800, "unidad": "gr", "tipo": "peso"},
                 "salsa_bbq": {"cantidad": 80, "unidad": "ml", "tipo": "volumen"},
-                "papa": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
+                "papa_francesa": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Sazonar alitas con sal",
-                "Hornear o freir alitas hasta que esten doradas",
-                "Cubrir con salsa BBQ y cocinar 5 min mas",
-                "Pelar y cortar papas en bastones",
-                "Freir papas y servir con las alitas"
+                "Cocinar alitas en Air Fryer 25 min a 190 C, volteando a mitad",
+                "Cubrir con salsa BBQ y cocinar 5 min mas en Air Fryer",
+                "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
+                "Servir alitas con papas"
             ],
             "informacion_nutricional": {
                 "calorias": 720, "proteinas": 48, "carbohidratos": 42, "grasas": 38, "fibra": 4
@@ -719,15 +706,14 @@ RECETAS = {
             "dificultad": "facil",
             "ingredientes": {
                 "chuleta_cerdo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
-                "papa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 40, "unidad": "ml", "tipo": "volumen"},
+                "papa_francesa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Sazonar chuletas con sal",
-                "Pelar y cortar papas en bastones finos",
-                "Freir papas en aceite caliente hasta dorar",
-                "Cocinar chuletas a la plancha 5 min por lado",
+                "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
+                "Cocinar chuletas en sarten o Air Fryer 12 min a 190 C",
                 "Servir chuletas con papas a la francesa"
             ],
             "informacion_nutricional": {
@@ -745,14 +731,14 @@ RECETAS = {
                 "pechuga_pollo": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
                 "salchicha": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "tocineta": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
-                "papa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
-                "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"}
+                "papa_francesa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"}
             },
             "preparacion": [
-                "Pelar y cortar papas en bastones",
-                "Freir papas hasta que esten doradas",
-                "Cocinar pechuga a la plancha y cortar en tiras",
-                "Freir salchichas y tocineta",
+                "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
+                "Cocinar pechuga en Air Fryer o plancha y cortar en tiras",
+                "Calentar salchichas y tocineta en Air Fryer 8 min a 190 C",
                 "Mezclar todo y servir con queso fresco rallado"
             ],
             "informacion_nutricional": {
@@ -767,19 +753,19 @@ RECETAS = {
             "tiempo_preparacion": "45 min",
             "dificultad": "facil",
             "ingredientes": {
-                "muslo_pollo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "pechuga_pollo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "arroz": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
-                "pimenton": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "arvejas": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "zanahoria": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "zanahoria": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cortar muslo de pollo en presas",
-                "Sofreir cebolla, ajo y pimenton en aceite",
+                "Cortar pechuga de pollo en cubos",
+                "Sofreir cebolla, ajo y tomate en aceite",
                 "Agregar pollo y dorar por todos lados",
                 "Incorporar arroz, verduras y sal",
                 "Agregar agua y cocinar hasta que el arroz este listo",
@@ -881,7 +867,7 @@ RECETAS = {
                 "aguacate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "lechuga": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "yogurt": {"cantidad": 50, "unidad": "ml", "tipo": "volumen"}
+                "yogurt_natural": {"cantidad": 50, "unidad": "ml", "tipo": "volumen"}
             },
             "preparacion": [
                 "Cocinar pechuga a la plancha y cortar en tiras",
@@ -889,7 +875,7 @@ RECETAS = {
                 "Picar tomate y lechuga",
                 "Calentar tortillas",
                 "Armar wrap con todos los ingredientes",
-                "Agregar yogurt como aderezo"
+                "Agregar yogurt natural como aderezo"
             ],
             "informacion_nutricional": {
                 "calorias": 420, "proteinas": 30, "carbohidratos": 32, "grasas": 20, "fibra": 7
@@ -982,8 +968,8 @@ RECETAS = {
             "dificultad": "facil",
             "ingredientes": {
                 "pasta": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "pimenton": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
+                "zanahoria": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
                 "aceite_oliva": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
@@ -991,7 +977,7 @@ RECETAS = {
             },
             "preparacion": [
                 "Cocinar pasta en agua con sal",
-                "Picar tomate, pimenton y cebolla",
+                "Picar tomate, zanahoria y cebolla",
                 "Sofreir verduras con ajo en aceite de oliva",
                 "Mezclar pasta con verduras",
                 "Servir con queso parmesano rallado"
@@ -1029,27 +1015,30 @@ RECETAS = {
         },
         {
             "id": "cen_10",
-            "nombre": "Arroz con huevo frito",
+            "nombre": "Ensalada de pollo y aguacate",
             "categoria": "cena",
             "tiempo_preparacion": "20 min",
             "dificultad": "facil",
             "ingredientes": {
-                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "huevo": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
-                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
+                "pechuga_pollo": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "lechuga": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "aguacate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "aceite_oliva": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cocinar arroz normalmente",
-                "Calentar aceite en sarten",
-                "Freir huevos con cuidado",
-                "Servir arroz con huevo encima",
-                "Acompanar con ensalada si se desea"
+                "Cocinar pechuga a la plancha o en Air Fryer 12 min a 190 C",
+                "Lavar y cortar lechuga y tomate",
+                "Cortar aguacate en tajadas",
+                "Mezclar todo con limon, aceite de oliva y sal",
+                "Servir fresco"
             ],
             "informacion_nutricional": {
-                "calorias": 350, "proteinas": 14, "carbohidratos": 50, "grasas": 10, "fibra": 2
+                "calorias": 360, "proteinas": 32, "carbohidratos": 14, "grasas": 20, "fibra": 6
             },
-            "tags": ["ligero", "rapido", "economico"]
+            "tags": ["ligero", "proteina", "rapido"]
         },
         {
             "id": "cen_11",
@@ -1059,13 +1048,13 @@ RECETAS = {
             "dificultad": "facil",
             "ingredientes": {
                 "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
-                "chorizo": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "chorizo": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"}
             },
             "preparacion": [
-                "Asar las arepas hasta que esten doradas",
-                "Cocinar chorizo a la plancha o parrilla",
+                "Calentar arepas en Air Fryer o sarten hasta dorar",
+                "Cocinar chorizos en Air Fryer 10 min a 190 C o a la plancha",
                 "Picar cebolla finamente",
                 "Abrir arepas y rellenar con chorizo y cebolla",
                 "Servir con limon al gusto"
