@@ -1,4 +1,9 @@
 from collections import defaultdict
+import json
+import os
+
+
+INVENTARIO_FILE = "data/inventario_usuario.json"
 
 
 class InventoryManager:
@@ -7,7 +12,7 @@ class InventoryManager:
     def __init__(self, menu):
         self.menu = menu
         self.inventario_necesario = self._calcular_inventario_total()
-        self.inventario_actual = {}
+        self.inventario_actual = self._cargar_inventario()
         self.categorias_productos = {
             "Proteinas": [
                 "espinazo_cerdo", "pechuga_pollo", "muslo_pollo", "alitas_pollo",
@@ -82,8 +87,26 @@ class InventoryManager:
             por_categoria["Otros"] = otros
         return por_categoria
 
+    def _cargar_inventario(self):
+        if not os.path.exists(INVENTARIO_FILE):
+            return {}
+        try:
+            with open(INVENTARIO_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return {}
+
+    def _guardar_inventario(self):
+        try:
+            os.makedirs("data", exist_ok=True)
+            with open(INVENTARIO_FILE, "w", encoding="utf-8") as f:
+                json.dump(self.inventario_actual, f, indent=2)
+        except Exception:
+            pass
+
     def actualizar_inventario_actual(self, inventario_dict):
         self.inventario_actual = inventario_dict
+        self._guardar_inventario()
 
     def _generar_lista_desde_inventario(self, inventario, filtro=None, excluir=None):
         lista_compras = {}

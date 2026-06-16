@@ -1,12 +1,13 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from datetime import datetime
 
 from data.menu_generator import MenuGenerator
 from data.inventory import InventoryManager
 from data.menu_fijo import DIAS_PLAN
 from utils.nutrition import NutritionCalculator
-from utils.precios_dane import PreciosActualizados
+from utils.precios import GestorPrecios
 
 st.set_page_config(
     page_title="Planificador de Comidas | Julian y Annmar",
@@ -27,6 +28,16 @@ calc = NutritionCalculator(
     PERSONA2, PESO2, ALTURA2, "bajar_peso", PESO_OBJETIVO2
 )
 metas = calc.get_metas_personalizadas()
+
+
+def _etiqueta_fuente(fuente: str, supermercado: str | None) -> str:
+    if fuente == "scrape" and supermercado:
+        return f"🟢 {supermercado}"
+    if fuente == "referencia" and supermercado:
+        return f"🟡 {supermercado} (ref.)"
+    if fuente == "respaldo":
+        return "🟠 Respaldo"
+    return "⚪ Sin dato"
 
 
 def _mostrar_bloque_compras(titulo, lista_compras, gestor_precios, organizar_fn):
@@ -53,7 +64,14 @@ def _mostrar_bloque_compras(titulo, lista_compras, gestor_precios, organizar_fn)
                     detalle = resultado['desglose'][producto]
                     precio = detalle['costo']
                     total_categoria += precio
-                    st.write(f"- {producto.replace('_', ' ').title()}: ${precio:,.0f}")
+                    etiqueta = _etiqueta_fuente(
+                        detalle.get('fuente', 'respaldo'),
+                        detalle.get('supermercado'),
+                    )
+                    st.write(
+                        f"- {producto.replace('_', ' ').title()}: "
+                        f"${precio:,.0f} — {etiqueta}"
+                    )
             st.write(f"*Subtotal: ${total_categoria:,.0f}*")
             st.write("---")
     return resultado['total']
@@ -197,8 +215,11 @@ with tab2:
                             f"(Necesario: {datos['cantidad']} {datos['unidad']})"
                         )
                     with col_b:
+                        valor_guardado = st.session_state.inventory_manager.inventario_actual.get(
+                            producto, 0.0
+                        )
                         inventario_actual[producto] = st.number_input(
-                            "Tengo", min_value=0.0, value=0.0, step=0.1,
+                            "Tengo", min_value=0.0, value=float(valor_guardado), step=0.1,
                             key=f"inv_{producto}", label_visibility="collapsed"
                         )
             if st.form_submit_button("💾 Guardar Inventario", use_container_width=True):
@@ -214,16 +235,82 @@ with tab2:
         )
         if st.session_state.inventory_manager.inventario_actual:
             inv_mgr = st.session_state.inventory_manager
-            gestor_precios = PreciosActualizados()
+
+            lista_quincenal = inv_mgr.generar_lista_compras_quincenal()
+            listas_semanales = inv_mgr.generar_listas_compras_semanales()
+            lista_completa = {**lista_quincenal}
+            for bloque in listas_semanales.values():
+                for producto, datos in bloque.items():
+                    if producto in lista_completa:
+                        lista_completa[producto] = {
+                            "cantidad": lista_completa[producto]["cantidad"] + datos["cantidad"],
+                            "unidad": datos["unidad"],
+                            "tipo": datos["tipo"],
+                        }
+                    else:
+                        lista_completa[producto] = datos
+
+            if "gestor_precios" not in st.session_state:
+                st.session_state.gestor_precios = GestorPrecios()
+
+            gestor_precios = st.session_state.gestor_precios
             gestor_precios.ajustar_precios_por_ciudad(ciudad)
+
+            col_btn, col_info = st.columns([1, 2])
+            with col_btn:
+                actualizar = st.button(
+                    "🔄 Actualizar precios hoy",
+                    use_container_width=True,
+                    help="Consulta precios en supermercados para los productos de tu lista",
+                )
+            with col_info:
+                if gestor_precios.fecha_consulta:
+                    fecha_txt = datetime.fromisoformat(
+                        gestor_precios.fecha_consulta
+                    ).strftime("%d/%m/%Y %H:%M")
+                    st.caption(f"Última consulta: {fecha_txt}")
+                else:
+                    st.caption("Sin consulta reciente — usa precios de respaldo")
+
+            if actualizar:
+                progress = st.progress(0, text="Consultando supermercados...")
+                productos_lista = list(lista_completa.keys())
+                total_prod = max(len(productos_lista), 1)
+
+                def on_progress(producto):
+                    idx = productos_lista.index(producto) + 1 if producto in productos_lista else 0
+                    progress.progress(
+                        min(idx / total_prod, 1.0),
+                        text=f"Buscando {producto.replace('_', ' ')}...",
+                    )
+
+                gestor_precios.obtener_precios(
+                    lista_completa,
+                    ciudad,
+                    forzar_actualizacion=True,
+                    on_progress=on_progress,
+                )
+                progress.progress(1.0, text="Precios actualizados")
+                st.success("Precios actualizados para hoy")
+            else:
+                gestor_precios.preparar_precios(lista_completa, ciudad)
+
+            resumen = gestor_precios.resumen_fuentes(lista_completa)
+            if resumen["precios_respaldo"] > 0:
+                st.warning(
+                    f"{resumen['precios_respaldo']} producto(s) usan precio de respaldo. "
+                    "Pulsa «Actualizar precios hoy» para intentar precios en vivo."
+                )
+            if resumen["supermercados"]:
+                st.caption(
+                    f"Fuentes: {', '.join(resumen['supermercados'])} | "
+                    f"{resumen['precios_vivos']}/{resumen['total_productos']} con precio consultado"
+                )
 
             st.caption(
                 "Compra frutas, verduras y tubérculos cada semana; "
                 "el resto cada 15 días."
             )
-
-            lista_quincenal = inv_mgr.generar_lista_compras_quincenal()
-            listas_semanales = inv_mgr.generar_listas_compras_semanales()
 
             st.markdown("---")
             total_quincenal = _mostrar_bloque_compras(
@@ -315,13 +402,25 @@ with tab4:
     if categoria_recetas != "Todas":
         cat_map = {"Desayunos": "desayuno", "Almuerzos": "almuerzo", "Cenas": "cena"}
         recetas_mostrar = [r for r in recetas_mostrar if r['categoria'] == cat_map[categoria_recetas]]
+
+    if "gestor_precios" in st.session_state and st.session_state.gestor_precios.precios:
+        gestor_recetas = st.session_state.gestor_precios
+    else:
+        gestor_recetas = GestorPrecios()
+        gestor_recetas.cargar_respaldo_completo()
+
     for receta in recetas_mostrar:
-        with st.expander(f"{receta['nombre']} | {receta['tiempo_preparacion']} | {receta['dificultad']}"):
+        costo_receta = gestor_recetas.calcular_costo_receta(receta['ingredientes'])
+        with st.expander(
+            f"{receta['nombre']} | {receta['tiempo_preparacion']} | "
+            f"${costo_receta['total']:,.0f} COP"
+        ):
             col1, col2 = st.columns([1, 1])
             with col1:
                 st.write("**Ingredientes:**")
                 for ing, datos in receta['ingredientes'].items():
                     st.write(f"- {ing.replace('_', ' ').title()}: {datos['cantidad']} {datos['unidad']}")
+                st.metric("Costo estimado (2 porciones)", f"${costo_receta['total']:,.0f} COP")
             with col2:
                 st.write("**Preparacion:**")
                 for i, paso in enumerate(receta['preparacion'], 1):
