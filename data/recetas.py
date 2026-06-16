@@ -674,12 +674,12 @@ RECETAS = {
         },
         {
             "id": "alm_12",
-            "nombre": "Frijol con pezuña",
+            "nombre": "Frijol rojo con pezuña",
             "categoria": "almuerzo",
             "tiempo_preparacion": "2 horas",
             "dificultad": "media",
             "ingredientes": {
-                "frijol_negro": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
+                "frijol_rojo": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
                 "pezuña_res": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "platano_verde": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
@@ -687,8 +687,8 @@ RECETAS = {
                 "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Remojar frijoles y pezuña la noche anterior",
-                "Cocinar pezuña con frijoles en olla a presion 1 hora",
+                "Remojar frijol rojo y pezuña la noche anterior",
+                "Cocinar pezuña con frijol rojo en olla a presion 1 hora",
                 "Sofreir cebolla, tomate y ajo",
                 "Agregar sofrito al guiso y cocinar 20 min mas",
                 "Servir con platano verde cocido o frito"
@@ -867,18 +867,18 @@ RECETAS = {
                 "aguacate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "lechuga": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "yogurt_natural": {"cantidad": 50, "unidad": "ml", "tipo": "volumen"}
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cocinar pechuga a la plancha y cortar en tiras",
-                "Machacar aguacate",
+                "Machacar aguacate con limon y sal",
                 "Picar tomate y lechuga",
                 "Calentar tortillas",
-                "Armar wrap con todos los ingredientes",
-                "Agregar yogurt natural como aderezo"
+                "Armar wrap con pollo, aguacate, tomate y lechuga"
             ],
             "informacion_nutricional": {
-                "calorias": 420, "proteinas": 30, "carbohidratos": 32, "grasas": 20, "fibra": 7
+                "calorias": 410, "proteinas": 30, "carbohidratos": 32, "grasas": 18, "fibra": 7
             },
             "tags": ["ligero", "practico", "balanceado"]
         },

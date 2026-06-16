@@ -28,6 +28,37 @@ calc = NutritionCalculator(
 )
 metas = calc.get_metas_personalizadas()
 
+
+def _mostrar_bloque_compras(titulo, lista_compras, gestor_precios, organizar_fn):
+    compras_organizadas = organizar_fn(lista_compras)
+    st.markdown(f"**{titulo}**")
+    if not compras_organizadas:
+        st.success("Nada que comprar en este bloque.")
+        return 0
+    for categoria, productos in compras_organizadas.items():
+        with st.expander(f"{categoria} ({len(productos)} productos)"):
+            for producto, datos in productos.items():
+                st.write(f"- {producto.replace('_', ' ').title()}: {datos['cantidad']} {datos['unidad']}")
+    resultado = gestor_precios.calcular_costo_lista(lista_compras)
+    st.metric(
+        label="Presupuesto estimado",
+        value=f"${resultado['total']:,.0f} COP",
+    )
+    with st.expander("Ver desglose por producto"):
+        for categoria, productos in compras_organizadas.items():
+            st.write(f"**{categoria}**")
+            total_categoria = 0
+            for producto in productos:
+                if producto in resultado['desglose']:
+                    detalle = resultado['desglose'][producto]
+                    precio = detalle['costo']
+                    total_categoria += precio
+                    st.write(f"- {producto.replace('_', ' ').title()}: ${precio:,.0f}")
+            st.write(f"*Subtotal: ${total_categoria:,.0f}*")
+            st.write("---")
+    return resultado['total']
+
+
 if 'menu' not in st.session_state:
     mg = MenuGenerator(dias=DIAS_PLAN, personas=2)
     st.session_state.menu = mg.cargar_menu_fijo()
@@ -182,38 +213,49 @@ with tab2:
             ["Bogota", "Medellin", "Cali", "Barranquilla", "Cartagena", "Bucaramanga", "Pereira"]
         )
         if st.session_state.inventory_manager.inventario_actual:
-            lista_compras = st.session_state.inventory_manager.generar_lista_compras()
-            compras_organizadas = st.session_state.inventory_manager.organizar_por_categorias(lista_compras)
-            if compras_organizadas:
-                st.warning("📋 Productos a comprar:")
-                for categoria, productos in compras_organizadas.items():
-                    with st.expander(f"{categoria} ({len(productos)} productos)"):
-                        for producto, datos in productos.items():
-                            st.write(f"- {producto.replace('_', ' ').title()}: {datos['cantidad']} {datos['unidad']}")
+            inv_mgr = st.session_state.inventory_manager
+            gestor_precios = PreciosActualizados()
+            gestor_precios.ajustar_precios_por_ciudad(ciudad)
+
+            st.caption(
+                "Compra frutas, verduras y tubérculos cada semana; "
+                "el resto cada 15 días."
+            )
+
+            lista_quincenal = inv_mgr.generar_lista_compras_quincenal()
+            listas_semanales = inv_mgr.generar_listas_compras_semanales()
+
+            st.markdown("---")
+            total_quincenal = _mostrar_bloque_compras(
+                "Compra quincenal (15 días — sin perecederos)",
+                lista_quincenal,
+                gestor_precios,
+                inv_mgr.organizar_por_categorias,
+            )
+
+            st.markdown("---")
+            total_sem1 = _mostrar_bloque_compras(
+                "Compra semanal — Semana 1 (días 1–7, perecederos)",
+                listas_semanales["semana_1"],
+                gestor_precios,
+                inv_mgr.organizar_perecederos,
+            )
+
+            st.markdown("---")
+            total_sem2 = _mostrar_bloque_compras(
+                "Compra semanal — Semana 2 (días 8–15, perecederos)",
+                listas_semanales["semana_2"],
+                gestor_precios,
+                inv_mgr.organizar_perecederos,
+            )
+
+            if total_quincenal or total_sem1 or total_sem2:
                 st.markdown("---")
-                st.subheader("💰 Presupuesto Estimado")
-                gestor_precios = PreciosActualizados()
-                gestor_precios.ajustar_precios_por_ciudad(ciudad)
-                resultado = gestor_precios.calcular_costo_lista(lista_compras)
                 st.metric(
-                    label="💰 Costo Total Estimado",
-                    value=f"${resultado['total']:,.0f} COP",
-                    delta=f"Precios {ciudad}"
+                    label="Total estimado (quincenal + 2 semanas)",
+                    value=f"${total_quincenal + total_sem1 + total_sem2:,.0f} COP",
+                    delta=f"Precios {ciudad}",
                 )
-                with st.expander("📊 Ver desglose por producto"):
-                    for categoria, productos in compras_organizadas.items():
-                        st.write(f"**{categoria}**")
-                        total_categoria = 0
-                        for producto in productos:
-                            if producto in resultado['desglose']:
-                                detalle = resultado['desglose'][producto]
-                                precio = detalle['costo']
-                                total_categoria += precio
-                                st.write(f"- {producto.replace('_', ' ').title()}: ${precio:,.0f}")
-                        st.write(f"*Subtotal: ${total_categoria:,.0f}*")
-                        st.write("---")
-            else:
-                st.success("Tienes todo lo necesario!")
         else:
             st.info("👈 Guarda tu inventario para generar la lista de compras")
 

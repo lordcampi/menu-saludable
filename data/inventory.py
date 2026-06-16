@@ -2,6 +2,8 @@ from collections import defaultdict
 
 
 class InventoryManager:
+    CATEGORIAS_PERECEDEROS = ("Frutas", "Vegetales", "Tuberculos")
+
     def __init__(self, menu):
         self.menu = menu
         self.inventario_necesario = self._calcular_inventario_total()
@@ -17,7 +19,7 @@ class InventoryManager:
             ],
             "Lacteos": [
                 "queso_fresco", "queso_parmesano", "mantequilla",
-                "leche", "crema_leche", "yogurt_griego", "yogurt_natural",
+                "leche", "crema_leche", "yogurt_griego",
             ],
             "Vegetales": [
                 "tomate", "cebolla", "cebolla_larga", "lechuga", "zanahoria",
@@ -26,9 +28,9 @@ class InventoryManager:
             ],
             "Frutas": ["aguacate", "banano", "fresas", "limon"],
             "Granos y Cereales": [
-                "arroz", "lentejas", "frijol_negro", "avena", "pan_integral",
-                "arepa", "tortilla_harina", "cereal", "harina", "pasta",
-                "pan_hamburguesa", "granola", "mermelada",
+                "arroz", "lentejas", "frijol_negro", "frijol_rojo", "avena",
+                "pan_integral", "arepa", "tortilla_harina", "cereal", "harina",
+                "pasta", "pan_hamburguesa", "granola", "mermelada",
             ],
             "Tuberculos": [
                 "papa", "papa_francesa", "yuca", "platano_verde",
@@ -41,9 +43,17 @@ class InventoryManager:
             "Aceites": ["aceite", "aceite_oliva"],
         }
 
-    def _calcular_inventario_total(self):
+    def get_ingredientes_perecederos(self):
+        perecederos = set()
+        for categoria in self.CATEGORIAS_PERECEDEROS:
+            perecederos.update(self.categorias_productos.get(categoria, []))
+        return perecederos
+
+    def _calcular_inventario_rango(self, dia_inicio, dia_fin):
         inventario = defaultdict(lambda: {"cantidad": 0, "unidad": "", "tipo": ""})
         for dia in self.menu:
+            if not (dia_inicio <= dia["dia"] <= dia_fin):
+                continue
             for comida in ["desayuno", "almuerzo", "cena"]:
                 for ingrediente, datos in dia[comida]["ingredientes"].items():
                     inventario[ingrediente]["cantidad"] += datos["cantidad"]
@@ -51,8 +61,15 @@ class InventoryManager:
                     inventario[ingrediente]["tipo"] = datos["tipo"]
         return dict(inventario)
 
+    def _calcular_inventario_total(self):
+        if not self.menu:
+            return {}
+        return self._calcular_inventario_rango(
+            self.menu[0]["dia"],
+            self.menu[-1]["dia"],
+        )
+
     def get_productos_para_formulario(self):
-        """Solo ingredientes que aparecen en el menu de 15 dias."""
         categorizados = set()
         por_categoria = {}
         for categoria, productos in self.categorias_productos.items():
@@ -68,9 +85,13 @@ class InventoryManager:
     def actualizar_inventario_actual(self, inventario_dict):
         self.inventario_actual = inventario_dict
 
-    def generar_lista_compras(self):
+    def _generar_lista_desde_inventario(self, inventario, filtro=None, excluir=None):
         lista_compras = {}
-        for ingrediente, datos_necesarios in self.inventario_necesario.items():
+        for ingrediente, datos_necesarios in inventario.items():
+            if filtro is not None and ingrediente not in filtro:
+                continue
+            if excluir is not None and ingrediente in excluir:
+                continue
             necesario = datos_necesarios["cantidad"]
             tengo = self.inventario_actual.get(ingrediente, 0)
             faltante = max(0, necesario - tengo)
@@ -82,10 +103,34 @@ class InventoryManager:
                 }
         return lista_compras
 
-    def organizar_por_categorias(self, lista_compras):
+    def generar_lista_compras(self):
+        return self._generar_lista_desde_inventario(self.inventario_necesario)
+
+    def generar_lista_compras_quincenal(self):
+        perecederos = self.get_ingredientes_perecederos()
+        return self._generar_lista_desde_inventario(
+            self.inventario_necesario,
+            excluir=perecederos,
+        )
+
+    def generar_listas_compras_semanales(self):
+        perecederos = self.get_ingredientes_perecederos()
+        return {
+            "semana_1": self._generar_lista_desde_inventario(
+                self._calcular_inventario_rango(1, 7),
+                filtro=perecederos,
+            ),
+            "semana_2": self._generar_lista_desde_inventario(
+                self._calcular_inventario_rango(8, 15),
+                filtro=perecederos,
+            ),
+        }
+
+    def organizar_por_categorias(self, lista_compras, categorias=None):
         compras_organizadas = {}
         categorizados = set()
-        for categoria, productos in self.categorias_productos.items():
+        cats = categorias or self.categorias_productos
+        for categoria, productos in cats.items():
             productos_en_categoria = {
                 p: lista_compras[p] for p in productos if p in lista_compras
             }
@@ -96,6 +141,13 @@ class InventoryManager:
         if otros:
             compras_organizadas["Otros"] = otros
         return compras_organizadas
+
+    def organizar_perecederos(self, lista_compras):
+        cats = {
+            k: v for k, v in self.categorias_productos.items()
+            if k in self.CATEGORIAS_PERECEDEROS
+        }
+        return self.organizar_por_categorias(lista_compras, categorias=cats)
 
     def get_resumen_inventario(self):
         total_productos = len(self.inventario_necesario)
