@@ -1,4 +1,5 @@
 import copy
+import math
 
 from data.recetas import get_receta_por_id
 from data.menu_fijo import MENU_DIAS, DIAS_PLAN
@@ -20,13 +21,25 @@ class MenuGenerator:
         return self.menu
 
     def _escalar_ingredientes(self, ingredientes: dict) -> dict:
-        """Escala todas las cantidades por el factor de consumo actual."""
+        """
+        Escala todas las cantidades por el factor de consumo actual.
+
+        - tipo 'unidad': redondea hacia arriba (math.ceil) porque no existen
+          fracciones de unidades (ej: 2.5 arepas → 3, 3.8 huevos → 4).
+        - tipo 'peso' y 'volumen': redondeo estándar a 1 decimal
+          (ej: 300g carne × 1.25 = 375.0g).
+        """
         if self.factor_escalado == 1.0:
             return ingredientes
         escalados = {}
         for ing, datos in ingredientes.items():
             cantidad_original = datos["cantidad"]
-            cantidad_escalada = round(cantidad_original * self.factor_escalado, 1)
+            cantidad_cruda = cantidad_original * self.factor_escalado
+            tipo = datos.get("tipo", "peso")
+            if tipo == "unidad":
+                cantidad_escalada = math.ceil(cantidad_cruda)
+            else:
+                cantidad_escalada = round(cantidad_cruda, 1)
             escalados[ing] = {**datos, "cantidad": cantidad_escalada}
         return escalados
 
