@@ -2,19 +2,33 @@ import copy
 
 from data.recetas import get_receta_por_id
 from data.menu_fijo import MENU_DIAS, DIAS_PLAN
+from data.hogar import get_factor_escalado, get_nombres_activos
 
 
 class MenuGenerator:
-    def __init__(self, dias=DIAS_PLAN, personas=2):
+    def __init__(self, dias=DIAS_PLAN):
         self.dias = dias
-        self.personas = personas
         self.menu = []
+        self.factor_escalado = get_factor_escalado()
 
     def cargar_menu_fijo(self):
+        """Carga el menú fijo de 15 días escalando ingredientes dinámicamente."""
+        self.factor_escalado = get_factor_escalado()
         self.menu = []
         for entrada in MENU_DIAS:
             self.menu.append(self._construir_dia(entrada))
         return self.menu
+
+    def _escalar_ingredientes(self, ingredientes: dict) -> dict:
+        """Escala todas las cantidades por el factor de consumo actual."""
+        if self.factor_escalado == 1.0:
+            return ingredientes
+        escalados = {}
+        for ing, datos in ingredientes.items():
+            cantidad_original = datos["cantidad"]
+            cantidad_escalada = round(cantidad_original * self.factor_escalado, 1)
+            escalados[ing] = {**datos, "cantidad": cantidad_escalada}
+        return escalados
 
     def _construir_dia(self, entrada):
         overrides = entrada.get("overrides", {})
@@ -30,15 +44,22 @@ class MenuGenerator:
         }
 
     def _obtener_receta(self, receta_id, overrides=None):
-        receta = copy.deepcopy(get_receta_por_id(receta_id))
-        if not receta:
+        receta_original = get_receta_por_id(receta_id)
+        if not receta_original:
             raise ValueError(f"Receta no encontrada: {receta_id}")
+        receta = copy.deepcopy(receta_original)
+
+        # Aplicar overrides del menú fijo (ej: cambio de plátano maduro)
         if overrides:
             for ingrediente, datos in overrides.items():
                 if ingrediente in receta["ingredientes"]:
                     receta["ingredientes"][ingrediente].update(datos)
                 else:
                     receta["ingredientes"][ingrediente] = datos
+
+        # Escalar ingredientes por factor de consumo dinámico
+        receta["ingredientes"] = self._escalar_ingredientes(receta["ingredientes"])
+
         return receta
 
     def _calcular_resumen_dia(self, desayuno, almuerzo, cena):

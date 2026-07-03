@@ -383,11 +383,14 @@ RECETAS = {
                 "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "aceite": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Sazonar bistec con sal y limon",
-                "Cocinar arroz normalmente",
+                "Sazonar bistec con sal, pimienta, ajo machacado y limon",
+                "Cocinar arroz normalmente con un poco de cebolla picada",
                 "Cocinar bistec a la plancha 4 min por lado",
                 "Lavar y cortar lechuga y tomate",
                 "Servir bistec con arroz y ensalada"
@@ -409,17 +412,21 @@ RECETAS = {
                 "zanahoria": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
+                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "cilantro": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cortar muslo de pollo en presas",
-                "Picar cebolla y tomate",
-                "Sofreir cebolla y tomate en aceite",
-                "Agregar pollo y cocinar 20 min",
+                "Picar cebolla, ajo y tomate",
+                "Sofreir cebolla, ajo y tomate en aceite",
+                "Agregar pollo, comino y pimienta, cocinar 20 min",
                 "Agregar zanahoria en rodajas",
                 "Cocinar hasta que este tierno",
-                "Servir con arroz blanco"
+                "Servir con arroz blanco y cilantro picado"
             ],
             "informacion_nutricional": {
                 "calorias": 560, "proteinas": 38, "carbohidratos": 58, "grasas": 18, "fibra": 6
@@ -464,17 +471,21 @@ RECETAS = {
                 "papa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
                 "huevo": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "leche": {"cantidad": 100, "unidad": "ml", "tipo": "volumen"},
                 "mantequilla": {"cantidad": 20, "unidad": "gr", "tipo": "peso"},
+                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 4, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"}
             },
             "preparacion": [
-                "Mezclar carne molida con huevo y sal",
+                "Mezclar carne molida con huevo, ajo picado, comino, pimienta y sal",
                 "Formar albondigas y dorar en aceite",
                 "Licuar tomate y cebolla para salsa",
                 "Cocinar albondigas en la salsa 20 min",
-                "Cocinar papas, hacer pure con leche y mantequilla",
+                "Cocinar papas, hacer pure con leche, mantequilla y sal",
                 "Servir albondigas sobre pure"
             ],
             "informacion_nutricional": {
@@ -493,11 +504,12 @@ RECETAS = {
                 "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "platano_maduro": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Marinar pescado con limon y sal",
+                "Marinar pescado con limon, ajo machacado y sal",
                 "Cocinar arroz normalmente",
                 "Pelar y cortar platano en tajadas",
                 "Freir tajadas de platano",
@@ -550,11 +562,12 @@ RECETAS = {
                 "cebolla_larga": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
                 "cilantro": {"cantidad": 15, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
+                "comino": {"cantidad": 3, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 5, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar el espinazo y cortar en trozos",
-                "Hervir en agua con sal, ajo y cebolla por 50 min",
+                "Hervir en agua con sal, ajo, comino y cebolla por 50 min",
                 "Pelar y cortar papa, yuca y platano",
                 "Agregar verduras y mazorca al caldo",
                 "Cocinar hasta que la carne se desprenda del hueso",
@@ -579,13 +592,15 @@ RECETAS = {
                 "aceite": {"cantidad": 30, "unidad": "ml", "tipo": "volumen"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "aji": {"cantidad": 40, "unidad": "gr", "tipo": "peso"},
-                "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"}
+                "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
+                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 4, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cocinar el arroz normalmente",
                 "Freir platano maduro en tajadas",
-                "Cocinar frijoles con alinos",
-                "Cocinar carne mechada con cebolla y aji",
+                "Cocinar frijoles con alinos, comino y sal",
+                "Cocinar carne mechada con cebolla, aji y ajo",
                 "Servir todo por separado en el plato"
             ],
             "informacion_nutricional": {
@@ -606,14 +621,17 @@ RECETAS = {
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "lechuga": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Formar hamburguesas con la carne molida",
+                "Mezclar carne molida con ajo picado, pimienta y sal, formar hamburguesas",
                 "Cocinar hamburguesas en sarten o Air Fryer 12 min a 190 C",
                 "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
-                "Armar hamburguesa con tomate, lechuga y queso",
+                "Armar hamburguesa con tomate, lechuga, cebolla y queso",
                 "Servir con papas fritas"
             ],
             "informacion_nutricional": {
@@ -632,11 +650,13 @@ RECETAS = {
                 "cebolla": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
                 "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cortar higado en laminas finas",
+                "Cortar higado en laminas finas, sazonar con ajo, pimienta y sal",
                 "Cocinar arroz normalmente",
                 "Saltear cebolla en aceite hasta que este transparente",
                 "Agregar higado y cocinar 5 min por lado",
@@ -684,13 +704,15 @@ RECETAS = {
                 "platano_verde": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"}
+                "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
+                "comino": {"cantidad": 3, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 4, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Remojar frijol rojo y pezuña la noche anterior",
                 "Cocinar pezuña con frijol rojo en olla a presion 1 hora",
                 "Sofreir cebolla, tomate y ajo",
-                "Agregar sofrito al guiso y cocinar 20 min mas",
+                "Agregar sofrito, comino y sal al guiso y cocinar 20 min mas",
                 "Servir con platano verde cocido o frito"
             ],
             "informacion_nutricional": {
@@ -707,11 +729,13 @@ RECETAS = {
             "ingredientes": {
                 "chuleta_cerdo": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "papa_francesa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Sazonar chuletas con sal",
+                "Sazonar chuletas con ajo machacado, pimienta y sal",
                 "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
                 "Cocinar chuletas en sarten o Air Fryer 12 min a 190 C",
                 "Servir chuletas con papas a la francesa"
@@ -733,13 +757,14 @@ RECETAS = {
                 "tocineta": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "papa_francesa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"}
+                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
                 "Cocinar pechuga en Air Fryer o plancha y cortar en tiras",
                 "Calentar salchichas y tocineta en Air Fryer 8 min a 190 C",
-                "Mezclar todo y servir con queso fresco rallado"
+                "Mezclar todo con sal y servir con queso fresco rallado"
             ],
             "informacion_nutricional": {
                 "calorias": 750, "proteinas": 42, "carbohidratos": 52, "grasas": 42, "fibra": 5
@@ -790,11 +815,12 @@ RECETAS = {
                 "pan_integral": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "queso_parmesano": {"cantidad": 30, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "aceite_oliva": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"}
+                "aceite_oliva": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar y cortar lechuga",
-                "Cocinar pechuga a la plancha y cortar en tiras",
+                "Cocinar pechuga a la plancha, sazonar con sal y cortar en tiras",
                 "Hacer crutones con pan integral tostado",
                 "Preparar aderezo con limon y aceite de oliva",
                 "Mezclar todo y agregar queso parmesano"
@@ -816,13 +842,15 @@ RECETAS = {
                 "papa": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
-                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
+                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar lentejas y dejar en remojo",
-                "Picar verduras",
+                "Picar verduras y sofreir cebolla y ajo en aceite",
                 "Cocinar lentejas con verduras",
-                "Agregar comino y condimentos",
+                "Agregar comino, sal y condimentos",
                 "Cocinar hasta que lentejas esten tiernas"
             ],
             "informacion_nutricional": {
@@ -894,11 +922,13 @@ RECETAS = {
                 "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "papa": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
                 "crema_leche": {"cantidad": 80, "unidad": "ml", "tipo": "volumen"},
-                "mantequilla": {"cantidad": 15, "unidad": "gr", "tipo": "peso"}
+                "mantequilla": {"cantidad": 15, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Pelar y cortar todas las verduras",
-                "Cocinar en agua hasta que esten tiernas",
+                "Cocinar en agua con ajo y sal hasta que esten tiernas",
                 "Licuar con crema de leche y mantequilla",
                 "Volver a calentar y sazonar",
                 "Servir caliente"
@@ -946,11 +976,12 @@ RECETAS = {
                 "aguacate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 30, "unidad": "gr", "tipo": "peso"},
-                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"}
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Asar las arepas",
-                "Mezclar atun con cebolla picada y limon",
+                "Mezclar atun con cebolla picada, limon y sal",
                 "Cortar aguacate y tomate",
                 "Abrir arepas y rellenar con atun",
                 "Servir con aguacate y tomate al lado"
@@ -973,12 +1004,13 @@ RECETAS = {
                 "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
                 "aceite_oliva": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
-                "queso_parmesano": {"cantidad": 20, "unidad": "gr", "tipo": "peso"}
+                "queso_parmesano": {"cantidad": 20, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cocinar pasta en agua con sal",
                 "Picar tomate, zanahoria y cebolla",
-                "Sofreir verduras con ajo en aceite de oliva",
+                "Sofreir verduras con ajo y sal en aceite de oliva",
                 "Mezclar pasta con verduras",
                 "Servir con queso parmesano rallado"
             ],
@@ -1075,10 +1107,12 @@ RECETAS = {
                 "papa": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "crema_leche": {"cantidad": 100, "unidad": "ml", "tipo": "volumen"},
-                "cilantro": {"cantidad": 10, "unidad": "gr", "tipo": "peso"}
+                "cilantro": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cocinar pescado en agua con cebolla",
+                "Cocinar pescado en agua con cebolla, ajo y sal",
                 "Agregar papas picadas y cocinar hasta tiernas",
                 "Desmenuzar el pescado en el caldo",
                 "Licuar con crema de leche",
@@ -1101,12 +1135,15 @@ RECETAS = {
                 "zanahoria": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
-                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"}
+                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
+                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar y picar menudencias de pollo",
-                "Sofreir cebolla, ajo y tomate",
-                "Agregar menudencias y cocinar 15 min",
+                "Sofreir cebolla, ajo y tomate en aceite",
+                "Agregar menudencias, comino y sal, cocinar 15 min",
                 "Incorporar papa y zanahoria picadas",
                 "Cocinar hasta que verduras esten tiernas y servir"
             ],
@@ -1152,12 +1189,15 @@ RECETAS = {
                 "carne_mechar": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 30, "unidad": "ml", "tipo": "volumen"},
+                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Pelar y cortar platano verde en rodajas gruesas",
                 "Freir platano, aplastar y freir de nuevo",
-                "Calentar carne mechada con un poco de aceite",
+                "Calentar carne mechada con cebolla, ajo, comino y sal en un poco de aceite",
                 "Colocar carne sobre cada patacon",
                 "Agregar queso fresco y servir caliente"
             ],

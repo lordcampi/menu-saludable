@@ -6,27 +6,35 @@ from datetime import datetime
 from data.menu_generator import MenuGenerator
 from data.inventory import InventoryManager
 from data.menu_fijo import DIAS_PLAN
+from data.hogar import (
+    cargar_miembros,
+    get_miembros_activos,
+    get_factor_consumo_total,
+    get_factor_escalado,
+    get_nombres_activos,
+    nilsa_activa,
+    toggle_nilsa,
+    FACTOR_BASE_REFERENCIA,
+)
 from utils.nutrition import NutritionCalculator
 from utils.precios import GestorPrecios
 
+# ── Configuración de página ────────────────────────────────────────────
 st.set_page_config(
-    page_title="Planificador de Comidas | Julian y Annmar",
+    page_title="Planificador de Comidas | Hogar",
     page_icon="🥗",
-    layout="wide"
+    layout="wide",
 )
 
-PERSONA1 = "Julian"
-PERSONA2 = "Annmar"
-PESO1 = 80
-PESO2 = 58
-PESO_OBJETIVO2 = 50
-ALTURA1 = 1.80
-ALTURA2 = 1.60
+# ── Cargar miembros del hogar ──────────────────────────────────────────
+miembros = cargar_miembros()
+activos = get_miembros_activos(miembros)
+factor_total = get_factor_consumo_total(miembros)
+factor_escalado = get_factor_escalado(miembros)
+nombres_activos = get_nombres_activos(miembros)
 
-calc = NutritionCalculator(
-    PERSONA1, PESO1, ALTURA1, "mantener",
-    PERSONA2, PESO2, ALTURA2, "bajar_peso", PESO_OBJETIVO2
-)
+# ── Calculadora nutricional para N miembros ─────────────────────────────
+calc = NutritionCalculator(miembros)
 metas = calc.get_metas_personalizadas()
 
 
@@ -60,13 +68,13 @@ def _mostrar_bloque_compras(titulo, lista_compras, gestor_precios, organizar_fn)
             st.write(f"**{categoria}**")
             total_categoria = 0
             for producto in productos:
-                if producto in resultado['desglose']:
-                    detalle = resultado['desglose'][producto]
-                    precio = detalle['costo']
+                if producto in resultado["desglose"]:
+                    detalle = resultado["desglose"][producto]
+                    precio = detalle["costo"]
                     total_categoria += precio
                     etiqueta = _etiqueta_fuente(
-                        detalle.get('fuente', 'respaldo'),
-                        detalle.get('supermercado'),
+                        detalle.get("fuente", "respaldo"),
+                        detalle.get("supermercado"),
                     )
                     st.write(
                         f"- {producto.replace('_', ' ').title()}: "
@@ -74,50 +82,100 @@ def _mostrar_bloque_compras(titulo, lista_compras, gestor_precios, organizar_fn)
                     )
             st.write(f"*Subtotal: ${total_categoria:,.0f}*")
             st.write("---")
-    return resultado['total']
+    return resultado["total"]
 
 
-if 'menu' not in st.session_state:
-    mg = MenuGenerator(dias=DIAS_PLAN, personas=2)
-    st.session_state.menu = mg.cargar_menu_fijo()
-    st.session_state.menu_generator = mg
-    st.session_state.inventory_manager = InventoryManager(st.session_state.menu)
+def _inicializar_sesion():
+    """Inicializa o reinicia el estado de sesión de Streamlit."""
+    if "menu" not in st.session_state or st.session_state.get("_needs_reload", False):
+        mg = MenuGenerator(dias=DIAS_PLAN)
+        st.session_state.menu = mg.cargar_menu_fijo()
+        st.session_state.menu_generator = mg
+        st.session_state.inventory_manager = InventoryManager(st.session_state.menu)
+        st.session_state["_needs_reload"] = False
+    if "gestor_precios" not in st.session_state:
+        st.session_state.gestor_precios = GestorPrecios()
 
+
+_inicializar_sesion()
+
+# ── Sidebar ────────────────────────────────────────────────────────────
 with st.sidebar:
     st.title("🥗 Plan Nutricional")
     st.markdown("---")
-    st.markdown(f"### 👤 {PERSONA1}")
-    st.write(f"Altura: {ALTURA1} m | Peso: {PESO1} kg")
-    st.write(f"Objetivo: Mantener {PESO1} kg")
-    st.write(f"Meta: {metas['persona1']['calorias_mantencion']} kcal/dia")
-    st.markdown(f"### 👤 {PERSONA2}")
-    st.write(f"Altura: {ALTURA2} m | Peso: {PESO2} kg")
-    st.write(f"Objetivo: Bajar a {PESO_OBJETIVO2} kg")
-    st.write(f"Meta: {metas['persona2']['calorias_mantencion']} kcal/dia")
-    st.markdown("---")
-    st.markdown("### 🎯 Plan")
-    st.write("15 dias fijos | Comida colombo-venezolana")
-    st.write("Porciones para 2 personas")
 
+    # ── Miembros del hogar ─────────────────────────────────────────────
+    st.markdown("### 🏠 Miembros del Hogar")
+    for miembro in miembros:
+        icono = "✅" if miembro["activo"] else "⚪"
+        st.write(f"{icono} **{miembro['nombre']}**")
+        if miembro["activo"]:
+            st.caption(
+                f"  {miembro['altura']} m | {miembro['peso']} kg | "
+                f"Factor: {miembro['factor_consumo']}"
+            )
+            if miembro["id"] in metas:
+                meta = metas[miembro["id"]]
+                objetivo = meta.get("objetivo", "mantener")
+                if objetivo == "bajar_peso":
+                    st.caption(f"  Meta: {meta['calorias_mantencion']} kcal/día (bajar a {meta['peso_objetivo']} kg)")
+                else:
+                    st.caption(f"  Meta: {meta['calorias_mantencion']} kcal/día")
+
+    st.markdown("---")
+
+    # ── Toggle Nilsa ───────────────────────────────────────────────────
+    st.markdown("### ⚙️ Configuración")
+    nilsa_on = nilsa_activa()
+    nuevo_nilsa = st.checkbox(
+        "Incluir a Nilsa (factor 0.50)",
+        value=nilsa_on,
+        help="Activa/desactiva a Nilsa. Al cambiar, todo se recalcula automáticamente.",
+    )
+    if nuevo_nilsa != nilsa_on:
+        toggle_nilsa()
+        st.session_state["_needs_reload"] = True
+        st.rerun()
+
+    st.markdown("---")
+
+    # ── Resumen del plan ───────────────────────────────────────────────
+    st.markdown("### 🎯 Plan")
+    st.write(f"{DIAS_PLAN} días fijos | Comida colombo-venezolana")
+    st.write(f"Factor consumo total: **{factor_total:.2f}**")
+    if factor_total != FACTOR_BASE_REFERENCIA:
+        delta = ((factor_total - FACTOR_BASE_REFERENCIA) / FACTOR_BASE_REFERENCIA) * 100
+        st.write(f"Escalado: **+{delta:.0f}%** vs base ({FACTOR_BASE_REFERENCIA})")
+    else:
+        st.write(f"Escalado: **1.0×** (base)")
+
+# ── Título principal ────────────────────────────────────────────────────
+nombres_str = " y ".join(nombres_activos)
 st.title("🥗 Planificador de Comidas Saludable")
-st.markdown(f"### ¡Bienvenidos {PERSONA1} y {PERSONA2}!")
+st.markdown(f"### ¡Bienvenidos {nombres_str}!")
 st.markdown("---")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "📅 Menu Diario",
-    "📋 Inventario y Compras",
-    "📊 Analisis Nutricional",
-    "📖 Recetario",
-    "🧊 Congelar y Porcionar"
-])
+# ── Tabs ────────────────────────────────────────────────────────────────
+tab1, tab2, tab3, tab4, tab5 = st.tabs(
+    [
+        "📅 Menu Diario",
+        "📋 Inventario y Compras",
+        "📊 Analisis Nutricional",
+        "📖 Recetario",
+        "🧊 Congelar y Porcionar",
+    ]
+)
 
+# ═══════════════════════════════════════════════════════════════════════
+# TAB 1: Menú Diario
+# ═══════════════════════════════════════════════════════════════════════
 with tab1:
     st.header("📅 Plan de Comidas")
 
     dia_seleccionado = st.selectbox(
         "Seleccionar dia:",
         range(1, DIAS_PLAN + 1),
-        format_func=lambda x: f"Dia {x}"
+        format_func=lambda x: f"Dia {x}",
     )
 
     dia_menu = st.session_state.menu[dia_seleccionado - 1]
@@ -126,11 +184,17 @@ with tab1:
     with col1:
         st.subheader("🌅 Desayuno")
         with st.expander(f"{dia_menu['desayuno']['nombre']}", expanded=True):
-            st.caption(f"{dia_menu['desayuno']['tiempo_preparacion']} | {dia_menu['desayuno']['dificultad']}")
+            st.caption(
+                f"{dia_menu['desayuno']['tiempo_preparacion']} | "
+                f"{dia_menu['desayuno']['dificultad']}"
+            )
             st.write("**Ingredientes:**")
-            for ing, datos in dia_menu['desayuno']['ingredientes'].items():
-                st.write(f"- {ing.replace('_', ' ').title()}: {datos['cantidad']} {datos['unidad']}")
-            nutri = dia_menu['desayuno']['informacion_nutricional']
+            for ing, datos in dia_menu["desayuno"]["ingredientes"].items():
+                st.write(
+                    f"- {ing.replace('_', ' ').title()}: "
+                    f"{datos['cantidad']} {datos['unidad']}"
+                )
+            nutri = dia_menu["desayuno"]["informacion_nutricional"]
             col_a, col_b = st.columns(2)
             with col_a:
                 st.metric("Calorias", f"{nutri['calorias']} kcal")
@@ -139,17 +203,23 @@ with tab1:
                 st.metric("Carbohidratos", f"{nutri['carbohidratos']}g")
                 st.metric("Grasas", f"{nutri['grasas']}g")
             st.write("**Preparacion:**")
-            for i, paso in enumerate(dia_menu['desayuno']['preparacion'], 1):
+            for i, paso in enumerate(dia_menu["desayuno"]["preparacion"], 1):
                 st.write(f"{i}. {paso}")
 
     with col2:
         st.subheader("☀️ Almuerzo")
         with st.expander(f"{dia_menu['almuerzo']['nombre']}", expanded=True):
-            st.caption(f"{dia_menu['almuerzo']['tiempo_preparacion']} | {dia_menu['almuerzo']['dificultad']}")
+            st.caption(
+                f"{dia_menu['almuerzo']['tiempo_preparacion']} | "
+                f"{dia_menu['almuerzo']['dificultad']}"
+            )
             st.write("**Ingredientes:**")
-            for ing, datos in dia_menu['almuerzo']['ingredientes'].items():
-                st.write(f"- {ing.replace('_', ' ').title()}: {datos['cantidad']} {datos['unidad']}")
-            nutri = dia_menu['almuerzo']['informacion_nutricional']
+            for ing, datos in dia_menu["almuerzo"]["ingredientes"].items():
+                st.write(
+                    f"- {ing.replace('_', ' ').title()}: "
+                    f"{datos['cantidad']} {datos['unidad']}"
+                )
+            nutri = dia_menu["almuerzo"]["informacion_nutricional"]
             col_a, col_b = st.columns(2)
             with col_a:
                 st.metric("Calorias", f"{nutri['calorias']} kcal")
@@ -158,17 +228,23 @@ with tab1:
                 st.metric("Carbohidratos", f"{nutri['carbohidratos']}g")
                 st.metric("Grasas", f"{nutri['grasas']}g")
             st.write("**Preparacion:**")
-            for i, paso in enumerate(dia_menu['almuerzo']['preparacion'], 1):
+            for i, paso in enumerate(dia_menu["almuerzo"]["preparacion"], 1):
                 st.write(f"{i}. {paso}")
 
     with col3:
         st.subheader("🌙 Cena")
         with st.expander(f"{dia_menu['cena']['nombre']}", expanded=True):
-            st.caption(f"{dia_menu['cena']['tiempo_preparacion']} | {dia_menu['cena']['dificultad']}")
+            st.caption(
+                f"{dia_menu['cena']['tiempo_preparacion']} | "
+                f"{dia_menu['cena']['dificultad']}"
+            )
             st.write("**Ingredientes:**")
-            for ing, datos in dia_menu['cena']['ingredientes'].items():
-                st.write(f"- {ing.replace('_', ' ').title()}: {datos['cantidad']} {datos['unidad']}")
-            nutri = dia_menu['cena']['informacion_nutricional']
+            for ing, datos in dia_menu["cena"]["ingredientes"].items():
+                st.write(
+                    f"- {ing.replace('_', ' ').title()}: "
+                    f"{datos['cantidad']} {datos['unidad']}"
+                )
+            nutri = dia_menu["cena"]["informacion_nutricional"]
             col_a, col_b = st.columns(2)
             with col_a:
                 st.metric("Calorias", f"{nutri['calorias']} kcal")
@@ -177,25 +253,32 @@ with tab1:
                 st.metric("Carbohidratos", f"{nutri['carbohidratos']}g")
                 st.metric("Grasas", f"{nutri['grasas']}g")
             st.write("**Preparacion:**")
-            for i, paso in enumerate(dia_menu['cena']['preparacion'], 1):
+            for i, paso in enumerate(dia_menu["cena"]["preparacion"], 1):
                 st.write(f"{i}. {paso}")
 
     st.markdown("---")
-    resumen = dia_menu['resumen_nutricional']
-    col1, col2, col3, col4, col5 = st.columns(5)
-    with col1:
-        st.metric("Calorias Totales", f"{resumen['calorias_totales']} kcal")
-    with col2:
-        st.metric("Proteinas Totales", f"{resumen['proteinas_totales']}g")
-    with col3:
-        st.metric("Carbohidratos", f"{resumen['carbohidratos_totales']}g")
-    with col4:
-        pct1 = (resumen['calorias_totales'] / metas['persona1']['calorias_mantencion']) * 100
-        st.metric(f"% Meta {PERSONA1}", f"{pct1:.0f}%")
-    with col5:
-        pct2 = (resumen['calorias_totales'] / metas['persona2']['calorias_mantencion']) * 100
-        st.metric(f"% Meta {PERSONA2}", f"{pct2:.0f}%")
+    resumen = dia_menu["resumen_nutricional"]
 
+    # Mostrar métricas para cada miembro activo
+    num_activos = len(activos)
+    cols_resumen = st.columns(min(num_activos + 3, 6))
+    cols_resumen[0].metric("Calorias Totales", f"{resumen['calorias_totales']} kcal")
+    cols_resumen[1].metric("Proteinas Totales", f"{resumen['proteinas_totales']}g")
+    cols_resumen[2].metric("Carbohidratos", f"{resumen['carbohidratos_totales']}g")
+
+    for idx, miembro in enumerate(activos):
+        miembro_id = miembro["id"]
+        if miembro_id in metas and idx + 3 < len(cols_resumen):
+            meta_kcal = metas[miembro_id]["calorias_mantencion"]
+            pct = (resumen["calorias_totales"] / meta_kcal) * 100 if meta_kcal > 0 else 0
+            cols_resumen[idx + 3].metric(
+                f"% Meta {miembro['nombre']}",
+                f"{pct:.0f}%",
+            )
+
+# ═══════════════════════════════════════════════════════════════════════
+# TAB 2: Inventario y Compras
+# ═══════════════════════════════════════════════════════════════════════
 with tab2:
     st.header("📋 Gestion de Inventario y Lista de Mercado")
     col1, col2 = st.columns([1, 1])
@@ -219,8 +302,12 @@ with tab2:
                             producto, 0.0
                         )
                         inventario_actual[producto] = st.number_input(
-                            "Tengo", min_value=0.0, value=float(valor_guardado), step=0.1,
-                            key=f"inv_{producto}", label_visibility="collapsed"
+                            "Tengo",
+                            min_value=0.0,
+                            value=float(valor_guardado),
+                            step=0.1,
+                            key=f"inv_{producto}",
+                            label_visibility="collapsed",
                         )
             if st.form_submit_button("💾 Guardar Inventario", use_container_width=True):
                 st.session_state.inventory_manager.actualizar_inventario_actual(inventario_actual)
@@ -231,7 +318,7 @@ with tab2:
         st.subheader("🛒 Lista de Mercado")
         ciudad = st.selectbox(
             "📍 Tu ciudad:",
-            ["Bogota", "Medellin", "Cali", "Barranquilla", "Cartagena", "Bucaramanga", "Pereira"]
+            ["Bogota", "Medellin", "Cali", "Barranquilla", "Cartagena", "Bucaramanga", "Pereira"],
         )
         if st.session_state.inventory_manager.inventario_actual:
             inv_mgr = st.session_state.inventory_manager
@@ -249,9 +336,6 @@ with tab2:
                         }
                     else:
                         lista_completa[producto] = datos
-
-            if "gestor_precios" not in st.session_state:
-                st.session_state.gestor_precios = GestorPrecios()
 
             gestor_precios = st.session_state.gestor_precios
             gestor_precios.ajustar_precios_por_ciudad(ciudad)
@@ -346,71 +430,108 @@ with tab2:
         else:
             st.info("👈 Guarda tu inventario para generar la lista de compras")
 
+# ═══════════════════════════════════════════════════════════════════════
+# TAB 3: Análisis Nutricional
+# ═══════════════════════════════════════════════════════════════════════
 with tab3:
     st.header("📊 Analisis Nutricional")
     analisis = calc.analizar_menu(st.session_state.menu)
+
     col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric("Promedio Calorias/Dia", f"{analisis['promedio_calorias']} kcal")
-    with col2:
-        st.metric("Promedio Proteinas/Dia", f"{analisis['promedio_proteinas']}g")
-    with col3:
-        st.metric("Dias planificados", DIAS_PLAN)
+    col1.metric("Promedio Calorias/Dia", f"{analisis['promedio_calorias']} kcal")
+    col2.metric("Promedio Proteinas/Dia", f"{analisis['promedio_proteinas']}g")
+    col3.metric("Dias planificados", DIAS_PLAN)
 
     st.subheader("📈 Evolucion de Calorias por Dia")
-    calorias_por_dia = [dia['resumen_nutricional']['calorias_totales'] for dia in st.session_state.menu]
-    df = pd.DataFrame({
-        "Dia": range(1, DIAS_PLAN + 1),
-        "Calorias": calorias_por_dia,
-        f"Meta {PERSONA1}": [metas['persona1']['calorias_mantencion']] * DIAS_PLAN,
-        f"Meta {PERSONA2}": [metas['persona2']['calorias_mantencion']] * DIAS_PLAN
-    })
+    calorias_por_dia = [
+        dia["resumen_nutricional"]["calorias_totales"] for dia in st.session_state.menu
+    ]
+    df = pd.DataFrame({"Dia": range(1, DIAS_PLAN + 1), "Calorias": calorias_por_dia})
+    for miembro in activos:
+        miembro_id = miembro["id"]
+        if miembro_id in metas:
+            df[f"Meta {miembro['nombre']}"] = [metas[miembro_id]["calorias_mantencion"]] * DIAS_PLAN
     fig = px.line(
-        df, x="Dia", y=["Calorias", f"Meta {PERSONA1}", f"Meta {PERSONA2}"],
-        title="Calorias por Dia vs Metas"
+        df,
+        x="Dia",
+        y=[c for c in df.columns if c != "Dia"],
+        title="Calorias por Dia vs Metas",
     )
     st.plotly_chart(fig, use_container_width=True)
 
     col1, col2 = st.columns(2)
     with col1:
-        prom_desayuno = sum(d['desayuno']['informacion_nutricional']['calorias'] for d in st.session_state.menu) / DIAS_PLAN
-        prom_almuerzo = sum(d['almuerzo']['informacion_nutricional']['calorias'] for d in st.session_state.menu) / DIAS_PLAN
-        prom_cena = sum(d['cena']['informacion_nutricional']['calorias'] for d in st.session_state.menu) / DIAS_PLAN
-        df_comidas = pd.DataFrame({
-            "Comida": ["Desayuno", "Almuerzo", "Cena"],
-            "Calorias": [prom_desayuno, prom_almuerzo, prom_cena]
-        })
+        prom_desayuno = (
+            sum(d["desayuno"]["informacion_nutricional"]["calorias"] for d in st.session_state.menu)
+            / DIAS_PLAN
+        )
+        prom_almuerzo = (
+            sum(d["almuerzo"]["informacion_nutricional"]["calorias"] for d in st.session_state.menu)
+            / DIAS_PLAN
+        )
+        prom_cena = (
+            sum(d["cena"]["informacion_nutricional"]["calorias"] for d in st.session_state.menu)
+            / DIAS_PLAN
+        )
+        df_comidas = pd.DataFrame(
+            {
+                "Comida": ["Desayuno", "Almuerzo", "Cena"],
+                "Calorias": [prom_desayuno, prom_almuerzo, prom_cena],
+            }
+        )
         fig2 = px.pie(df_comidas, values="Calorias", names="Comida", title="Distribucion Calorica")
         st.plotly_chart(fig2, use_container_width=True)
 
     with col2:
         st.subheader("💡 Recomendaciones")
-        for rec in analisis['recomendaciones']:
+        for rec in analisis["recomendaciones"]:
             st.write(rec)
-        st.info(f"""
-        **{PERSONA1}** ({ALTURA1} m, {PESO1} kg): mantener peso — {metas['persona1']['calorias_mantencion']} kcal/dia
-        **{PERSONA2}** ({ALTURA2} m, {PESO2} kg → {PESO_OBJETIVO2} kg): bajar peso — {metas['persona2']['calorias_mantencion']} kcal/dia
-        - Beber 2-3 litros de agua al dia
-        - Realizar 30 min de actividad fisica
-        - Evitar azucares refinados
-        """)
 
+        # Info de cada miembro activo
+        info_lines = []
+        for miembro in activos:
+            miembro_id = miembro["id"]
+            if miembro_id not in metas:
+                continue
+            meta = metas[miembro_id]
+            objetivo = meta.get("objetivo", "mantener")
+            if objetivo == "bajar_peso":
+                info_lines.append(
+                    f"**{miembro['nombre']}** ({meta['altura']} m, {meta['peso']} kg → "
+                    f"{meta['peso_objetivo']} kg): bajar peso — {meta['calorias_mantencion']} kcal/día"
+                )
+            else:
+                info_lines.append(
+                    f"**{miembro['nombre']}** ({meta['altura']} m, {meta['peso']} kg): "
+                    f"mantener peso — {meta['calorias_mantencion']} kcal/día"
+                )
+
+        info_lines.append("- Beber 2-3 litros de agua al dia")
+        info_lines.append("- Realizar 30 min de actividad fisica")
+        info_lines.append("- Evitar azucares refinados")
+        st.info("\n".join(info_lines))
+
+# ═══════════════════════════════════════════════════════════════════════
+# TAB 4: Recetario
+# ═══════════════════════════════════════════════════════════════════════
 with tab4:
     st.header("📖 Recetario Completo")
-    categoria_recetas = st.selectbox("Filtrar por categoria:", ["Todas", "Desayunos", "Almuerzos", "Cenas"])
+    categoria_recetas = st.selectbox(
+        "Filtrar por categoria:", ["Todas", "Desayunos", "Almuerzos", "Cenas"]
+    )
     recetas_mostrar = st.session_state.menu_generator.get_todas_las_recetas()
     if categoria_recetas != "Todas":
         cat_map = {"Desayunos": "desayuno", "Almuerzos": "almuerzo", "Cenas": "cena"}
-        recetas_mostrar = [r for r in recetas_mostrar if r['categoria'] == cat_map[categoria_recetas]]
+        recetas_mostrar = [
+            r for r in recetas_mostrar if r["categoria"] == cat_map[categoria_recetas]
+        ]
 
-    if "gestor_precios" in st.session_state and st.session_state.gestor_precios.precios:
-        gestor_recetas = st.session_state.gestor_precios
-    else:
-        gestor_recetas = GestorPrecios()
+    gestor_recetas = st.session_state.gestor_precios
+    if not gestor_recetas.precios:
         gestor_recetas.cargar_respaldo_completo()
 
     for receta in recetas_mostrar:
-        costo_receta = gestor_recetas.calcular_costo_receta(receta['ingredientes'])
+        costo_receta = gestor_recetas.calcular_costo_receta(receta["ingredientes"])
         with st.expander(
             f"{receta['nombre']} | {receta['tiempo_preparacion']} | "
             f"${costo_receta['total']:,.0f} COP"
@@ -418,70 +539,93 @@ with tab4:
             col1, col2 = st.columns([1, 1])
             with col1:
                 st.write("**Ingredientes:**")
-                for ing, datos in receta['ingredientes'].items():
-                    st.write(f"- {ing.replace('_', ' ').title()}: {datos['cantidad']} {datos['unidad']}")
-                st.metric("Costo estimado (2 porciones)", f"${costo_receta['total']:,.0f} COP")
+                for ing, datos in receta["ingredientes"].items():
+                    st.write(
+                        f"- {ing.replace('_', ' ').title()}: "
+                        f"{datos['cantidad']} {datos['unidad']}"
+                    )
+                st.metric(
+                    f"Costo estimado (factor {factor_total:.1f})",
+                    f"${costo_receta['total']:,.0f} COP",
+                )
             with col2:
                 st.write("**Preparacion:**")
-                for i, paso in enumerate(receta['preparacion'], 1):
+                for i, paso in enumerate(receta["preparacion"], 1):
                     st.write(f"{i}. {paso}")
                 st.write("**Informacion Nutricional:**")
-                nutri = receta['informacion_nutricional']
-                df_nutri = pd.DataFrame({
-                    "Nutriente": ["Calorias", "Proteinas", "Carbohidratos", "Grasas", "Fibra"],
-                    "Cantidad": [
-                        f"{nutri['calorias']} kcal", f"{nutri['proteinas']}g",
-                        f"{nutri['carbohidratos']}g", f"{nutri['grasas']}g", f"{nutri['fibra']}g"
-                    ]
-                })
+                nutri = receta["informacion_nutricional"]
+                df_nutri = pd.DataFrame(
+                    {
+                        "Nutriente": ["Calorias", "Proteinas", "Carbohidratos", "Grasas", "Fibra"],
+                        "Cantidad": [
+                            f"{nutri['calorias']} kcal",
+                            f"{nutri['proteinas']}g",
+                            f"{nutri['carbohidratos']}g",
+                            f"{nutri['grasas']}g",
+                            f"{nutri['fibra']}g",
+                        ],
+                    }
+                )
                 st.table(df_nutri)
 
+# ═══════════════════════════════════════════════════════════════════════
+# TAB 5: Congelar y Porcionar
+# ═══════════════════════════════════════════════════════════════════════
 with tab5:
     st.header("🧊 Guia de Porcionado para Congelador")
     st.write("Divide las proteinas en bolsas etiquetadas con el dia y comida.")
 
     PROTEINAS = [
-        'espinazo_cerdo', 'pechuga_pollo', 'muslo_pollo', 'alitas_pollo', 'menudencias_pollo',
-        'carne_mechar', 'bistec_res', 'filete_pescado', 'carne_molida', 'chicharron',
-        'jamon', 'atun', 'huevo', 'salchichas', 'salchicha', 'higado_res',
-        'pezuña_res', 'chuleta_cerdo', 'chorizo', 'tocineta',
+        "espinazo_cerdo", "pechuga_pollo", "muslo_pollo", "alitas_pollo",
+        "menudencias_pollo", "carne_mechar", "bistec_res", "filete_pescado",
+        "carne_molida", "chicharron", "jamon", "atun", "huevo", "salchichas",
+        "salchicha", "higado_res", "pezuña_res", "chuleta_cerdo", "chorizo",
+        "tocineta",
     ]
 
     proteinas_por_dia = {}
     for dia in st.session_state.menu:
-        for comida in ['desayuno', 'almuerzo', 'cena']:
+        for comida in ["desayuno", "almuerzo", "cena"]:
             receta = dia[comida]
-            for ing, datos in receta['ingredientes'].items():
+            for ing, datos in receta["ingredientes"].items():
                 if ing in PROTEINAS:
                     if ing not in proteinas_por_dia:
                         proteinas_por_dia[ing] = []
-                    proteinas_por_dia[ing].append({
-                        'dia': dia['dia'],
-                        'comida': comida,
-                        'cantidad': datos['cantidad'],
-                        'unidad': datos['unidad'],
-                        'receta': receta['nombre']
-                    })
+                    proteinas_por_dia[ing].append(
+                        {
+                            "dia": dia["dia"],
+                            "comida": comida,
+                            "cantidad": datos["cantidad"],
+                            "unidad": datos["unidad"],
+                            "receta": receta["nombre"],
+                        }
+                    )
 
     if not proteinas_por_dia:
         st.info("No se encontraron proteinas en el menu actual.")
     else:
         for proteina, usos in proteinas_por_dia.items():
-            with st.expander(f"🍖 {proteina.replace('_', ' ').title()} ({len(usos)} usos)"):
-                for u in sorted(usos, key=lambda x: x['dia']):
+            with st.expander(
+                f"🍖 {proteina.replace('_', ' ').title()} ({len(usos)} usos)"
+            ):
+                for u in sorted(usos, key=lambda x: x["dia"]):
                     st.write(
                         f"**Dia {u['dia']} - {u['comida'].title()}**: "
                         f"{u['cantidad']} {u['unidad']} → {u['receta']}"
                     )
-                total = sum(u['cantidad'] for u in usos)
+                total = sum(u["cantidad"] for u in usos)
                 st.write(f"**Total a comprar:** {total} {usos[0]['unidad']}")
-                st.caption("💡 Pesa cada porcion, etiqueta con dia y comida, y congela plano.")
+                st.caption(
+                    "💡 Pesa cada porcion, etiqueta con dia y comida, y congela plano."
+                )
 
+# ── Footer ─────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown(
     f"<div style='text-align: center; color: gray;'>"
-    f"<p>🥗 Planificador de Comidas Saludable | Hecho con ❤️ para {PERSONA1} y {PERSONA2}</p>"
-    f"<p>Recetas colombo-venezolanas | Porciones para 2 personas | Plan fijo de {DIAS_PLAN} dias</p>"
+    f"<p>🥗 Planificador de Comidas Saludable | Hecho con ❤️ para {nombres_str}</p>"
+    f"<p>Recetas colombo-venezolanas | Factor consumo: {factor_total:.1f} | "
+    f"Plan fijo de {DIAS_PLAN} dias</p>"
     f"</div>",
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )

@@ -1,48 +1,86 @@
+"""Calculadora nutricional con soporte para N miembros del hogar."""
+
+from typing import Any, Dict, List, Optional
+
+from data.hogar import cargar_miembros, get_miembros_activos
+
+
 class NutritionCalculator:
-    def __init__(
-        self,
-        persona1_nombre,
-        persona1_peso,
-        persona1_altura,
-        persona1_objetivo,
-        persona2_nombre,
-        persona2_peso,
-        persona2_altura,
-        persona2_objetivo,
-        persona2_peso_objetivo=None,
-    ):
-        self.persona1 = {
-            "nombre": persona1_nombre,
-            "peso": persona1_peso,
-            "altura": persona1_altura,
-            "objetivo": persona1_objetivo,
-        }
-        self.persona2 = {
-            "nombre": persona2_nombre,
-            "peso": persona2_peso,
-            "altura": persona2_altura,
-            "objetivo": persona2_objetivo,
-            "peso_objetivo": persona2_peso_objetivo or persona2_peso,
-        }
-        self.p1_calorias_mantencion = self._calcular_calorias_mantencion(persona1_peso, "hombre")
-        self.p2_calorias_mantencion = self._calcular_calorias_mantencion(
-            persona2_peso_objetivo or persona2_peso, "mujer"
-        )
+    """Calculadora nutricional para un hogar con N miembros activos."""
 
-    def _calcular_calorias_mantencion(self, peso, sexo):
-        if sexo == "hombre":
-            return round(peso * 25)
-        return round(peso * 23)
+    def __init__(self, miembros: Optional[List[Dict[str, Any]]] = None):
+        """
+        Inicializa la calculadora con los miembros del hogar.
 
-    def analizar_menu(self, menu):
+        Args:
+            miembros: Lista de miembros del hogar. Si es None, se cargan desde hogar.py.
+        """
+        if miembros is None:
+            miembros = cargar_miembros()
+        self.miembros = miembros
+        self.activos = get_miembros_activos(miembros)
+        self._calcular_calorias()
+
+    def _calcular_calorias(self):
+        """Calcula calorías de mantenimiento para todos los miembros activos."""
+        self.calorias_por_miembro: Dict[str, Dict[str, Any]] = {}
+        for miembro in self.activos:
+            sexo = miembro.get("sexo", "mujer")
+            peso_ref = miembro.get("peso_objetivo", miembro["peso"])
+            if sexo == "hombre":
+                calorias = round(peso_ref * 25)
+            else:
+                calorias = round(peso_ref * 23)
+            self.calorias_por_miembro[miembro["id"]] = {
+                "nombre": miembro["nombre"],
+                "peso": miembro["peso"],
+                "altura": miembro["altura"],
+                "objetivo": miembro.get("objetivo", "mantener"),
+                "peso_objetivo": peso_ref,
+                "calorias_mantencion": calorias,
+                "rango_calorias": f"{calorias - 200} - {calorias + 200}",
+            }
+
+    def get_metas_personalizadas(self) -> Dict[str, Dict[str, Any]]:
+        """Retorna metas calóricas para todos los miembros activos."""
+        return dict(self.calorias_por_miembro)
+
+    def get_calorias_mantencion_por_nombre(self, nombre: str) -> int:
+        """Busca calorías de mantención por nombre del miembro."""
+        for meta in self.calorias_por_miembro.values():
+            if meta["nombre"] == nombre:
+                return meta["calorias_mantencion"]
+        return 2000  # fallback seguro
+
+    def analizar_menu(self, menu: List[Dict]) -> Dict[str, Any]:
+        """
+        Analiza un menú completo y retorna métricas agregadas.
+
+        Args:
+            menu: Lista de días, cada uno con resumen_nutricional.
+
+        Returns:
+            Diccionario con promedios, rangos y recomendaciones.
+        """
+        if not menu:
+            return {
+                "promedio_calorias": 0,
+                "promedio_proteinas": 0,
+                "calorias_min": 0,
+                "calorias_max": 0,
+                "recomendaciones": ["No hay menú para analizar."],
+            }
+
         calorias_diarias = []
         proteinas_diarias = []
         for dia in menu:
-            resumen = dia["resumen_nutricional"]
-            calorias_diarias.append(resumen["calorias_totales"])
-            proteinas_diarias.append(resumen["proteinas_totales"])
+            resumen = dia.get("resumen_nutricional", {})
+            calorias_diarias.append(resumen.get("calorias_totales", 0))
+            proteinas_diarias.append(resumen.get("proteinas_totales", 0))
+
         promedio_calorias = sum(calorias_diarias) / len(calorias_diarias)
         promedio_proteinas = sum(proteinas_diarias) / len(proteinas_diarias)
+
         return {
             "promedio_calorias": round(promedio_calorias),
             "promedio_proteinas": round(promedio_proteinas),
@@ -51,46 +89,33 @@ class NutritionCalculator:
             "recomendaciones": self._generar_recomendaciones(promedio_calorias),
         }
 
-    def _generar_recomendaciones(self, promedio_calorias):
-        recomendaciones = []
-        if promedio_calorias > self.p1_calorias_mantencion:
-            recomendaciones.append(
-                f"El promedio supera la meta de mantenimiento de {self.persona1['nombre']} "
-                f"({self.p1_calorias_mantencion} kcal/dia)"
-            )
-        else:
-            recomendaciones.append(
-                f"Calorias dentro del rango de mantenimiento para {self.persona1['nombre']}"
-            )
-        if promedio_calorias > self.p2_calorias_mantencion:
-            recomendaciones.append(
-                f"El promedio supera la meta de {self.persona2['nombre']} para bajar de peso "
-                f"({self.p2_calorias_mantencion} kcal/dia)"
-            )
-        else:
-            recomendaciones.append(
-                f"Calorias adecuadas para el objetivo de {self.persona2['nombre']} "
-                f"(meta {self.p2_calorias_mantencion} kcal/dia)"
-            )
-        return recomendaciones
+    def _generar_recomendaciones(self, promedio_calorias: float) -> List[str]:
+        """
+        Genera recomendaciones para todos los miembros activos.
 
-    def get_metas_personalizadas(self):
-        return {
-            "persona1": {
-                "nombre": self.persona1["nombre"],
-                "peso": self.persona1["peso"],
-                "altura": self.persona1["altura"],
-                "objetivo": self.persona1["objetivo"],
-                "calorias_mantencion": self.p1_calorias_mantencion,
-                "rango_calorias": f"{self.p1_calorias_mantencion - 200} - {self.p1_calorias_mantencion + 200}",
-            },
-            "persona2": {
-                "nombre": self.persona2["nombre"],
-                "peso": self.persona2["peso"],
-                "peso_objetivo": self.persona2["peso_objetivo"],
-                "altura": self.persona2["altura"],
-                "objetivo": self.persona2["objetivo"],
-                "calorias_mantencion": self.p2_calorias_mantencion,
-                "rango_calorias": f"{self.p2_calorias_mantencion - 150} - {self.p2_calorias_mantencion + 150}",
-            },
-        }
+        Compara el promedio de calorías del menú con la meta de cada miembro.
+        """
+        recomendaciones = []
+        for meta in self.calorias_por_miembro.values():
+            nombre = meta["nombre"]
+            objetivo = meta.get("objetivo", "mantener")
+            calorias_meta = meta["calorias_mantencion"]
+
+            if promedio_calorias > calorias_meta:
+                if objetivo == "bajar_peso":
+                    recomendaciones.append(
+                        f"⚠️ El promedio ({round(promedio_calorias)} kcal/día) supera la meta "
+                        f"de {nombre} para bajar de peso ({calorias_meta} kcal/día)."
+                    )
+                else:
+                    recomendaciones.append(
+                        f"El promedio ({round(promedio_calorias)} kcal/día) supera "
+                        f"la meta de mantenimiento de {nombre} ({calorias_meta} kcal/día)."
+                    )
+            else:
+                recomendaciones.append(
+                    f"✓ Calorías dentro del rango para {nombre} "
+                    f"(meta: {calorias_meta} kcal/día, objetivo: {objetivo})."
+                )
+
+        return recomendaciones
