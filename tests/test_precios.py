@@ -70,6 +70,10 @@ class TestScraperUnidades:
         precio = self.scraper.normalizar_precio_paquete("huevo", 16500)
         assert precio == pytest.approx(550, rel=0.01)
 
+    def test_normalizar_mostaza_a_precio_por_litro(self):
+        precio = self.scraper.normalizar_precio_paquete("mostaza", 4500)
+        assert precio == pytest.approx(18000, rel=0.01)
+
     def test_referencias_huevo_d1_y_ara_son_precios_por_unidad(self):
         assert self.scraper.buscar_en_d1("huevo")["precio"] == pytest.approx(450)
         assert self.scraper.buscar_en_ara("huevo")["precio"] == pytest.approx(480)

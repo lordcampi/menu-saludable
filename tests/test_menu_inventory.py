@@ -56,6 +56,24 @@ def test_sustituciones_eliminan_ingredientes_anteriores():
         assert eliminados.isdisjoint(ingredientes), receta_id
 
 
+def test_sazon_revisada_incluye_condimentos_clave():
+    esperados = {
+        "des_03": {"canela"},
+        "alm_02": {"pimenton", "laurel"},
+        "alm_03": {"oregano"},
+        "alm_06": {"ajo", "paprika", "pimienta"},
+        "alm_08": {"pimenton", "tomate", "laurel"},
+        "alm_15": {"pimenton", "achiote", "cilantro"},
+        "cen_01": {"ajo", "mostaza", "salsa_inglesa"},
+        "cen_05": {"nuez_moscada"},
+        "cen_08": {"oregano", "pimienta"},
+        "cen_13": {"pimenton", "cilantro"},
+    }
+    for receta_id, condimentos in esperados.items():
+        ingredientes = set(get_receta_por_id(receta_id)["ingredientes"])
+        assert condimentos <= ingredientes, receta_id
+
+
 def test_recetas_tienen_estructura_completa():
     recetas = get_todas_recetas()
     assert len(recetas) == 45

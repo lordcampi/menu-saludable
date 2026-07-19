@@ -12,10 +12,10 @@ El escalado se calcula como: factor_actual / FACTOR_BASE_REFERENCIA.
 """
 
 import json
-import os
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-PERSISTENCIA_FILE = "data/hogar_persistencia.json"
+PERSISTENCIA_FILE = Path(__file__).resolve().parent / "hogar_persistencia.json"
 
 FACTOR_BASE_REFERENCIA = 2.0
 
@@ -44,6 +44,17 @@ MIEMBROS_DEFAULT: List[Dict[str, Any]] = [
         "activo": True,
     },
     {
+        "id": "carlos",
+        "nombre": "Carlos",
+        "edad": 35,
+        "peso": 80,
+        "sexo": "hombre",
+        "altura": 1.80,
+        "objetivo": "mantener",
+        "factor_consumo": 1.0,
+        "activo": False,
+    },
+    {
         "id": "nilsa",
         "nombre": "Nilsa",
         "edad": 65,
@@ -59,23 +70,26 @@ MIEMBROS_DEFAULT: List[Dict[str, Any]] = [
 
 def _cargar_persistencia() -> Optional[Dict[str, Any]]:
     """Carga la persistencia de activación de miembros."""
-    if not os.path.exists(PERSISTENCIA_FILE):
+    archivo = Path(PERSISTENCIA_FILE)
+    if not archivo.exists():
         return None
     try:
-        with open(PERSISTENCIA_FILE, "r", encoding="utf-8") as f:
+        with archivo.open("r", encoding="utf-8") as f:
             return json.load(f)
     except Exception:
         return None
 
 
-def _guardar_persistencia(data: Dict[str, Any]) -> None:
+def _guardar_persistencia(data: Dict[str, Any]) -> bool:
     """Persiste el estado de activación de miembros."""
     try:
-        os.makedirs("data", exist_ok=True)
-        with open(PERSISTENCIA_FILE, "w", encoding="utf-8") as f:
+        archivo = Path(PERSISTENCIA_FILE)
+        archivo.parent.mkdir(parents=True, exist_ok=True)
+        with archivo.open("w", encoding="utf-8") as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
+        return True
     except Exception:
-        pass
+        return False
 
 
 def cargar_miembros() -> List[Dict[str, Any]]:
@@ -136,7 +150,7 @@ def get_miembro_por_id(miembro_id: str, miembros: Optional[List[Dict[str, Any]]]
     return None
 
 
-def set_miembro_activo(miembro_id: str, activo: bool) -> None:
+def set_miembro_activo(miembro_id: str, activo: bool) -> bool:
     """
     Activa o desactiva un miembro y persiste el cambio.
     Retorna True si el miembro fue encontrado, False en caso contrario.
@@ -150,10 +164,10 @@ def set_miembro_activo(miembro_id: str, activo: bool) -> None:
             break
 
     if not encontrado:
-        return
+        return False
 
     estados = {m["id"]: m["activo"] for m in miembros}
-    _guardar_persistencia({"activos": estados})
+    return _guardar_persistencia({"activos": estados})
 
 
 def nilsa_activa() -> bool:

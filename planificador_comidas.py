@@ -12,8 +12,7 @@ from data.hogar import (
     get_factor_consumo_total,
     get_factor_escalado,
     get_nombres_activos,
-    nilsa_activa,
-    toggle_nilsa,
+    set_miembro_activo,
     FACTOR_BASE_REFERENCIA,
 )
 from utils.nutrition import NutritionCalculator
@@ -46,6 +45,14 @@ def _etiqueta_fuente(fuente: str, supermercado: str | None) -> str:
     if fuente == "respaldo":
         return "🟠 Respaldo"
     return "⚪ Sin dato"
+
+
+def _unir_nombres(nombres):
+    if not nombres:
+        return "Hogar"
+    if len(nombres) == 1:
+        return nombres[0]
+    return f"{', '.join(nombres[:-1])} y {nombres[-1]}"
 
 
 def _mostrar_bloque_compras(titulo, lista_compras, gestor_precios, organizar_fn):
@@ -124,18 +131,27 @@ with st.sidebar:
 
     st.markdown("---")
 
-    # ── Toggle Nilsa ───────────────────────────────────────────────────
+    # ── Miembros opcionales ────────────────────────────────────────────
     st.markdown("### ⚙️ Configuración")
-    nilsa_on = nilsa_activa()
-    nuevo_nilsa = st.checkbox(
-        "Incluir a Nilsa (factor 0.50)",
-        value=nilsa_on,
-        help="Activa/desactiva a Nilsa. Al cambiar, todo se recalcula automáticamente.",
-    )
-    if nuevo_nilsa != nilsa_on:
-        toggle_nilsa()
-        st.session_state["_needs_reload"] = True
-        st.rerun()
+    miembros_por_id = {miembro["id"]: miembro for miembro in miembros}
+    for miembro_id in ("carlos", "nilsa"):
+        miembro = miembros_por_id[miembro_id]
+        estado_actual = miembro["activo"]
+        nuevo_estado = st.checkbox(
+            f"Incluir a {miembro['nombre']} (factor {miembro['factor_consumo']:.2f})",
+            value=estado_actual,
+            key=f"activar_{miembro_id}",
+            help=(
+                f"Activa o desactiva a {miembro['nombre']}. "
+                "El menú, inventario y compras se recalculan automáticamente."
+            ),
+        )
+        if nuevo_estado != estado_actual:
+            if set_miembro_activo(miembro_id, nuevo_estado):
+                st.session_state["_needs_reload"] = True
+                st.rerun()
+            else:
+                st.error(f"No se pudo guardar el estado de {miembro['nombre']}.")
 
     st.markdown("---")
 
@@ -145,12 +161,12 @@ with st.sidebar:
     st.write(f"Factor consumo total: **{factor_total:.2f}**")
     if factor_total != FACTOR_BASE_REFERENCIA:
         delta = ((factor_total - FACTOR_BASE_REFERENCIA) / FACTOR_BASE_REFERENCIA) * 100
-        st.write(f"Escalado: **+{delta:.0f}%** vs base ({FACTOR_BASE_REFERENCIA})")
+        st.write(f"Escalado: **{delta:+.0f}%** vs base ({FACTOR_BASE_REFERENCIA})")
     else:
         st.write(f"Escalado: **1.0×** (base)")
 
 # ── Título principal ────────────────────────────────────────────────────
-nombres_str = " y ".join(nombres_activos)
+nombres_str = _unir_nombres(nombres_activos)
 st.title("🥗 Planificador de Comidas Saludable")
 st.markdown(f"### ¡Bienvenidos {nombres_str}!")
 st.markdown("---")
@@ -260,18 +276,20 @@ with tab1:
     resumen = dia_menu["resumen_nutricional"]
 
     # Mostrar métricas para cada miembro activo
-    num_activos = len(activos)
-    cols_resumen = st.columns(min(num_activos + 3, 6))
+    cols_resumen = st.columns(3)
     cols_resumen[0].metric("Calorias Totales", f"{resumen['calorias_totales']} kcal")
     cols_resumen[1].metric("Proteinas Totales", f"{resumen['proteinas_totales']}g")
     cols_resumen[2].metric("Carbohidratos", f"{resumen['carbohidratos_totales']}g")
 
+    if activos:
+        st.caption("Metas individuales")
+        cols_metas = st.columns(len(activos))
     for idx, miembro in enumerate(activos):
         miembro_id = miembro["id"]
-        if miembro_id in metas and idx + 3 < len(cols_resumen):
+        if miembro_id in metas:
             meta_kcal = metas[miembro_id]["calorias_mantencion"]
             pct = (resumen["calorias_totales"] / meta_kcal) * 100 if meta_kcal > 0 else 0
-            cols_resumen[idx + 3].metric(
+            cols_metas[idx].metric(
                 f"% Meta {miembro['nombre']}",
                 f"{pct:.0f}%",
             )

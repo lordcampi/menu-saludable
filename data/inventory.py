@@ -40,7 +40,7 @@ class InventoryManager:
             "Vegetales": [
                 "tomate", "cebolla", "cebolla_larga", "lechuga", "zanahoria",
                 "espinaca", "champiñones", "aji", "cilantro", "ajo",
-                "pepino", "zapallo", "arvejas",
+                "pimenton", "pepino", "zapallo", "arvejas",
             ],
             "Frutas": ["aguacate", "banano", "fresas", "limon"],
             "Granos y Cereales": [
@@ -55,6 +55,8 @@ class InventoryManager:
             "Condimentos": [
                 "sal", "azucar", "comino", "canela", "oregano", "miel",
                 "pimienta", "paprika", "polvo_hornear",
+                "laurel", "achiote", "nuez_moscada", "mostaza",
+                "salsa_rosada", "salsa_inglesa",
                 "chocolate_polvo", "salsa_bbq", "crema_champinones_sobre",
             ],
             "Aceites": ["aceite", "aceite_oliva"],
