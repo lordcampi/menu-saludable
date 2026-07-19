@@ -251,7 +251,7 @@ class SupermarketScraper:
         precios_d1 = {
             "tomate": 2500, "cebolla": 1800, "lechuga": 1800, "zanahoria": 1800,
             "papa": 1500, "platano_verde": 1000, "aguacate": 3000, "banano": 1800,
-            "limon": 500, "huevo": 450, "arroz": 3200, "lentejas": 2500,
+            "limon": 500, "huevo": 13500, "arroz": 3200, "lentejas": 2500,
             "frijol_negro": 3200, "frijol_rojo": 3200, "avena": 2500, "arepa": 1800,
             "aceite": 4500, "sal": 1200, "pan_integral": 4000, "leche": 2900,
             "muslo_pollo": 13000, "pechuga_pollo": 17000, "yogurt_griego": 3500,
@@ -270,7 +270,7 @@ class SupermarketScraper:
     def buscar_en_ara(self, producto: str) -> Optional[Dict]:
         precios_ara = {
             "tomate": 2800, "cebolla": 2000, "papa": 1600, "zanahoria": 1900,
-            "aguacate": 3200, "huevo": 480, "arroz": 3500, "lentejas": 2800,
+            "aguacate": 3200, "huevo": 14400, "arroz": 3500, "lentejas": 2800,
             "aceite": 4800, "leche": 2800, "arepa": 2000, "pan_integral": 4200,
         }
         if producto not in precios_ara:

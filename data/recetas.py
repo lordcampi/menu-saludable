@@ -16,6 +16,7 @@ RECETAS = {
                 "aguacate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "cilantro": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
@@ -92,11 +93,13 @@ RECETAS = {
                 "huevo": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "leche": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
                 "azucar": {"cantidad": 15, "unidad": "gr", "tipo": "peso"},
+                "polvo_hornear": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "mantequilla": {"cantidad": 20, "unidad": "gr", "tipo": "peso"},
-                "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"}
+                "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "sal": {"cantidad": 1, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Mezclar harina, huevo, leche y azucar",
+                "Mezclar harina, polvo de hornear, azucar y sal; agregar huevo y leche",
                 "Batir hasta obtener mezcla homogenea",
                 "Calentar sarten con mantequilla",
                 "Verter porciones y cocinar hasta dorar",
@@ -141,10 +144,11 @@ RECETAS = {
                 "jamon": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Batir los huevos con sal",
+                "Batir los huevos con sal y pimienta",
                 "Picar jamon en cuadritos",
                 "Calentar sarten con aceite",
                 "Verter huevos, agregar jamon y queso",
@@ -181,21 +185,21 @@ RECETAS = {
         },
         {
             "id": "des_08",
-            "nombre": "Frutas picadas con yogurt griego",
+            "nombre": "Frutas picadas con yogur griego",
             "categoria": "desayuno",
             "tiempo_preparacion": "10 min",
             "dificultad": "facil",
             "ingredientes": {
                 "fresas": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "yogurt_griego": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
+                "yogurt_griego": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "miel": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
                 "granola": {"cantidad": 20, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar y cortar fresas en mitades",
                 "Pelar y cortar banano en rodajas",
-                "Servir yogurt griego en tazon",
+                "Servir yogur griego en un tazon",
                 "Agregar frutas encima",
                 "Decorar con granola y miel"
             ],
@@ -254,7 +258,7 @@ RECETAS = {
         },
         {
             "id": "des_11",
-            "nombre": "Tostadas de arroz con mermelada y queso fresco",
+            "nombre": "Tostadas integrales con mermelada y queso fresco",
             "categoria": "desayuno",
             "tiempo_preparacion": "10 min",
             "dificultad": "facil",
@@ -288,7 +292,7 @@ RECETAS = {
             },
             "preparacion": [
                 "Comprar empanadas de carne ya hechas",
-                "Pincelar muy poco aceite (opcional)",
+                "Pincelar las empanadas con muy poco aceite",
                 "Calentar en Air Fryer 8 min a 180 C hasta dorar",
                 "Servir con limon al gusto"
             ],
@@ -309,7 +313,7 @@ RECETAS = {
             },
             "preparacion": [
                 "Comprar carimañolas de carne ya hechas",
-                "Pincelar muy poco aceite (opcional)",
+                "Pincelar las carimañolas con muy poco aceite",
                 "Calentar en Air Fryer 10 min a 190 C hasta dorar",
                 "Servir caliente"
             ],
@@ -320,32 +324,32 @@ RECETAS = {
         },
         {
             "id": "des_14",
-            "nombre": "Arepa reina pepiada",
+            "nombre": "Frutas con yogur griego",
             "categoria": "desayuno",
-            "tiempo_preparacion": "25 min",
+            "tiempo_preparacion": "10 min",
             "dificultad": "facil",
             "ingredientes": {
-                "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
-                "pechuga_pollo": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "aguacate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
+                "fresas": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "yogurt_griego": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "granola": {"cantidad": 25, "unidad": "gr", "tipo": "peso"},
+                "miel": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"}
             },
             "preparacion": [
-                "Cocinar pechuga de pollo y desmechar finamente",
-                "Asar las arepas hasta que esten doradas",
-                "Machacar aguacate con limon y sal",
-                "Abrir arepas y rellenar con pollo y aguacate",
-                "Servir inmediatamente"
+                "Lavar las fresas y cortarlas en mitades",
+                "Pelar el banano y cortarlo en rodajas",
+                "Servir el yogur griego en un tazon",
+                "Agregar las frutas y la granola",
+                "Terminar con la miel y servir frio"
             ],
             "informacion_nutricional": {
-                "calorias": 400, "proteinas": 28, "carbohidratos": 38, "grasas": 14, "fibra": 5
+                "calorias": 315, "proteinas": 13, "carbohidratos": 49, "grasas": 8, "fibra": 5
             },
-            "tags": ["venezolano", "proteina"]
+            "tags": ["saludable", "rapido", "sin_coccion"]
         },
         {
             "id": "des_15",
-            "nombre": "Arepas con huevo sin aguacate",
+            "nombre": "Arepa con huevo",
             "categoria": "desayuno",
             "tiempo_preparacion": "20 min",
             "dificultad": "facil",
@@ -354,6 +358,7 @@ RECETAS = {
                 "huevo": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "tomate": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "cilantro": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
@@ -446,11 +451,13 @@ RECETAS = {
                 "crema_leche": {"cantidad": 100, "unidad": "ml", "tipo": "volumen"},
                 "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
-                "queso_parmesano": {"cantidad": 30, "unidad": "gr", "tipo": "peso"}
+                "queso_parmesano": {"cantidad": 30, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cocinar pasta en agua con sal hasta al dente",
-                "Cortar pollo en tiras y saltear",
+                "Cortar pollo en tiras, sazonar con pimienta y sal, y saltear",
                 "Saltear champiñones con ajo",
                 "Mezclar pollo, champiñones y crema de leche",
                 "Servir sobre la pasta con queso parmesano"
@@ -495,55 +502,59 @@ RECETAS = {
         },
         {
             "id": "alm_05",
-            "nombre": "Pescado a la plancha con arroz y platano",
+            "nombre": "Pescado a la plancha con ensalada y platano",
             "categoria": "almuerzo",
             "tiempo_preparacion": "35 min",
             "dificultad": "media",
             "ingredientes": {
                 "filete_pescado": {"cantidad": 350, "unidad": "gr", "tipo": "peso"},
-                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "platano_maduro": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "lechuga": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Marinar pescado con limon, ajo machacado y sal",
-                "Cocinar arroz normalmente",
+                "Marinar el pescado con la mitad del limon, ajo, pimienta y sal",
+                "Lavar y cortar la lechuga y el tomate",
+                "Aderezar la ensalada con la otra mitad del limon y un poco de aceite",
                 "Pelar y cortar platano en tajadas",
-                "Freir tajadas de platano",
+                "Freir las tajadas de platano en parte del aceite",
                 "Cocinar pescado a la plancha 3-4 min por lado",
-                "Servir con arroz y tajadas"
+                "Servir el pescado con la ensalada y las tajadas"
             ],
             "informacion_nutricional": {
-                "calorias": 580, "proteinas": 35, "carbohidratos": 65, "grasas": 18, "fibra": 4
+                "calorias": 490, "proteinas": 36, "carbohidratos": 45, "grasas": 18, "fibra": 7
             },
             "tags": ["colombiano", "omega3"]
         },
         {
             "id": "alm_06",
-            "nombre": "Chicharron con yuca frita y arroz",
+            "nombre": "Chicharron con yuca frita y ensalada",
             "categoria": "almuerzo",
             "tiempo_preparacion": "50 min",
             "dificultad": "media",
             "ingredientes": {
                 "chicharron": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "yuca": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
-                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "lechuga": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "aceite": {"cantidad": 30, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cocinar arroz normalmente",
                 "Pelar y cortar yuca en bastones",
                 "Freir yuca en aceite caliente hasta dorar",
-                "Freir chicharron hasta que este crocante",
-                "Servir con limon"
+                "Cocinar el chicharron hasta que este crocante y sazonar con sal",
+                "Lavar y cortar la lechuga y el tomate",
+                "Aderezar la ensalada con limon y servir con el chicharron y la yuca"
             ],
             "informacion_nutricional": {
-                "calorias": 650, "proteinas": 25, "carbohidratos": 55, "grasas": 38, "fibra": 3
+                "calorias": 610, "proteinas": 25, "carbohidratos": 45, "grasas": 38, "fibra": 6
             },
             "tags": ["colombiano", "ocasional"]
         },
@@ -641,31 +652,35 @@ RECETAS = {
         },
         {
             "id": "alm_10",
-            "nombre": "Higado encebollado",
+            "nombre": "Costilla de cerdo con arroz y ensalada",
             "categoria": "almuerzo",
-            "tiempo_preparacion": "30 min",
-            "dificultad": "facil",
+            "tiempo_preparacion": "55 min",
+            "dificultad": "media",
             "ingredientes": {
-                "higado_res": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
-                "cebolla": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "costilla_cerdo": {"cantidad": 500, "unidad": "gr", "tipo": "peso"},
                 "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "lechuga": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
+                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "paprika": {"cantidad": 3, "unidad": "gr", "tipo": "peso"},
                 "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
-                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+                "sal": {"cantidad": 4, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cortar higado en laminas finas, sazonar con ajo, pimienta y sal",
+                "Sazonar la costilla con ajo, comino, paprika, pimienta, sal y la mitad del limon",
+                "Dejar reposar 15 minutos y cocinar en horno o Air Fryer hasta dorar y alcanzar coccion completa",
                 "Cocinar arroz normalmente",
-                "Saltear cebolla en aceite hasta que este transparente",
-                "Agregar higado y cocinar 5 min por lado",
-                "Servir con arroz y limon"
+                "Lavar y cortar la lechuga y el tomate",
+                "Aderezar la ensalada con el aceite y el limon restante",
+                "Servir la costilla con arroz y ensalada"
             ],
             "informacion_nutricional": {
-                "calorias": 520, "proteinas": 42, "carbohidratos": 52, "grasas": 14, "fibra": 3
+                "calorias": 690, "proteinas": 39, "carbohidratos": 55, "grasas": 34, "fibra": 5
             },
-            "tags": ["colombiano", "proteina", "hierro"]
+            "tags": ["proteina", "completo", "cerdo"]
         },
         {
             "id": "alm_11",
@@ -678,10 +693,13 @@ RECETAS = {
                 "salsa_bbq": {"cantidad": 80, "unidad": "ml", "tipo": "volumen"},
                 "papa_francesa": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "paprika": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Sazonar alitas con sal",
+                "Sazonar alitas con ajo, paprika, pimienta y sal",
                 "Cocinar alitas en Air Fryer 25 min a 190 C, volteando a mitad",
                 "Cubrir con salsa BBQ y cocinar 5 min mas en Air Fryer",
                 "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
@@ -758,11 +776,13 @@ RECETAS = {
                 "papa_francesa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
                 "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
+                "paprika": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
-                "Cocinar pechuga en Air Fryer o plancha y cortar en tiras",
+                "Sazonar la pechuga con paprika, pimienta y sal; cocinar en Air Fryer o plancha y cortar en tiras",
                 "Calentar salchichas y tocineta en Air Fryer 8 min a 190 C",
                 "Mezclar todo con sal y servir con queso fresco rallado"
             ],
@@ -786,12 +806,14 @@ RECETAS = {
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
+                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cortar pechuga de pollo en cubos",
                 "Sofreir cebolla, ajo y tomate en aceite",
-                "Agregar pollo y dorar por todos lados",
+                "Agregar pollo, comino y pimienta, y dorar por todos lados",
                 "Incorporar arroz, verduras y sal",
                 "Agregar agua y cocinar hasta que el arroz este listo",
                 "Dejar reposar 5 min y servir"
@@ -816,11 +838,12 @@ RECETAS = {
                 "queso_parmesano": {"cantidad": 30, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "aceite_oliva": {"cantidad": 20, "unidad": "ml", "tipo": "volumen"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar y cortar lechuga",
-                "Cocinar pechuga a la plancha, sazonar con sal y cortar en tiras",
+                "Cocinar pechuga a la plancha, sazonar con sal y pimienta y cortar en tiras",
                 "Hacer crutones con pan integral tostado",
                 "Preparar aderezo con limon y aceite de oliva",
                 "Mezclar todo y agregar queso parmesano"
@@ -832,54 +855,55 @@ RECETAS = {
         },
         {
             "id": "cen_02",
-            "nombre": "Sopa de lentejas",
+            "nombre": "Wrap de jamon y queso",
             "categoria": "cena",
-            "tiempo_preparacion": "40 min",
+            "tiempo_preparacion": "15 min",
             "dificultad": "facil",
             "ingredientes": {
-                "lentejas": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
-                "zanahoria": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "papa": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
-                "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "ajo": {"cantidad": 8, "unidad": "gr", "tipo": "peso"},
-                "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
-                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+                "tortilla_harina": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "jamon": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
+                "queso_fresco": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "lechuga": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "oregano": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Lavar lentejas y dejar en remojo",
-                "Picar verduras y sofreir cebolla y ajo en aceite",
-                "Cocinar lentejas con verduras",
-                "Agregar comino, sal y condimentos",
-                "Cocinar hasta que lentejas esten tiernas"
+                "Lavar y cortar el tomate y la lechuga",
+                "Calentar las tortillas en una sarten",
+                "Distribuir jamon, queso, tomate y lechuga sobre cada tortilla",
+                "Sazonar con oregano y pimienta",
+                "Enrollar, dorar un minuto por lado y servir"
             ],
             "informacion_nutricional": {
-                "calorias": 320, "proteinas": 22, "carbohidratos": 48, "grasas": 4, "fibra": 10
+                "calorias": 450, "proteinas": 28, "carbohidratos": 36, "grasas": 22, "fibra": 4
             },
-            "tags": ["ligero", "vegetariano", "reconfortante"]
+            "tags": ["rapido", "practico", "proteina"]
         },
         {
             "id": "cen_03",
-            "nombre": "Tortilla de huevo con champiñones",
+            "nombre": "Tortilla de huevo con jamon",
             "categoria": "cena",
             "tiempo_preparacion": "15 min",
             "dificultad": "facil",
             "ingredientes": {
                 "huevo": {"cantidad": 4, "unidad": "unidades", "tipo": "unidad"},
-                "champiñones": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "jamon": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Saltear champiñones y cebolla picados",
-                "Batir huevos con sal",
-                "Mezclar todo y verter en sarten caliente",
+                "Picar el jamon y la cebolla; saltear la cebolla en parte del aceite",
+                "Batir los huevos con sal y pimienta",
+                "Agregar jamon y cebolla a los huevos",
+                "Verter la mezcla en la sarten caliente",
                 "Cocinar hasta que cuaje por ambos lados",
                 "Servir caliente"
             ],
             "informacion_nutricional": {
-                "calorias": 300, "proteinas": 24, "carbohidratos": 8, "grasas": 18, "fibra": 3
+                "calorias": 350, "proteinas": 31, "carbohidratos": 5, "grasas": 23, "fibra": 1
             },
             "tags": ["ligero", "bajo_en_carbohidratos", "rapido"]
         },
@@ -924,13 +948,14 @@ RECETAS = {
                 "crema_leche": {"cantidad": 80, "unidad": "ml", "tipo": "volumen"},
                 "mantequilla": {"cantidad": 15, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Pelar y cortar todas las verduras",
                 "Cocinar en agua con ajo y sal hasta que esten tiernas",
                 "Licuar con crema de leche y mantequilla",
-                "Volver a calentar y sazonar",
+                "Volver a calentar y sazonar con pimienta",
                 "Servir caliente"
             ],
             "informacion_nutricional": {
@@ -977,11 +1002,12 @@ RECETAS = {
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 30, "unidad": "gr", "tipo": "peso"},
                 "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Asar las arepas",
-                "Mezclar atun con cebolla picada, limon y sal",
+                "Mezclar atun con cebolla picada, limon, pimienta y sal",
                 "Cortar aguacate y tomate",
                 "Abrir arepas y rellenar con atun",
                 "Servir con aguacate y tomate al lado"
@@ -1031,12 +1057,13 @@ RECETAS = {
                 "papa": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
                 "cilantro": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Cortar pechuga en cubos pequenos",
                 "Picar zanahoria, papa y cebolla",
-                "Hervir todo en agua con sal por 25 min",
+                "Hervir todo en agua con ajo y sal por 25 min",
                 "Agregar cilantro picado al final",
                 "Servir caliente"
             ],
@@ -1047,30 +1074,26 @@ RECETAS = {
         },
         {
             "id": "cen_10",
-            "nombre": "Ensalada de pollo y aguacate",
+            "nombre": "Arepa con queso",
             "categoria": "cena",
-            "tiempo_preparacion": "20 min",
+            "tiempo_preparacion": "12 min",
             "dificultad": "facil",
             "ingredientes": {
-                "pechuga_pollo": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "lechuga": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
-                "aguacate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
-                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "aceite_oliva": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
-                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
+                "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "queso_fresco": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
+                "mantequilla": {"cantidad": 10, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cocinar pechuga a la plancha o en Air Fryer 12 min a 190 C",
-                "Lavar y cortar lechuga y tomate",
-                "Cortar aguacate en tajadas",
-                "Mezclar todo con limon, aceite de oliva y sal",
-                "Servir fresco"
+                "Asar las arepas hasta que esten doradas",
+                "Abrir las arepas con cuidado",
+                "Rellenar con el queso fresco",
+                "Untar la mantequilla por fuera",
+                "Calentar hasta que el queso se ablande y servir"
             ],
             "informacion_nutricional": {
-                "calorias": 360, "proteinas": 32, "carbohidratos": 14, "grasas": 20, "fibra": 6
+                "calorias": 390, "proteinas": 18, "carbohidratos": 40, "grasas": 18, "fibra": 3
             },
-            "tags": ["ligero", "proteina", "rapido"]
+            "tags": ["colombiano", "rapido", "vegetariano"]
         },
         {
             "id": "cen_11",
@@ -1098,30 +1121,26 @@ RECETAS = {
         },
         {
             "id": "cen_12",
-            "nombre": "Crema de pescado",
+            "nombre": "Crema de champiñones de sobre",
             "categoria": "cena",
-            "tiempo_preparacion": "35 min",
+            "tiempo_preparacion": "12 min",
             "dificultad": "facil",
             "ingredientes": {
-                "filete_pescado": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
-                "papa": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "cebolla": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "crema_leche": {"cantidad": 100, "unidad": "ml", "tipo": "volumen"},
-                "cilantro": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
-                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
-                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+                "crema_champinones_sobre": {"cantidad": 1, "unidad": "sobres", "tipo": "unidad"},
+                "leche": {"cantidad": 500, "unidad": "ml", "tipo": "volumen"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cocinar pescado en agua con cebolla, ajo y sal",
-                "Agregar papas picadas y cocinar hasta tiernas",
-                "Desmenuzar el pescado en el caldo",
-                "Licuar con crema de leche",
-                "Servir caliente con cilantro picado"
+                "Revisar en el empaque la cantidad de liquido indicada para un sobre",
+                "Disolver el contenido del sobre en una parte de la leche fria",
+                "Agregar el resto de la leche y llevar a fuego medio",
+                "Revolver continuamente hasta que hierva y espese",
+                "Terminar con pimienta y servir caliente"
             ],
             "informacion_nutricional": {
-                "calorias": 340, "proteinas": 28, "carbohidratos": 28, "grasas": 14, "fibra": 3
+                "calorias": 260, "proteinas": 10, "carbohidratos": 34, "grasas": 9, "fibra": 1
             },
-            "tags": ["ligero", "reconfortante", "omega3"]
+            "tags": ["rapido", "reconfortante", "despensa"]
         },
         {
             "id": "cen_13",
@@ -1138,12 +1157,13 @@ RECETAS = {
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Lavar y picar menudencias de pollo",
                 "Sofreir cebolla, ajo y tomate en aceite",
-                "Agregar menudencias, comino y sal, cocinar 15 min",
+                "Agregar menudencias, comino, pimienta y sal, cocinar 15 min",
                 "Incorporar papa y zanahoria picadas",
                 "Cocinar hasta que verduras esten tiernas y servir"
             ],
@@ -1154,29 +1174,31 @@ RECETAS = {
         },
         {
             "id": "cen_14",
-            "nombre": "Sopa de arroz con pollo",
+            "nombre": "Panquecas con jamon",
             "categoria": "cena",
-            "tiempo_preparacion": "40 min",
+            "tiempo_preparacion": "25 min",
             "dificultad": "facil",
             "ingredientes": {
-                "muslo_pollo": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
-                "arroz": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
-                "papa": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
-                "zanahoria": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
-                "cilantro": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
-                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+                "harina": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "huevo": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
+                "leche": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
+                "polvo_hornear": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
+                "jamon": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
+                "mantequilla": {"cantidad": 20, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cortar muslo de pollo en presas",
-                "Hervir pollo en agua con sal por 20 min",
-                "Agregar arroz, papa y zanahoria picadas",
-                "Cocinar hasta que arroz y verduras esten listos",
-                "Servir caliente con cilantro picado"
+                "Mezclar harina, polvo de hornear, sal y pimienta",
+                "Agregar huevo y leche; batir hasta obtener una mezcla homogenea",
+                "Picar el jamon e incorporarlo a la mezcla",
+                "Engrasar una sarten con mantequilla y verter porciones",
+                "Cocinar las panquecas por ambos lados hasta dorar y servir"
             ],
             "informacion_nutricional": {
-                "calorias": 360, "proteinas": 28, "carbohidratos": 38, "grasas": 10, "fibra": 4
+                "calorias": 510, "proteinas": 25, "carbohidratos": 58, "grasas": 20, "fibra": 3
             },
-            "tags": ["ligero", "reconfortante", "colombiano"]
+            "tags": ["rapido", "salado", "practico"]
         },
         {
             "id": "cen_15",
@@ -1192,12 +1214,13 @@ RECETAS = {
                 "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Pelar y cortar platano verde en rodajas gruesas",
                 "Freir platano, aplastar y freir de nuevo",
-                "Calentar carne mechada con cebolla, ajo, comino y sal en un poco de aceite",
+                "Calentar carne mechada con cebolla, ajo, comino, pimienta y sal en un poco de aceite",
                 "Colocar carne sobre cada patacon",
                 "Agregar queso fresco y servir caliente"
             ],

@@ -2,7 +2,7 @@ from data.menu_generator import MenuGenerator
 from data.inventory import InventoryManager
 from data.menu_fijo import DIAS_PLAN
 
-mg = MenuGenerator(dias=DIAS_PLAN, personas=2)
+mg = MenuGenerator(dias=DIAS_PLAN)
 menu = mg.cargar_menu_fijo()
 inv = InventoryManager(menu)
 

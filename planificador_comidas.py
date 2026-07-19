@@ -310,9 +310,15 @@ with tab2:
                             label_visibility="collapsed",
                         )
             if st.form_submit_button("💾 Guardar Inventario", use_container_width=True):
-                st.session_state.inventory_manager.actualizar_inventario_actual(inventario_actual)
-                st.success("Inventario guardado!")
-                st.rerun()
+                guardado = (
+                    st.session_state.inventory_manager
+                    .actualizar_inventario_actual(inventario_actual)
+                )
+                if guardado:
+                    st.success("Inventario guardado!")
+                    st.rerun()
+                else:
+                    st.error("No se pudo guardar el inventario. Revisa el acceso a la carpeta data.")
 
     with col2:
         st.subheader("🛒 Lista de Mercado")
@@ -392,8 +398,8 @@ with tab2:
                 )
 
             st.caption(
-                "Compra frutas, verduras y tubérculos cada semana; "
-                "el resto cada 15 días."
+                "Compra frutas, verduras, tubérculos, lácteos y embutidos cada semana; "
+                "los congelables y productos de despensa se compran para los 15 días."
             )
 
             st.markdown("---")
@@ -573,38 +579,21 @@ with tab4:
 # ═══════════════════════════════════════════════════════════════════════
 with tab5:
     st.header("🧊 Guia de Porcionado para Congelador")
-    st.write("Divide las proteinas en bolsas etiquetadas con el dia y comida.")
+    st.write(
+        "Divide las carnes y pescados crudos en bolsas etiquetadas con el dia y comida. "
+        "Mantén empanadas y carimañolas precongeladas separadas por uso. "
+        "Jamon, huevo, atun en lata y embutidos se conservan segun su empaque."
+    )
 
-    PROTEINAS = [
-        "espinazo_cerdo", "pechuga_pollo", "muslo_pollo", "alitas_pollo",
-        "menudencias_pollo", "carne_mechar", "bistec_res", "filete_pescado",
-        "carne_molida", "chicharron", "jamon", "atun", "huevo", "salchichas",
-        "salchicha", "higado_res", "pezuña_res", "chuleta_cerdo", "chorizo",
-        "tocineta",
-    ]
+    porciones_congelacion = (
+        st.session_state.inventory_manager.generar_porciones_congelacion()
+    )
 
-    proteinas_por_dia = {}
-    for dia in st.session_state.menu:
-        for comida in ["desayuno", "almuerzo", "cena"]:
-            receta = dia[comida]
-            for ing, datos in receta["ingredientes"].items():
-                if ing in PROTEINAS:
-                    if ing not in proteinas_por_dia:
-                        proteinas_por_dia[ing] = []
-                    proteinas_por_dia[ing].append(
-                        {
-                            "dia": dia["dia"],
-                            "comida": comida,
-                            "cantidad": datos["cantidad"],
-                            "unidad": datos["unidad"],
-                            "receta": receta["nombre"],
-                        }
-                    )
-
-    if not proteinas_por_dia:
+    if not porciones_congelacion:
         st.info("No se encontraron proteinas en el menu actual.")
     else:
-        for proteina, usos in proteinas_por_dia.items():
+        for proteina, grupo in porciones_congelacion.items():
+            usos = grupo["usos"]
             with st.expander(
                 f"🍖 {proteina.replace('_', ' ').title()} ({len(usos)} usos)"
             ):
@@ -613,8 +602,14 @@ with tab5:
                         f"**Dia {u['dia']} - {u['comida'].title()}**: "
                         f"{u['cantidad']} {u['unidad']} → {u['receta']}"
                     )
-                total = sum(u["cantidad"] for u in usos)
-                st.write(f"**Total a comprar:** {total} {usos[0]['unidad']}")
+                st.write(
+                    f"**Total a porcionar:** {grupo['total_necesario']} "
+                    f"{grupo['unidad']}"
+                )
+                st.write(
+                    f"**Falta comprar:** {grupo['faltante_comprar']} "
+                    f"{grupo['unidad']}"
+                )
                 st.caption(
                     "💡 Pesa cada porcion, etiqueta con dia y comida, y congela plano."
                 )

@@ -70,6 +70,10 @@ class TestScraperUnidades:
         precio = self.scraper.normalizar_precio_paquete("huevo", 16500)
         assert precio == pytest.approx(550, rel=0.01)
 
+    def test_referencias_huevo_d1_y_ara_son_precios_por_unidad(self):
+        assert self.scraper.buscar_en_d1("huevo")["precio"] == pytest.approx(450)
+        assert self.scraper.buscar_en_ara("huevo")["precio"] == pytest.approx(480)
+
     def test_calcular_costo_item_peso(self):
         costo = self.scraper._calcular_costo_item(3500, {"cantidad": 500, "tipo": "peso"})
         assert costo == 1750
@@ -86,7 +90,7 @@ class TestRespaldo:
         from data.menu_fijo import DIAS_PLAN
         from utils.producto_catalogo import PRODUCTOS_BUSQUEDA
 
-        mg = MenuGenerator(dias=DIAS_PLAN, personas=2)
+        mg = MenuGenerator(dias=DIAS_PLAN)
         inv = InventoryManager(mg.cargar_menu_fijo())
         respaldo = obtener_precios_respaldo()
         for producto in inv.inventario_necesario:

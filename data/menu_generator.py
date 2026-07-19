@@ -8,6 +8,8 @@ from data.hogar import get_factor_escalado, get_nombres_activos
 
 class MenuGenerator:
     def __init__(self, dias=DIAS_PLAN):
+        if not 1 <= dias <= DIAS_PLAN:
+            raise ValueError(f"dias debe estar entre 1 y {DIAS_PLAN}")
         self.dias = dias
         self.menu = []
         self.factor_escalado = get_factor_escalado()
@@ -16,7 +18,7 @@ class MenuGenerator:
         """Carga el menú fijo de 15 días escalando ingredientes dinámicamente."""
         self.factor_escalado = get_factor_escalado()
         self.menu = []
-        for entrada in MENU_DIAS:
+        for entrada in MENU_DIAS[:self.dias]:
             self.menu.append(self._construir_dia(entrada))
         return self.menu
 
@@ -43,6 +45,15 @@ class MenuGenerator:
             escalados[ing] = {**datos, "cantidad": cantidad_escalada}
         return escalados
 
+    def _escalar_nutricion(self, nutricion: dict) -> dict:
+        """Escala los nutrientes junto con las cantidades del hogar."""
+        if self.factor_escalado == 1.0:
+            return nutricion
+        return {
+            nutriente: round(valor * self.factor_escalado, 1)
+            for nutriente, valor in nutricion.items()
+        }
+
     def _construir_dia(self, entrada):
         overrides = entrada.get("overrides", {})
         desayuno = self._obtener_receta(entrada["desayuno"], overrides.get("desayuno"))
@@ -68,10 +79,16 @@ class MenuGenerator:
                 if ingrediente in receta["ingredientes"]:
                     receta["ingredientes"][ingrediente].update(datos)
                 else:
-                    receta["ingredientes"][ingrediente] = datos
+                    raise ValueError(
+                        f"Override invalido para {receta_id}: {ingrediente} "
+                        "no existe en la receta"
+                    )
 
         # Escalar ingredientes por factor de consumo dinámico
         receta["ingredientes"] = self._escalar_ingredientes(receta["ingredientes"])
+        receta["informacion_nutricional"] = self._escalar_nutricion(
+            receta["informacion_nutricional"]
+        )
 
         return receta
 
