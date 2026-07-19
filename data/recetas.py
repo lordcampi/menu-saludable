@@ -96,15 +96,15 @@ RECETAS = {
                 "huevo": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "leche": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
                 "azucar": {"cantidad": 15, "unidad": "gr", "tipo": "peso"},
-                "polvo_hornear": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "canela": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "mantequilla": {"cantidad": 20, "unidad": "gr", "tipo": "peso"},
                 "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "sal": {"cantidad": 1, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Mezclar harina, polvo de hornear, canela, azucar y sal; agregar huevo y leche",
-                "Batir hasta obtener mezcla homogenea",
+                "Separar el huevo y batir la clara a punto de nieve",
+                "Mezclar harina, canela, azucar y sal con la yema y la leche",
+                "Incorporar la clara con movimientos envolventes",
                 "Calentar sarten con mantequilla",
                 "Verter porciones y cocinar hasta dorar",
                 "Servir con banano en rodajas"
@@ -807,17 +807,16 @@ RECETAS = {
                 "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
                 "paprika": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
-                "salsa_rosada": {"cantidad": 40, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 1.5, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Mezclar la papa francesa con aceite y cocinar en Air Fryer 15 min a 200 C",
                 "Sazonar la pechuga con paprika, pimienta y sal; cocinar en Air Fryer o plancha y cortar en tiras",
                 "Calentar salchichas y tocineta en Air Fryer 8 min a 190 C",
-                "Mezclar todo, servir con queso fresco rallado y salsa rosada"
+                "Mezclar todo y servir con queso fresco rallado"
             ],
             "informacion_nutricional": {
-                "calorias": 830, "proteinas": 42, "carbohidratos": 58, "grasas": 48, "fibra": 5
+                "calorias": 710, "proteinas": 42, "carbohidratos": 55, "grasas": 37, "fibra": 5
             },
             "tags": ["colombiano", "rapido", "ocasional"]
         },
@@ -1229,15 +1228,15 @@ RECETAS = {
                 "harina": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
                 "huevo": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "leche": {"cantidad": 200, "unidad": "ml", "tipo": "volumen"},
-                "polvo_hornear": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "jamon": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
                 "mantequilla": {"cantidad": 20, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Mezclar harina, polvo de hornear, sal y pimienta",
-                "Agregar huevo y leche; batir hasta obtener una mezcla homogenea",
+                "Separar el huevo y batir la clara a punto de nieve",
+                "Mezclar harina, sal y pimienta con la yema y la leche",
+                "Incorporar la clara con movimientos envolventes",
                 "Picar el jamon e incorporarlo a la mezcla",
                 "Engrasar una sarten con mantequilla y verter porciones",
                 "Cocinar las panquecas por ambos lados hasta dorar y servir"

@@ -122,6 +122,33 @@ def test_ingredientes_tienen_categoria_catalogo_busqueda_y_precio():
         assert tipos_receta == {PRESENTACIONES[ingrediente]["tipo"]}
 
 
+def test_ingredientes_retirados_no_aparecen_en_el_sistema():
+    retirados = {"polvo_hornear", "salsa_rosada"}
+    inventario = InventoryManager([])
+    respaldo = obtener_precios_respaldo()
+    ingredientes = {
+        ingrediente
+        for receta in get_todas_recetas()
+        for ingrediente in receta["ingredientes"]
+    }
+    preparaciones = " ".join(
+        paso.lower()
+        for receta in get_todas_recetas()
+        for paso in receta["preparacion"]
+    )
+
+    assert retirados.isdisjoint(ingredientes)
+    assert "polvo de hornear" not in preparaciones
+    assert "salsa rosada" not in preparaciones
+    assert retirados.isdisjoint(PRESENTACIONES)
+    assert retirados.isdisjoint(PRODUCTOS_BUSQUEDA)
+    assert retirados.isdisjoint(respaldo)
+    assert all(
+        retirados.isdisjoint(productos)
+        for productos in inventario.categorias_productos.values()
+    )
+
+
 def _comida_con(ingredientes):
     return {
         "nombre": "Prueba",
