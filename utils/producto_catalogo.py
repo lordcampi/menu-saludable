@@ -8,6 +8,7 @@ precio_unitario esperado: COP/kg (peso), COP/L (volumen), COP/unidad (unidad).
 PRESENTACIONES = {
     "espinazo_cerdo": {"tipo": "peso"},
     "pechuga_pollo": {"tipo": "peso"},
+    "picado_pollo": {"tipo": "peso"},
     "muslo_pollo": {"tipo": "peso"},
     "alitas_pollo": {"tipo": "peso"},
     "menudencias_pollo": {"tipo": "peso"},
@@ -98,6 +99,7 @@ PRESENTACIONES = {
 PRODUCTOS_BUSQUEDA = {
     "espinazo_cerdo": "espinazo cerdo",
     "pechuga_pollo": "pechuga pollo fresca",
+    "picado_pollo": "picado de pollo",
     "muslo_pollo": "muslo pollo",
     "alitas_pollo": "alitas pollo",
     "menudencias_pollo": "menudencias pollo",

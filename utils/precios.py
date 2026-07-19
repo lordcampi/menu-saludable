@@ -21,7 +21,8 @@ CACHE_HOURS = 24
 
 def obtener_precios_respaldo() -> Dict[str, float]:
     return {
-        "espinazo_cerdo": 9000, "pechuga_pollo": 18500, "muslo_pollo": 14000,
+        "espinazo_cerdo": 9000, "pechuga_pollo": 18500, "picado_pollo": 10000,
+        "muslo_pollo": 14000,
         "alitas_pollo": 12000, "menudencias_pollo": 6000,
         "carne_mechar": 22000, "bistec_res": 24000, "filete_pescado": 26000,
         "atun": 31250, "huevo": 550, "jamon": 15000, "carne_molida": 16000,

@@ -7,7 +7,7 @@ import os
 INVENTARIO_FILE = "data/inventario_usuario.json"
 
 PROTEINAS_CONGELABLES = {
-    "espinazo_cerdo", "pechuga_pollo", "muslo_pollo", "alitas_pollo",
+    "espinazo_cerdo", "pechuga_pollo", "picado_pollo", "muslo_pollo", "alitas_pollo",
     "menudencias_pollo", "carne_mechar", "bistec_res", "filete_pescado",
     "carne_molida", "chicharron", "pezuña_res", "chuleta_cerdo",
     "costilla_cerdo", "empanadas_carne", "carimañolas",
@@ -26,7 +26,7 @@ class InventoryManager:
         self.inventario_actual = self._cargar_inventario()
         self.categorias_productos = {
             "Proteinas": [
-                "espinazo_cerdo", "pechuga_pollo", "muslo_pollo", "alitas_pollo",
+                "espinazo_cerdo", "pechuga_pollo", "picado_pollo", "muslo_pollo", "alitas_pollo",
                 "menudencias_pollo", "carne_mechar", "bistec_res", "filete_pescado",
                 "atun", "huevo", "jamon", "carne_molida", "chicharron",
                 "salchichas", "salchicha", "pezuña_res", "costilla_cerdo",

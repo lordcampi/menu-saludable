@@ -1094,7 +1094,7 @@ RECETAS = {
             "tiempo_preparacion": "35 min",
             "dificultad": "facil",
             "ingredientes": {
-                "pechuga_pollo": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "picado_pollo": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "zanahoria": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "papa": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
@@ -1105,7 +1105,7 @@ RECETAS = {
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cortar pechuga en cubos pequenos",
+                "Porcionar el picado de pollo si las piezas son grandes",
                 "Picar zanahoria, papa y cebolla",
                 "Hervir todo con ajo, comino, sal y la parte blanca de la cebolla larga por 25 min",
                 "Agregar cilantro y la parte verde de la cebolla larga al final",
