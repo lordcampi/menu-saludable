@@ -1250,34 +1250,34 @@ RECETAS = {
         },
         {
             "id": "cen_15",
-            "nombre": "Patacon con carne mechada",
+            "nombre": "Arepa con carne desmechada",
             "categoria": "cena",
             "tiempo_preparacion": "35 min",
             "dificultad": "media",
             "ingredientes": {
-                "platano_verde": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "carne_mechar": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 30, "unidad": "ml", "tipo": "volumen"},
                 "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "pimenton": {"cantidad": 40, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "comino": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Pelar y cortar platano verde en rodajas gruesas",
-                "Freir platano, aplastar y freir de nuevo",
                 "Preparar un sofrito con cebolla, ajo, tomate y pimenton; agregar carne, comino, pimienta y sal",
-                "Colocar carne sobre cada patacon",
+                "Desmechar la carne y dejar cocinar en el sofrito hasta integrar",
+                "Asar las arepas hasta que esten doradas",
+                "Abrir cada arepa y rellenar con la carne desmechada",
                 "Agregar queso fresco y servir caliente"
             ],
             "informacion_nutricional": {
-                "calorias": 450, "proteinas": 22, "carbohidratos": 42, "grasas": 22, "fibra": 4
+                "calorias": 420, "proteinas": 24, "carbohidratos": 40, "grasas": 18, "fibra": 4
             },
-            "tags": ["venezolano", "colombiano", "especial"]
+            "tags": ["colombiano", "tradicional"]
         }
     ]
 }
