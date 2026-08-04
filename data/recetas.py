@@ -189,28 +189,30 @@ RECETAS = {
         },
         {
             "id": "des_08",
-            "nombre": "Frutas picadas con yogur griego",
+            "nombre": "Huevos revueltos con pan integral",
             "categoria": "desayuno",
             "tiempo_preparacion": "10 min",
             "dificultad": "facil",
             "ingredientes": {
-                "fresas": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
-                "banano": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "yogurt_griego": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "miel": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
-                "granola": {"cantidad": 20, "unidad": "gr", "tipo": "peso"}
+                "huevo": {"cantidad": 3, "unidad": "unidades", "tipo": "unidad"},
+                "pan_integral": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "mantequilla": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
+                "pimienta": {"cantidad": 0.5, "unidad": "gr", "tipo": "peso"},
+                "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Lavar y cortar fresas en mitades",
-                "Pelar y cortar banano en rodajas",
-                "Servir yogur griego en un tazon",
-                "Agregar frutas encima",
-                "Decorar con granola y miel"
+                "Batir los huevos con sal y pimienta",
+                "Calentar el aceite en un sarten y cocinar los huevos revueltos",
+                "Picar el tomate y mezclarlo con los huevos al final",
+                "Tostar el pan integral y untar con mantequilla",
+                "Servir los huevos con el pan tostado"
             ],
             "informacion_nutricional": {
-                "calorias": 310, "proteinas": 12, "carbohidratos": 48, "grasas": 8, "fibra": 5
+                "calorias": 360, "proteinas": 22, "carbohidratos": 24, "grasas": 20, "fibra": 3
             },
-            "tags": ["saludable", "rapido", "sin_coccion"]
+            "tags": ["rapido", "saludable"]
         },
         {
             "id": "des_09",
@@ -794,31 +796,31 @@ RECETAS = {
         },
         {
             "id": "alm_14",
-            "nombre": "Salchipapa con pollo",
+            "nombre": "Pechuga asada con arroz y papas a la francesa",
             "categoria": "almuerzo",
-            "tiempo_preparacion": "35 min",
+            "tiempo_preparacion": "40 min",
             "dificultad": "facil",
             "ingredientes": {
-                "pechuga_pollo": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
-                "salchicha": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "tocineta": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "pechuga_pollo": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
+                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "papa_francesa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
-                "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
+                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "paprika": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
-                "sal": {"cantidad": 1.5, "unidad": "gr", "tipo": "peso"}
+                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Mezclar la papa francesa con aceite y cocinar en Air Fryer 15 min a 200 C",
-                "Sazonar la pechuga con paprika, pimienta y sal; cocinar en Air Fryer o plancha y cortar en tiras",
-                "Calentar salchichas y tocineta en Air Fryer 8 min a 190 C",
-                "Mezclar todo y servir con queso fresco rallado"
+                "Cocinar el arroz con agua y sal hasta que este listo",
+                "Mezclar la papa francesa con la mitad del aceite y cocinar en Air Fryer 15 min a 200 C",
+                "Sazonar la pechuga con ajo picado, paprika, pimienta y sal",
+                "Asar la pechuga en Air Fryer o plancha 15 min a 190 C hasta que este bien cocida",
+                "Servir la pechuga asada con el arroz y las papas a la francesa"
             ],
             "informacion_nutricional": {
-                "calorias": 710, "proteinas": 42, "carbohidratos": 55, "grasas": 37, "fibra": 5
+                "calorias": 620, "proteinas": 45, "carbohidratos": 68, "grasas": 15, "fibra": 4
             },
-            "tags": ["colombiano", "rapido", "ocasional"]
+            "tags": ["proteina", "familiar"]
         },
         {
             "id": "alm_15",
