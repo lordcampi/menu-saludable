@@ -22,16 +22,18 @@ CACHE_HOURS = 24
 def obtener_precios_respaldo() -> Dict[str, float]:
     return {
         "espinazo_cerdo": 9000, "pechuga_pollo": 18500, "picado_pollo": 10000,
-        "muslo_pollo": 14000,
+        "muslo_pollo": 6000,
         "alitas_pollo": 12000, "menudencias_pollo": 6000,
         "carne_mechar": 22000, "bistec_res": 24000, "filete_pescado": 26000,
         "atun": 31250, "huevo": 550, "jamon": 15000, "carne_molida": 16000,
         "chicharron": 18000, "salchichas": 12000, "salchicha": 16000,
-        "higado_res": 8000, "pezuña_res": 10000, "chuleta_cerdo": 18000,
+        "higado_res": 8000, "pezuña_res": 4000, "chuleta_cerdo": 18000,
         "costilla_cerdo": 19000,
         "chorizo": 3500, "tocineta": 16000,
         "empanadas_carne": 2500, "carimañolas": 3000,
-        "queso_fresco": 10000, "queso_parmesano": 15000,
+        "empanadas_trigo": 3000, "empanadas_maiz": 2500,
+        "costilla_res": 14000,
+        "queso_fresco": 10000, "queso_mozarella": 15000, "queso_parmesano": 15000,
         "mantequilla": 16000, "leche": 3200,
         "crema_leche": 8000, "yogurt_griego": 26667,
         "tomate": 3500, "cebolla": 2800, "cebolla_larga": 2000,
@@ -40,6 +42,7 @@ def obtener_precios_respaldo() -> Dict[str, float]:
         "cilantro": 1000, "ajo": 12000, "pimenton": 3500,
         "pepino": 2000, "zapallo": 2500, "arvejas": 3000,
         "aguacate": 5000, "banano": 600, "fresas": 7000, "limon": 500,
+        "manzana": 4000,
         "arroz": 4000, "lentejas": 3500, "frijol_negro": 4500, "frijol_rojo": 4500,
         "avena": 3500, "pan_integral": 6000, "arepa": 2000,
         "tortilla_harina": 4500, "cereal": 8000, "harina": 3000,
@@ -56,6 +59,7 @@ def obtener_precios_respaldo() -> Dict[str, float]:
         "miel": 20000,
         "chocolate_polvo": 12000, "salsa_bbq": 8000,
         "crema_champinones_sobre": 4500,
+        "ajinomen": 2500,
         "aceite": 5500, "aceite_oliva": 18000,
     }
 

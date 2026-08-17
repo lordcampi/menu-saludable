@@ -9,16 +9,28 @@ from utils.producto_catalogo import PRESENTACIONES, PRODUCTOS_BUSQUEDA
 
 
 CAMBIOS_ESPERADOS = {
-    "des_15": "Arepa con huevo",
+    "des_08": "Huevos revueltos con arepa",
+    "des_01": "Huevo y salchichas",
+    "des_02": "Huevos en cacerola",
+    "des_12": "Arepa rellena de queso fresco",
+    "des_13": "Carimañolas",
+    "des_15": "Arepa con huevos pericos",
     "des_14": "Frutas con yogur griego",
+    "alm_07": "Sancocho de costilla de res",
     "alm_10": "Costilla de cerdo con arroz y ensalada",
     "alm_05": "Pescado a la plancha con ensalada y platano",
     "alm_06": "Chicharron con yuca frita y ensalada",
-    "cen_03": "Tortilla de huevo con jamon",
+    "cen_03": "Wrap de jamon",
+    "cen_04": "Platano maduro con queso fresco",
+    "cen_05": "Yuca frita con huevo",
+    "cen_07": "Empanadas de trigo",
+    "cen_08": "Crema de champiñones",
+    "cen_09": "Tortilla con huevo napolitano",
+    "cen_10": "Sopa Ajinomen",
     "cen_12": "Crema de champiñones de sobre",
     "cen_02": "Wrap de jamon y queso",
-    "cen_10": "Arepa con queso",
-    "cen_14": "Panquecas con jamon",
+    "cen_13": "Empanadas de maiz",
+    "cen_14": "Empanadas mixtas de trigo y maiz",
 }
 
 
@@ -41,15 +53,32 @@ def test_sustituciones_del_menu(receta_id, nombre):
 
 def test_sustituciones_eliminan_ingredientes_anteriores():
     ingredientes_antiguos = {
+        "des_08": {"pan_integral", "tomate"},
+        "des_01": {"arepa", "aguacate", "tomate", "cebolla_larga", "cilantro"},
+        "des_12": {"empanadas_carne", "limon"},
         "des_14": {"arepa", "pechuga_pollo", "aguacate"},
-        "alm_10": {"higado_res"},
-        "alm_05": {"arroz"},
-        "alm_06": {"arroz"},
-        "cen_03": {"champiñones"},
+        "alm_01": {"tomate"},
+        "alm_02": {"pimenton"},
+        "alm_04": {"pimenton"},
+        "alm_05": {"tomate"},
+        "alm_06": {"tomate", "cebolla"},
+        "alm_07": {"espinazo_cerdo"},
+        "alm_08": {"pimenton"},
+        "alm_09": {"tomate", "cebolla"},
+        "alm_10": {"higado_res", "tomate"},
+        "alm_15": {"pimenton"},
+        "cen_03": {"champiñones", "huevo"},
+        "cen_04": {"pechuga_pollo", "aguacate", "tortilla_harina", "tomate"},
+        "cen_05": {"zapallo", "zanahoria", "papa", "crema_leche"},
+        "cen_07": {"arepa", "atun", "aguacate", "tomate", "cebolla", "limon", "cilantro"},
+        "cen_08": {"pasta", "tomate", "zanahoria", "aceite_oliva", "queso_parmesano", "oregano"},
+        "cen_09": {"picado_pollo", "zanahoria", "papa"},
+        "cen_10": {"pechuga_pollo", "aguacate"},
         "cen_12": {"filete_pescado"},
         "cen_02": {"lentejas"},
-        "cen_10": {"pechuga_pollo", "aguacate"},
-        "cen_14": {"muslo_pollo", "arroz"},
+        "cen_13": {"menudencias_pollo", "papa", "zanahoria", "pimenton"},
+        "cen_14": {"muslo_pollo", "arroz", "harina", "huevo", "jamon"},
+        "cen_15": {"pimenton"},
     }
     for receta_id, eliminados in ingredientes_antiguos.items():
         ingredientes = set(get_receta_por_id(receta_id)["ingredientes"])
@@ -59,15 +88,15 @@ def test_sustituciones_eliminan_ingredientes_anteriores():
 def test_sazon_revisada_incluye_condimentos_clave():
     esperados = {
         "des_03": {"canela"},
-        "alm_02": {"pimenton", "laurel"},
+        "alm_02": {"laurel"},
         "alm_03": {"oregano"},
         "alm_06": {"ajo", "paprika", "pimienta"},
-        "alm_08": {"pimenton", "tomate", "laurel"},
-        "alm_15": {"pimenton", "achiote", "cilantro"},
+        "alm_08": {"tomate", "laurel"},
+        "alm_15": {"achiote", "cilantro"},
         "cen_01": {"ajo", "mostaza", "salsa_inglesa"},
-        "cen_05": {"nuez_moscada"},
-        "cen_08": {"oregano", "pimienta"},
-        "cen_13": {"pimenton", "cilantro"},
+        "cen_08": {"pimienta", "nuez_moscada"},
+        "cen_12": {"pimienta"},
+        "cen_15": {"comino", "pimienta"},
     }
     for receta_id, condimentos in esperados.items():
         ingredientes = set(get_receta_por_id(receta_id)["ingredientes"])
@@ -90,7 +119,7 @@ def test_recetas_tienen_estructura_completa():
             for datos in receta["ingredientes"].values():
                 assert datos["cantidad"] > 0
                 assert datos["tipo"] in {"peso", "volumen", "unidad"}
-                assert datos["unidad"] in {"gr", "ml", "unidades", "sobres"}
+                assert datos["unidad"] in {"gr", "ml", "unidades", "sobres", "paquete"}
             assert set(receta["informacion_nutricional"]) == {
                 "calorias", "proteinas", "carbohidratos", "grasas", "fibra"
             }
@@ -214,8 +243,10 @@ def test_congelacion_incluye_costilla_y_excluye_refrigerados():
     porciones = inventario.generar_porciones_congelacion()
 
     assert "costilla_cerdo" in PROTEINAS_CONGELABLES
-    assert {"empanadas_carne", "carimañolas"} <= PROTEINAS_CONGELABLES
+    assert {"empanadas_carne", "carimañolas", "empanadas_trigo", "empanadas_maiz"} <= PROTEINAS_CONGELABLES
+    assert "costilla_res" in PROTEINAS_CONGELABLES
     assert "costilla_cerdo" in porciones
+    assert "costilla_res" in porciones
     assert porciones["costilla_cerdo"]["faltante_comprar"] == pytest.approx(
         max(0, porciones["costilla_cerdo"]["total_necesario"] - 100)
     )

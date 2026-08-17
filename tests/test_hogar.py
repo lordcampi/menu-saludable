@@ -94,5 +94,5 @@ def test_menu_completo_escala_ingredientes_y_nutricion_con_carlos(monkeypatch):
     desayuno = menu_generator.MenuGenerator(dias=1).cargar_menu_fijo()[0]["desayuno"]
 
     assert desayuno["ingredientes"]["huevo"]["cantidad"] == 5
-    assert desayuno["ingredientes"]["pan_integral"]["cantidad"] == 150
-    assert desayuno["informacion_nutricional"]["calorias"] == 540
+    assert desayuno["ingredientes"]["arepa"]["cantidad"] == 3
+    assert desayuno["informacion_nutricional"]["calorias"] == 495

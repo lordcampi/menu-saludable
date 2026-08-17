@@ -10,7 +10,8 @@ PROTEINAS_CONGELABLES = {
     "espinazo_cerdo", "pechuga_pollo", "picado_pollo", "muslo_pollo", "alitas_pollo",
     "menudencias_pollo", "carne_mechar", "bistec_res", "filete_pescado",
     "carne_molida", "chicharron", "pezuña_res", "chuleta_cerdo",
-    "costilla_cerdo", "empanadas_carne", "carimañolas",
+    "costilla_cerdo", "costilla_res", "empanadas_carne", "carimañolas",
+    "empanadas_trigo", "empanadas_maiz",
 }
 
 
@@ -31,10 +32,11 @@ class InventoryManager:
                 "atun", "huevo", "jamon", "carne_molida", "chicharron",
                 "salchichas", "salchicha", "pezuña_res", "costilla_cerdo",
                 "chuleta_cerdo", "chorizo", "tocineta",
-                "empanadas_carne", "carimañolas",
+                "empanadas_carne", "carimañolas", "empanadas_trigo",
+                "empanadas_maiz", "costilla_res",
             ],
             "Lacteos": [
-                "queso_fresco", "queso_parmesano", "mantequilla",
+                "queso_fresco", "queso_mozarella", "queso_parmesano", "mantequilla",
                 "leche", "crema_leche", "yogurt_griego",
             ],
             "Vegetales": [
@@ -42,11 +44,11 @@ class InventoryManager:
                 "espinaca", "champiñones", "aji", "cilantro", "ajo",
                 "pimenton", "pepino", "zapallo", "arvejas",
             ],
-            "Frutas": ["aguacate", "banano", "fresas", "limon"],
+            "Frutas": ["aguacate", "banano", "fresas", "limon", "manzana"],
             "Granos y Cereales": [
                 "arroz", "lentejas", "frijol_negro", "frijol_rojo", "avena",
                 "pan_integral", "arepa", "tortilla_harina", "cereal", "harina",
-                "pasta", "pan_hamburguesa", "granola", "mermelada",
+                "pasta", "pan_hamburguesa", "granola", "mermelada", "ajinomen",
             ],
             "Tuberculos": [
                 "papa", "papa_francesa", "yuca", "platano_verde",
