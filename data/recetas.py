@@ -6,30 +6,30 @@ RECETAS = {
     "desayunos": [
         {
             "id": "des_01",
-            "nombre": "Huevo y salchichas",
+            "nombre": "Salchichas con arepa",
             "categoria": "desayuno",
             "tiempo_preparacion": "15 min",
             "dificultad": "facil",
             "ingredientes": {
-                "huevo": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
-                "salchichas": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "salchichas": {"cantidad": 4, "unidad": "unidades", "tipo": "unidad"},
+                "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cortar las salchichas en rodajas y freir en parte del aceite hasta dorar",
-                "Batir los huevos con sal",
-                "Freir los huevos en el aceite restante",
-                "Servir los huevos con las salchichas"
+                "Cortar las salchichas en rodajas y freir en el aceite hasta dorar",
+                "Asar las arepas en Air Fryer o sarten hasta dorar",
+                "Sazonar con sal",
+                "Servir las salchichas con las arepas"
             ],
             "informacion_nutricional": {
-                "calorias": 360, "proteinas": 20, "carbohidratos": 8, "grasas": 28, "fibra": 0
+                "calorias": 420, "proteinas": 17, "carbohidratos": 40, "grasas": 22, "fibra": 2
             },
             "tags": ["rapido", "proteina"]
         },
         {
             "id": "des_02",
-            "nombre": "Huevos en cacerola",
+            "nombre": "Huevos en cacerola con tortilla de trigo",
             "categoria": "desayuno",
             "tiempo_preparacion": "15 min",
             "dificultad": "facil",
@@ -38,14 +38,14 @@ RECETAS = {
                 "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "cebolla_larga": {"cantidad": 30, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
-                "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "tortilla_harina": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "sal": {"cantidad": 2, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Picar el tomate y la cebolla larga finamente",
                 "Sofreir tomate y cebolla en el aceite dentro de una cacerola",
                 "Romper los huevos sobre el sofrito, tapar y cocinar a fuego bajo hasta cuajar",
-                "Sazonar con sal y servir con las arepas asadas"
+                "Sazonar con sal y servir con las tortillas de trigo calientes"
             ],
             "informacion_nutricional": {
                 "calorias": 360, "proteinas": 21, "carbohidratos": 36, "grasas": 15, "fibra": 5
@@ -158,27 +158,28 @@ RECETAS = {
         },
         {
             "id": "des_07",
-            "nombre": "Arepas con queso y jamon",
+            "nombre": "Arepas con atun",
             "categoria": "desayuno",
             "tiempo_preparacion": "15 min",
             "dificultad": "facil",
             "ingredientes": {
                 "arepa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
-                "queso_mozarella": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
-                "jamon": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "atun": {"cantidad": 160, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "cebolla_larga": {"cantidad": 30, "unidad": "gr", "tipo": "peso"},
+                "limon": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
                 "mantequilla": {"cantidad": 10, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
                 "Asar las arepas hasta dorar",
-                "Rallar el queso fresco",
-                "Picar jamon en tiras",
-                "Abrir arepas y rellenar con queso y jamon",
-                "Calentar en sarten con mantequilla hasta derretir queso"
+                "Mezclar el atun desmenuzado con tomate, cebolla larga picada y limon",
+                "Abrir las arepas y rellenar con la mezcla de atun",
+                "Calentar en sarten con mantequilla hasta dorar ligeramente y servir"
             ],
             "informacion_nutricional": {
-                "calorias": 370, "proteinas": 20, "carbohidratos": 38, "grasas": 16, "fibra": 3
+                "calorias": 410, "proteinas": 25, "carbohidratos": 38, "grasas": 17, "fibra": 3
             },
-            "tags": ["colombiano", "rapido"]
+            "tags": ["colombiano", "rapido", "proteina"]
         },
         {
             "id": "des_08",
@@ -731,14 +732,14 @@ RECETAS = {
         },
         {
             "id": "alm_12",
-            "nombre": "Frijol rojo con pezuña",
+            "nombre": "Frijol rojo con pezuña y arroz",
             "categoria": "almuerzo",
             "tiempo_preparacion": "2 horas",
             "dificultad": "media",
             "ingredientes": {
                 "frijol_rojo": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
                 "pezuña_res": {"cantidad": 1, "unidad": "unidades", "tipo": "unidad"},
-                "platano_verde": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
                 "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "tomate": {"cantidad": 100, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
@@ -751,10 +752,11 @@ RECETAS = {
                 "Cocinar pezuña con frijol rojo en olla a presion 1 hora",
                 "Sofreir cebolla, tomate y ajo",
                 "Agregar sofrito, comino y sal al guiso y cocinar 20 min mas",
-                "Terminar con cilantro y servir con platano verde cocido o frito"
+                "Cocinar el arroz aparte",
+                "Terminar con cilantro y servir los frijoles con arroz blanco"
             ],
             "informacion_nutricional": {
-                "calorias": 540, "proteinas": 34, "carbohidratos": 62, "grasas": 15, "fibra": 12
+                "calorias": 580, "proteinas": 36, "carbohidratos": 72, "grasas": 14, "fibra": 12
             },
             "tags": ["colombiano", "tradicional", "reconfortante"]
         },
@@ -787,14 +789,15 @@ RECETAS = {
         },
         {
             "id": "alm_14",
-            "nombre": "Pechuga asada con arroz y papas a la francesa",
+            "nombre": "Pechuga asada con ensalada de papa",
             "categoria": "almuerzo",
             "tiempo_preparacion": "40 min",
             "dificultad": "facil",
             "ingredientes": {
                 "pechuga_pollo": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
-                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
-                "papa_francesa": {"cantidad": 400, "unidad": "gr", "tipo": "peso"},
+                "papa": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
+                "huevo": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "zanahoria": {"cantidad": 120, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
                 "paprika": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
                 "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
@@ -802,16 +805,18 @@ RECETAS = {
                 "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Cocinar el arroz con agua y sal hasta que este listo",
-                "Mezclar la papa francesa con la mitad del aceite y cocinar en Air Fryer 15 min a 200 C",
+                "Cocinar la papa en agua con sal hasta que este blanda",
+                "Cocinar los huevos en agua 10 minutos, pelar y cortar en cuartos",
+                "Cortar la zanahoria en rodajas y cocinarla al vapor hasta que este tierna",
                 "Sazonar la pechuga con ajo picado, paprika, pimienta y sal",
                 "Asar la pechuga en Air Fryer o plancha 15 min a 190 C hasta que este bien cocida",
-                "Servir la pechuga asada con el arroz y las papas a la francesa"
+                "Mezclar la papa, la zanahoria y el huevo con un hilo de aceite como ensalada cocida",
+                "Servir la pechuga asada con la ensalada cocida"
             ],
             "informacion_nutricional": {
-                "calorias": 580, "proteinas": 40, "carbohidratos": 68, "grasas": 13, "fibra": 4
+                "calorias": 470, "proteinas": 40, "carbohidratos": 42, "grasas": 15, "fibra": 5
             },
-            "tags": ["proteina", "familiar"]
+            "tags": ["proteina", "saludable"]
         },
         {
             "id": "alm_15",
@@ -911,26 +916,26 @@ RECETAS = {
         },
         {
             "id": "cen_03",
-            "nombre": "Wrap de jamon",
+            "nombre": "Wrap de chorizo",
             "categoria": "cena",
             "tiempo_preparacion": "15 min",
             "dificultad": "facil",
             "ingredientes": {
                 "tortilla_harina": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
-                "jamon": {"cantidad": 150, "unidad": "gr", "tipo": "peso"},
+                "chorizo": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
                 "queso_mozarella": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
-                "lechuga": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "mostaza": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"}
+                "tomate": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "lechuga": {"cantidad": 60, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Lavar y cortar la lechuga",
-                "Calentar las tortillas en una sarten",
-                "Distribuir jamon, queso y lechuga sobre cada tortilla",
-                "Untar mostaza y enrollar",
-                "Dorar un minuto por lado y servir"
+                "Cocinar los chorizos en Air Fryer 10 min a 190 C o a la plancha",
+                "Cortar el chorizo en rodajas finas",
+                "Lavar y cortar la lechuga y el tomate",
+                "Calentar las tortillas y distribuir chorizo, queso, tomate y lechuga",
+                "Enrollar, dorar un minuto por lado y servir"
             ],
             "informacion_nutricional": {
-                "calorias": 420, "proteinas": 26, "carbohidratos": 34, "grasas": 20, "fibra": 3
+                "calorias": 460, "proteinas": 24, "carbohidratos": 36, "grasas": 25, "fibra": 3
             },
             "tags": ["rapido", "practico", "proteina"]
         },
