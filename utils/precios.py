@@ -32,6 +32,7 @@ def obtener_precios_respaldo() -> Dict[str, float]:
         "chorizo": 3500, "tocineta": 16000,
         "empanadas_carne": 2500, "carimañolas": 3000,
         "empanadas_trigo": 3000, "empanadas_maiz": 2500,
+        "bollo_limpio": 2500,
         "costilla_res": 14000,
         "queso_fresco": 10000, "queso_mozarella": 15000, "queso_parmesano": 15000,
         "mantequilla": 16000, "leche": 3200,

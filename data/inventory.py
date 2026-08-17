@@ -49,6 +49,7 @@ class InventoryManager:
                 "arroz", "lentejas", "frijol_negro", "frijol_rojo", "avena",
                 "pan_integral", "arepa", "tortilla_harina", "cereal", "harina",
                 "pasta", "pan_hamburguesa", "granola", "mermelada", "ajinomen",
+                "bollo_limpio",
             ],
             "Tuberculos": [
                 "papa", "papa_francesa", "yuca", "platano_verde",

@@ -641,33 +641,33 @@ RECETAS = {
         },
         {
             "id": "alm_09",
-            "nombre": "Hamburguesas caseras",
+            "nombre": "Lentejas con chorizo y arroz",
             "categoria": "almuerzo",
-            "tiempo_preparacion": "35 min",
+            "tiempo_preparacion": "50 min",
             "dificultad": "facil",
             "ingredientes": {
-                "carne_molida": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
-                "pan_hamburguesa": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
-                "papa_francesa": {"cantidad": 300, "unidad": "gr", "tipo": "peso"},
-                "lechuga": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
-                "queso_fresco": {"cantidad": 60, "unidad": "gr", "tipo": "peso"},
+                "lentejas": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
+                "chorizo": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "arroz": {"cantidad": 200, "unidad": "gr", "tipo": "peso"},
+                "cebolla": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
+                "tomate": {"cantidad": 80, "unidad": "gr", "tipo": "peso"},
                 "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
-                "pimienta": {"cantidad": 2, "unidad": "gr", "tipo": "peso"},
-                "aceite": {"cantidad": 5, "unidad": "ml", "tipo": "volumen"},
-                "mostaza": {"cantidad": 15, "unidad": "ml", "tipo": "volumen"},
-                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+                "comino": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
+                "cilantro": {"cantidad": 10, "unidad": "gr", "tipo": "peso"},
+                "aceite": {"cantidad": 10, "unidad": "ml", "tipo": "volumen"},
+                "sal": {"cantidad": 4, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Mezclar carne molida con ajo picado, pimienta y sal, formar hamburguesas",
-                "Pincelar las hamburguesas con aceite y cocinar en sarten o Air Fryer 12 min a 190 C",
-                "Cocinar papa francesa congelada en Air Fryer 15 min a 200 C",
-                "Armar hamburguesa con lechuga y queso",
-                "Servir con papas fritas y mostaza"
+                "Sofreir cebolla, tomate y ajo en el aceite",
+                "Agregar las lentejas, el comino y la sal, cubrir con agua y cocinar hasta que esten tiernas",
+                "Cocinar los chorizos en Air Fryer 10 min a 190 C o a la plancha y cortar en rodajas",
+                "Cocinar el arroz aparte",
+                "Terminar las lentejas con cilantro y servir con el arroz y las rodajas de chorizo"
             ],
             "informacion_nutricional": {
-                "calorias": 640, "proteinas": 36, "carbohidratos": 52, "grasas": 30, "fibra": 4
+                "calorias": 610, "proteinas": 30, "carbohidratos": 75, "grasas": 18, "fibra": 14
             },
-            "tags": ["rapido", "familiar", "ocasional"]
+            "tags": ["colombiano", "tradicional", "reconfortante"]
         },
         {
             "id": "alm_10",
@@ -1034,31 +1034,25 @@ RECETAS = {
         },
         {
             "id": "cen_08",
-            "nombre": "Crema de champiñones",
+            "nombre": "Bollo limpio con queso fresco",
             "categoria": "cena",
-            "tiempo_preparacion": "25 min",
+            "tiempo_preparacion": "15 min",
             "dificultad": "facil",
             "ingredientes": {
-                "champiñones": {"cantidad": 250, "unidad": "gr", "tipo": "peso"},
-                "crema_leche": {"cantidad": 100, "unidad": "ml", "tipo": "volumen"},
-                "cebolla": {"cantidad": 50, "unidad": "gr", "tipo": "peso"},
-                "mantequilla": {"cantidad": 20, "unidad": "gr", "tipo": "peso"},
-                "ajo": {"cantidad": 5, "unidad": "gr", "tipo": "peso"},
-                "nuez_moscada": {"cantidad": 0.3, "unidad": "gr", "tipo": "peso"},
-                "pimienta": {"cantidad": 1, "unidad": "gr", "tipo": "peso"},
-                "sal": {"cantidad": 3, "unidad": "gr", "tipo": "peso"}
+                "bollo_limpio": {"cantidad": 2, "unidad": "unidades", "tipo": "unidad"},
+                "queso_fresco": {"cantidad": 120, "unidad": "gr", "tipo": "peso"}
             },
             "preparacion": [
-                "Picar la cebolla y el ajo y sofreir en mantequilla",
-                "Agregar los champiñones y cocinar hasta que suelten su agua",
-                "Agregar la crema de leche y cocinar 5 minutos mas",
-                "Licuar hasta obtener una crema suave",
-                "Sazonar con sal, pimienta y nuez moscada y servir caliente"
+                "Comprar los bollos limpios ya hechos por unidad",
+                "Calentar los bollos al vapor o en agua hirviendo 5 minutos",
+                "Retirar la envoltura con cuidado",
+                "Cortar el queso fresco en trozos",
+                "Servir el bollo limpio caliente con el queso fresco al lado"
             ],
             "informacion_nutricional": {
-                "calorias": 300, "proteinas": 9, "carbohidratos": 20, "grasas": 22, "fibra": 3
+                "calorias": 420, "proteinas": 14, "carbohidratos": 60, "grasas": 14, "fibra": 3
             },
-            "tags": ["ligero", "reconfortante", "cremoso"]
+            "tags": ["colombiano", "tradicional", "rapido"]
         },
         {
             "id": "cen_09",
